@@ -136,5 +136,5 @@
     <string name="buy_product">ఉత్పత్తిని కొనుగోలు చేయాలా?</string>
     <string name="buy">కొనండి</string>
     <string name="profit_and_loss_title"><![CDATA[లాభం & నష్టం]]></string>
-    <string name="menu_profit_and_loss"><![CDATA[Profit & Loss]]></string>
+    <string name="menu_profit_and_loss"><![CDATA[లాభం & నష్టం]]></string>
 </resources>

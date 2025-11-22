@@ -123,7 +123,7 @@
     <string name="cancel">रद्द करना</string>
     <string name="confirm">पुष्टि करना</string>
     <string name="sales_bill_details">बिक्री बिल विवरण</string>
-    <string name="profit_loss"><![CDATA[P&L]]></string>
+    <string name="profit_loss"><![CDATA[लाभ & नुकसान]]></string>
     <string name="back_button_confirm">क्या आप वाकई बंद करना चाहते हैं? आपका कोई भी सहेजा न गया डेटा खो जाएगा!!</string>
     <string name="bill_address">बिलर का नाम</string>
     <string name="filter_expand_button_content_description">फ़िल्टर के लिए क्लिक करें</string>
@@ -135,6 +135,6 @@
     <string name="sell_product">उत्पाद बेचें?</string>
     <string name="buy_product">उत्पाद खरीदें?</string>
     <string name="buy">खरीदना</string>
-    <string name="profit_and_loss_title"><![CDATA[Profit & Loss]]></string>
-    <string name="menu_profit_and_loss"><![CDATA[Profit & Loss]]></string>
+    <string name="profit_and_loss_title"><![CDATA[लाभ & नुकसान]]></string>
+    <string name="menu_profit_and_loss"><![CDATA[लाभ & नुकसान]]></string>
 </resources>

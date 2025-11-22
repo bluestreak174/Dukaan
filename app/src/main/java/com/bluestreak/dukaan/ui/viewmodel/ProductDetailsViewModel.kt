@@ -74,7 +74,7 @@ class ProductDetailsViewModel(
         viewModelScope.launch {
             val currentItem = uiState.value.productDetails.toProduct()
             val pieceQty = uiState.value.categoryQty.qtyPiece
-            val totalPrice = (uiState.value.productDetails.mrp.toDouble() * pieceQty)
+            val totalPrice = (uiState.value.productDetails.cost.toDouble() * pieceQty)
             val purchaseBill = PurchaseBill(
                 id = 0,
                 total = totalPrice,
