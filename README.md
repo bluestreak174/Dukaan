@@ -1,6 +1,6 @@
-Android jetpack compose app in kotlin.
+Android jetpack compose app in kotlin using viewmodel state composition and room for database.
 
-This simple app is useful for small shops to maintain buy sell records with easy and simple user interface
+This simple app is useful for small shops and merchants to maintain buy sell records with easy and simple user interface
 
 Available Features:
   1. Add Produt into categories
@@ -13,3 +13,15 @@ Available Features:
   9. Products grouped into categories
   10. Upload physical bill/invoice images
   11. Supports app language in English, Hindi & Telugu
+
+Screenshots: 
+
+<img height="320" hspace=15 vspace=15 alt="homescreen_light" src="https://github.com/user-attachments/assets/9297d687-598b-435f-853f-a6937d9a9a4d" />
+<img height="320" hspace=15 vspace=15 alt="homescreen_dark" src="https://github.com/user-attachments/assets/cb61d226-2c77-4117-9df2-6e2afe7b8cd0" />
+<img height="320" hspace=15 vspace=15 alt="dukaanhindi" src="https://github.com/user-attachments/assets/3e15bd0f-2890-430c-b80b-ce1dfda9ed1d" />
+<img height="320" hspace=15 vspace=15 alt="dukaantelugu" src="https://github.com/user-attachments/assets/96177cc6-6a4c-4405-8a14-6728a670ba8e" />
+<img height="320" hspace=15 vspace=15 alt="menu" src="https://github.com/user-attachments/assets/12e52c43-83a5-4e93-95ec-b4b5781d226d" />
+
+<img height="320" hspace=15 vspace=15 alt="product list" src="https://github.com/user-attachments/assets/85816768-b275-4e21-a8dc-96509d6f0d5d" />
+<img height="320" hspace=15 vspace=15 alt="product details" src="https://github.com/user-attachments/assets/008e48a8-30df-46b2-9c51-46230af3ae3f" />
+<img height="320" hspace=15 vspace=15 alt="summary" src="https://github.com/user-attachments/assets/d753b8bc-a2bd-4c57-87c3-120fb4dfd030" />
