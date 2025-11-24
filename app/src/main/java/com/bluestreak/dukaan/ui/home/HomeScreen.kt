@@ -1,10 +1,15 @@
 package com.bluestreak.dukaan.ui.home
 
+import android.content.Context
+import android.content.pm.PackageManager
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,17 +19,24 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.Icons.Filled
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,9 +45,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -44,6 +58,7 @@ import com.bluestreak.dukaan.R
 import com.bluestreak.dukaan.data.entities.Category
 import com.bluestreak.dukaan.ui.AppViewModelProvider
 import com.bluestreak.dukaan.ui.navigation.NavigationDestination
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 object HomeDestination : NavigationDestination {
     override val route = "home"
@@ -76,18 +91,22 @@ fun HomeScreen(
     val stockValueUiState by viewModel.stockValueUiState.collectAsState()
     val pBillUiState by viewModel.purchasesUiState.collectAsStateWithLifecycle()
     val sBillUiState by viewModel.salesUiState.collectAsStateWithLifecycle()
-    //Buy/Sell : 1000/2000
-    //Cash/UPI : 1000/2000
-    //Stock : 30000
+
+    /*val billsTotal = "BUY: 88899 | 88899 | 88899 \n" +
+            "SELL : 88899 \n" +
+            "STOCK : 30000"*/
     val billsTotal  = stringResource(
-                R.string.buy_sell,
+                R.string.home_month_buy,
                 pBillUiState.totalBill.total,
-                sBillUiState.totalBill.total
-            ) +
-            stringResource(
-                R.string.cash_upi,
                 pBillUiState.totalBill.cash,
                 pBillUiState.totalBill.upi
+            ) + "\n" +
+            stringResource(
+                R.string.home_month_sell,
+                sBillUiState.totalBill.total,
+                0.0,
+                0.0
+
             ) + "\n" +
             stringResource(R.string.stock,stockValueUiState)
 
@@ -112,7 +131,14 @@ fun HomeScreen(
                 scrollBehavior = scrollBehavior
             )
         },
-
+        bottomBar = {
+            Box(
+                modifier = Modifier.fillMaxWidth().background(color = Color.Gray),
+                contentAlignment = Alignment.Center
+            ){
+                AppVersionDisplay()
+            }
+        }
 
     ) { innerPadding ->
         HomeBody(
@@ -124,6 +150,27 @@ fun HomeScreen(
         )
     }
 
+}
+
+fun getAppVersion(context: Context): String? {
+    try {
+        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+        return packageInfo.versionName
+    } catch (e: PackageManager.NameNotFoundException) {
+        e.printStackTrace()
+    }
+    return "N/A" // Fallback in case of error
+}
+@Composable
+fun AppVersionDisplay() {
+    val context = LocalContext.current
+    val appVersion = getAppVersion(context)
+
+    Text(
+        text = "Dukaan Version: $appVersion",
+        color = Color.Blue,
+        fontWeight = FontWeight.Bold
+    )
 }
 
 @Composable
@@ -139,6 +186,7 @@ fun HomeBody(
         modifier = modifier,
         contentPadding = contentPadding
     )
+
 }
 
 @Composable

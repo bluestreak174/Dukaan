@@ -104,8 +104,15 @@
     <string name="cash_upi">\nनकद / यू पी आई : %1$s / %2$s</string>
     <string name="purchase_sale_list_title">खरीद और बिक्री</string>
     <string name="menu_purchase_sales_test">Purchase Sales test</string>
-    <string name="buy_sell">खरीद/बिक्री : %1$s / %2$s</string>
+    <string name="buy_sell">खरीद/बिक्री: %1$s / %2$s</string>
+    <string name="home_month_buy">खरीद: %1$s | %2$s | %3$s </string>
+    <string name="home_month_sell">बिक्री: %1$s | %2$s | %3$s </string>
     <string name="stock">" भंडार:  %1$s"</string>
+    <string name="home_summary_tooltip">
+        चालू माह की राशि \n
+        खरीद: कुल | नकद | यू पी आई \n
+        िक्री: कुल | नकद | यू पी आई
+    </string>
     <string name="success">सफलता</string>
     <string name="completed_state">अपडेट पूर्ण हो गया</string>
     <string name="ok">ठीक है</string>
@@ -137,4 +144,5 @@
     <string name="buy">खरीदना</string>
     <string name="profit_and_loss_title"><![CDATA[लाभ & नुकसान]]></string>
     <string name="menu_profit_and_loss"><![CDATA[लाभ & नुकसान]]></string>
+    <string name="expand_button_content_description">Click to Expand</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -153,7 +154,7 @@ fun DukaanDropdownMenu(
                 onClick = onImageEntryClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_image_entry_test))) {
-                        Icon(Icons.Default.Add, contentDescription = stringResource(R.string.menu_image_entry))
+                        Icon(Icons.Default.Image, contentDescription = stringResource(R.string.menu_image_entry))
                     }
                 }
             )

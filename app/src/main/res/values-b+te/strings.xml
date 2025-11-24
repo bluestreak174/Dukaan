@@ -105,7 +105,14 @@
     <string name="purchase_sale_list_title">కొనుగోళ్లు మరియు అమ్మకాలు</string>
     <string name="menu_purchase_sales_test">Purchase Sales test</string>
     <string name="buy_sell">"కొనుగోళ్లు/అమ్మకాలు : %1$s / %2$s "</string>
+    <string name="home_month_buy">కొనుగోళ్లు: %1$s | %2$s | %3$s </string>
+    <string name="home_month_sell">అమ్మకాలు: %1$s | %2$s | %3$s </string>
     <string name="stock">నిల్వ:  %1$s</string>
+    <string name="home_summary_tooltip">
+        ప్రస్తుత నెల మొత్తం \n
+        కొనుగోళ్లు: మొత్తం | నగదు | యుపిఐ \n
+        అమ్మకాలు: పమొత్తం | నగదు | యుపిఐ
+    </string>
     <string name="success">విజయం</string>
     <string name="completed_state">నవీకరణ పూర్తయింది</string>
     <string name="ok">సరే</string>
@@ -137,4 +144,5 @@
     <string name="buy">కొనండి</string>
     <string name="profit_and_loss_title"><![CDATA[లాభం & నష్టం]]></string>
     <string name="menu_profit_and_loss"><![CDATA[లాభం & నష్టం]]></string>
+    <string name="expand_button_content_description">Click to Expand</string>
 </resources>

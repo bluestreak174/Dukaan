@@ -104,7 +104,14 @@
     <string name="menu_purchase_sales_test">Purchase Sales test</string>
     <string name="buy_sell">BUY/SELL : %1$s / %2$s</string>
     <string name="cash_upi">CASH/UPI : %1$s / %2$s</string>
-    <string name="stock">\nSTOCK:  %1$s</string>
+    <string name="home_month_buy">BUY : %1$s | %2$s | %3$s </string>
+    <string name="home_month_sell">SELL: %1$s | %2$s | %3$s </string>
+    <string name="stock">STOCK:  %1$s</string>
+    <string name="home_summary_tooltip">
+        Current Month Amount \n
+        BUY : TOTAL | CASH | UPI \n
+        SELL: TOTAL | CASH | UPI
+    </string>
     <string name="purchase_sale_list_title">Purchases and Sales</string>
     <string name="success">Success</string>
     <string name="completed_state">Update Completed</string>
@@ -137,5 +144,6 @@
     <string name="buy">Buy</string>
     <string name="profit_and_loss_title"><![CDATA[Profit & Loss]]></string>
     <string name="menu_profit_and_loss"><![CDATA[Profit & Loss]]></string>
+    <string name="expand_button_content_description">Click to Expand</string>
 
 </resources>

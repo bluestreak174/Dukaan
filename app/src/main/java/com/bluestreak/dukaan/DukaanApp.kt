@@ -1,20 +1,39 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 package com.bluestreak.dukaan
 
+import android.text.Layout.Alignment
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AccountBalance
+import androidx.compose.material.icons.filled.Analytics
+import androidx.compose.material.icons.filled.Assistant
+import androidx.compose.material.icons.filled.Blinds
+import androidx.compose.material.icons.filled.ChatBubble
+import androidx.compose.material.icons.filled.ChatBubbleOutline
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.ChatBubbleOutline
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bluestreak.dukaan.ui.navigation.DukaanDropdownMenu
@@ -32,6 +51,7 @@ fun DukaanApp(navController: NavHostController = rememberNavController()) {
 /**
  * App bar to display title and conditionally display the back navigation.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DukaanTopAppBar(
     modifier: Modifier = Modifier,
@@ -54,10 +74,19 @@ fun DukaanTopAppBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
+            if(!canNavigateBack) {
+                IconWithToolTip(
+                    modifier = Modifier.padding(start = 150.dp, top = 30.dp),
+                    tooltipText = stringResource((R.string.home_summary_tooltip)),
+                    iconImageVector = Icons.Filled.Assistant,
+                    iconColor = Color.Gray
+                )
+            }
             Text(
                 text = title,
                 style = MaterialTheme.typography.labelLarge
             )
+
                 },
         modifier = modifier,
         scrollBehavior = scrollBehavior,
@@ -99,4 +128,31 @@ fun DukaanTopAppBar(
             }
         }
     )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun IconWithToolTip(
+    modifier: Modifier = Modifier,
+    tooltipText: String = stringResource(R.string.app_name),
+    iconImageVector: ImageVector = Icons.Filled.Favorite,
+    iconColor: Color = Color.Blue,
+    onIconClick: () -> Unit = {},
+) {
+    TooltipBox(
+        modifier = modifier,
+        positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
+        tooltip = {
+            PlainTooltip { Text(tooltipText) }
+        },
+        state = rememberTooltipState()
+    ) {
+        IconButton(onClick = onIconClick) {
+            Icon(
+                imageVector = iconImageVector,
+                contentDescription = tooltipText,
+                tint = iconColor
+            )
+        }
+    }
 }

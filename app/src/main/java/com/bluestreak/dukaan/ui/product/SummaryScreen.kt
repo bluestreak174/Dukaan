@@ -153,7 +153,7 @@ fun StockDetails(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = "$profitAndLoss",
+                    text = "$profitAndLoss (10%)",
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleLarge,
                 )

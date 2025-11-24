@@ -2,12 +2,16 @@ package com.bluestreak.dukaan.ui.home
 
 import android.content.ContentResolver
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.calculateEndPadding
@@ -16,16 +20,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Image
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,15 +47,23 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -100,7 +118,7 @@ fun ImageEntryBody(
 ){
     val context = LocalContext.current
 
-    var fileName  by remember { mutableStateOf("group_img_0.png") }
+    var fileName  by remember { mutableStateOf("img_0.png") }
 
     var imageUri: Uri? by remember { mutableStateOf(null) }
 
@@ -112,6 +130,8 @@ fun ImageEntryBody(
         if (uri != null) {
             //Log.d("Dukaan", "Selected URI: $uri")
             imageUri = uri
+            fileName = getPathFromURI(uri, context.contentResolver)
+                .toString().split("/").last()
 
         } else {
             //Log.d("Dukaan", "No media selected")
@@ -121,6 +141,7 @@ fun ImageEntryBody(
     var showNotification by rememberSaveable { mutableStateOf(false) }
     var statusMessage by rememberSaveable { mutableStateOf("Failed") }
 
+    var filesList: SnapshotStateList<File>  = getFileList(context).toMutableStateList()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -136,18 +157,19 @@ fun ImageEntryBody(
                 .fillMaxWidth()
         ) {
 
-            IconButton(
+            Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
                     // Launch the photo picker and let the user choose only images.
                     pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
                 }
             ) {
                 Row(horizontalArrangement = Arrangement.Center) {
                     Text(
-                        text = "Add image"
+                        text = "Add image "
                     )
-                    Icon(Icons.Default.Add, contentDescription = "Select Image")
+                    Icon(Icons.Default.Image, contentDescription = "Select Image")
                 }
             }
         }
@@ -175,9 +197,11 @@ fun ImageEntryBody(
             onClick = {
                 val status = copyToDukaanDirectory(context, folder, imageUri, fileName)
                 //Log.d("Dukaan",status.toString())
-                if(status) statusMessage =  "Success"
+                if(status) {
+                    statusMessage =  "Success"
+                }
                 showNotification = true
-
+                imageUri = null
                       },
             enabled = imageUri != null,
             shape = MaterialTheme.shapes.small,
@@ -186,7 +210,18 @@ fun ImageEntryBody(
             Text(text = stringResource(R.string.save_action))
         }
 
-        FileListScreen()
+        FileListScreen(
+            filesListState = filesList,
+            onDeleteFile = { file ->
+                try {
+                    if(file.delete()) {
+                        filesList.remove(file)
+                    }
+                }catch(ex: SecurityException){
+                    ex.toString()
+                }
+            }
+        )
     }
 }
 @Composable
@@ -235,21 +270,169 @@ fun NotificationDialog(
 @Composable
 fun FileListScreen(
     modifier: Modifier = Modifier,
+    filesListState: SnapshotStateList<File>,
+    onDeleteFile: (File) -> Unit
 ) {
     val context = LocalContext.current
-    val fileNames = remember { getFileList(context) }
 
-    if (fileNames.isNotEmpty()) {
-        LazyColumn(
-            modifier = modifier,
+    val imageFileList = filesListState.toList()
+    LazyColumn(
+        modifier = modifier,
+    ) {
+        item{
+            Card(
+                modifier = Modifier.padding(bottom = 4.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(), // Make the Box fill the Card's content area
+                    contentAlignment = Alignment.Center // Center the content within the Box
+                ) {
+                    Text(
+                        text = "Uploaded Images",
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier
+                            .padding(8.dp)
+                    )
+                }
+
+            }
+
+        }
+        items(imageFileList) { file ->
+            ImageFileCard(
+                file = file,
+                onDeleteFile = onDeleteFile
+            )
+        }
+    }
+
+}
+
+@Composable
+fun DisplayImageFromFile(imagePath: String, size: Int = 50) {
+    val imageFile = File(imagePath)
+    var bitmap: Bitmap? = null
+    if (imageFile.exists()) {
+        bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+    }
+
+    bitmap?.let {
+        Image(
+            painter = BitmapPainter(it.asImageBitmap()),
+            contentDescription = "Image from file",
+            modifier = Modifier.size(size.dp), // Adjust size as needed
+            contentScale = ContentScale.Fit
+        )
+    }
+}
+
+@Composable
+private fun ImageItemButton(
+    expanded: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    IconButton(
+        onClick = onClick,
+        modifier = modifier
+    ) {
+        Icon(
+            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+            contentDescription = stringResource(R.string.expand_button_content_description),
+            tint = MaterialTheme.colorScheme.secondary
+        )
+    }
+}
+
+@Composable
+fun ImageFileCard(
+    modifier: Modifier = Modifier,
+    file: File,
+    onDeleteFile: (File) -> Unit,
+){
+    var expanded by remember { mutableStateOf(false) }
+    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+
+        Row(
+            modifier = Modifier.fillMaxWidth()
         ) {
-            items(fileNames) { fileName ->
-                Text(text = fileName)
+            ImageItemButton(
+                expanded = expanded,
+                onClick = { expanded = !expanded }
+            )
+            Text(
+                text = file.name,
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .weight(1f)
+            )
+            IconButton(
+                onClick = { deleteConfirmationRequired = true },
+                enabled = true,
+            ) {
+                Icon(
+                    Icons.Default.Delete,
+                    contentDescription = stringResource(R.string.delete)
+                )
+            }
+            DisplayImageFromFile(file.path)
+            if (deleteConfirmationRequired) {
+                DeleteConfirmationDialog(
+                    onDeleteConfirm = {
+                        deleteConfirmationRequired = false
+                        onDeleteFile(file)
+                    },
+                    onDeleteCancel = { deleteConfirmationRequired = false },
+                    modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+                )
             }
         }
-    } else {
-        Text(text = "No files found in app directory.")
+        if(expanded) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box (
+                    modifier = Modifier.fillMaxSize(), // Make the Box fill the Card's content area
+                    contentAlignment = Alignment.Center // Center the content within the Box
+                ) {
+                    DisplayImageFromFile(file.path, size = 400)
+                }
+            }
+        }
     }
+
+}
+
+
+
+@Composable
+private fun DeleteConfirmationDialog(
+    onDeleteConfirm: () -> Unit,
+    onDeleteCancel: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(onDismissRequest = { /* Do nothing */ },
+        title = { Text(stringResource(R.string.attention)) },
+        text = { Text(stringResource(R.string.delete)) },
+        modifier = modifier,
+        dismissButton = {
+            TextButton(onClick = onDeleteCancel) {
+                Text(stringResource(R.string.no))
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDeleteConfirm) {
+                Text(stringResource(R.string.yes))
+            }
+        })
 }
 
 @Preview(showBackground = true)
@@ -277,7 +460,7 @@ fun copyToDukaanDirectory(context: Context, tgtFolder: File, uri: Uri?, fileName
     if(uri != null && fileName.isNotBlank()){
         val contentResolver = context.contentResolver
         val photoFile = File(tgtFolder, fileName)
-        val sourceFile = File(getPathFromURI(uri!!, contentResolver))
+        val sourceFile = File(getPathFromURI(uri, contentResolver).toString())
         try {
             getMoveFileToAppFolder(sourceFile, photoFile)
             copySuccess = true
@@ -321,9 +504,16 @@ fun getAppFilesDirectory(context: Context): File {
     return File(context.filesDir, "DukaanData")
 }
 
-fun getFileList(context: Context): List<String> {
+fun getFileList(context: Context): List<File> {
     val appDir = getAppFilesDirectory(context)
-    val files = appDir.listFiles()
+    val files = appDir.listFiles()?.toList()
+    if (files != null) {
+        if(files.isNotEmpty()) return files
+    }
+    return listOf()
+}
+
+fun getFileNamesList(files: List<File>?): List<String> {
     return files?.map { it.name } ?: emptyList()
 }
 
