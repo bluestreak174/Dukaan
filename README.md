@@ -16,11 +16,12 @@ Available Features:
 
 Screenshots: 
 
-<img height="320" hspace=15 vspace=15 alt="homescreen_light" src="https://github.com/user-attachments/assets/9297d687-598b-435f-853f-a6937d9a9a4d" />
-<img height="320" hspace=15 vspace=15 alt="homescreen_dark" src="https://github.com/user-attachments/assets/cb61d226-2c77-4117-9df2-6e2afe7b8cd0" />
-<img height="320" hspace=15 vspace=15 alt="dukaanhindi" src="https://github.com/user-attachments/assets/3e15bd0f-2890-430c-b80b-ce1dfda9ed1d" />
-<img height="320" hspace=15 vspace=15 alt="dukaantelugu" src="https://github.com/user-attachments/assets/96177cc6-6a4c-4405-8a14-6728a670ba8e" />
-<img height="320" hspace=15 vspace=15 alt="menu" src="https://github.com/user-attachments/assets/12e52c43-83a5-4e93-95ec-b4b5781d226d" />
+<img height="320" hspace=15 vspace=15 alt="homescreen_light" src="https://github.com/user-attachments/assets/5f55d635-5b47-454f-942b-68b7516b3ebd" />
+<img height="320" hspace=15 vspace=15 alt="homescreen_dark" src="https://github.com/user-attachments/assets/7492a343-99f0-42aa-9cd3-020848759a41" />
+<img height="320" hspace=15 vspace=15 alt="dukaanhindi" src="https://github.com/user-attachments/assets/839c99b5-0954-498e-895e-7ed2abadcae3" />
+<img height="320" hspace=15 vspace=15 alt="dukaantelugu" src="https://github.com/user-attachments/assets/06e762cc-b08e-4c04-b956-1afa25492f1d" />
+
+<img height="320" hspace=15 vspace=15 alt="menu" src="https://github.com/user-attachments/assets/ce1df09e-0567-433e-8372-1d80c5f55702" />
 
 <img height="320" hspace=15 vspace=15 alt="product list" src="https://github.com/user-attachments/assets/85816768-b275-4e21-a8dc-96509d6f0d5d" />
 <img height="320" hspace=15 vspace=15 alt="product details" src="https://github.com/user-attachments/assets/008e48a8-30df-46b2-9c51-46230af3ae3f" />
