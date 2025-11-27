@@ -8,11 +8,11 @@ Available Features:
   3. Multiple products buy and sell as a bill or invoice
   4. Profit & Loss for given period
   5. Bar code scanning of products
-  7. Monthly buy, sell data on homescreen with stock balance
+  7. Monthly buy, sell data with stock balance on homescreen 
   8. Purchases and sales amount in Cash and UPI accountablility
   9. Products grouped into categories
   10. Upload physical bill/invoice images
-  11. Supports app language in English, Hindi & Telugu
+  11. Locale - Supports app language in English, Hindi, Bengali, Assamese, Kannada, Malayalam, Tamil, Telugu and Nepali
 
 Screenshots: 
 
