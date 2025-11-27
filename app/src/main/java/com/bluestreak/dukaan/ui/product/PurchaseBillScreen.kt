@@ -237,8 +237,10 @@ fun BillAddressText(
     billAmount: BillAmount,
     updateBillAmount: (BillAmount) -> Unit,
 ){
+    val address = billAmount.billAddress.takeIf { billAmount.billAddress.isNotBlank() } ?:
+    stringResource(R.string.market)
     OutlinedTextField(
-        value = billAmount.billAddress,
+        value = address,
         onValueChange = {
             updateBillAmount(billAmount.copy(billAddress = it))
         },

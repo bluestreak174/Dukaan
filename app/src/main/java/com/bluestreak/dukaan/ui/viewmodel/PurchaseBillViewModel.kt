@@ -243,7 +243,7 @@ data class BillAmount(
     var totalCost: Double = 0.0,
     var cash: String ="0.0",
     var upi: String = "0.0",
-    var billAddress: String = "Market"
+    var billAddress: String = ""
 )
 
 

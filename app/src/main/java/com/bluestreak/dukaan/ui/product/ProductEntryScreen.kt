@@ -363,10 +363,11 @@ fun PurchaseInputForm(
                 singleLine = true
             )
         }
-
+        val address = purchaseEntryDetails.address.takeIf { purchaseEntryDetails.address.isNotBlank() } ?:
+        stringResource(R.string.market)
         Row {
             OutlinedTextField(
-                value = purchaseEntryDetails.address,
+                value = address,
                 onValueChange = { onPurchaseValueChange(purchaseEntryDetails.copy(address = it)) },
                 label = { Text(stringResource(R.string.bill_address)) },
                 colors = OutlinedTextFieldDefaults.colors(

@@ -1,0 +1,169 @@
+<resources>
+    <string name="app_name">കട</string>
+    <string name="back_button">കട</string>
+    <string name="product_entry_title">പുതിയ ഉൽപ്പന്നം ചേർക്കുക</string>
+    <string name="purchase_bill_title">വാങ്ങൽ ബിൽ</string>
+    <string name="purchase_bill_list_title">ബില്ലുകൾ (വാങ്ങൽ)</string>
+    <string name="sales_bill_title">വിൽപ്പന ബിൽ</string>
+    <string name="cost">ചെലവ്</string>
+    <string name="price">വില</string>
+    <string name="mrp">എംആർപി</string>
+    <string name="qty">അളവ്</string>
+    <string name="product_list_title">ഉൽപ്പന്നങ്ങളുടെ പട്ടിക</string>
+    <string name="purchase_list_title">വാങ്ങലുകൾ</string>
+    <string name="summary_title">സംഗ്രഹം</string>
+    <string name="sales_list_title">വിൽപ്പന</string>
+    <string name="menu_purchase_list">വാങ്ങലുകൾ</string>
+    <string name="menu_summary">സംഗ്രഹം</string>
+    <string name="menu_purchase_bill_list">വാങ്ങൽ ബിൽ</string>
+    <string name="menu_sales_bill_list">വിൽപ്പന ബിൽ</string>
+    <string name="menu_sales_list">വിൽപ്പന</string>
+    <string name="product_details_title">ഉൽപ്പന്ന വിശദാംശങ്ങൾ</string>
+    <string name="edit_product_title">ഉൽപ്പന്നം എഡിറ്റ് ചെയ്യുക</string>
+    <string name="attention">ശ്രദ്ധ</string>
+    <string name="delete_product">ഇനം ഇല്ലാതാക്കണോ?</string>
+    <string name="no">ഇല്ല</string>
+    <string name="yes">അതെ</string>
+    <string name="sell_price">വിൽക്കുക വില</string>
+    <string name="cost_price">വാങ്ങുക ചെലവ്</string>
+    <string name="quantity_in_stock">സ്റ്റോക്കിലുള്ള അളവ്</string>
+    <string name="product">ഇനം</string>
+    <string name="save_action">രക്ഷിക്കും</string>
+    <string name="product_name_req">ഉൽപ്പന്ന നാമം*</string>
+    <string name="product_cost_req">ചെലവ്*</string>
+    <string name="product_price_req">വില*</string>
+    <string name="cash_req">പണം*</string>
+    <string name="upi_req">യുപിഐ*</string>
+    <string name="quantity_req">സ്റ്റോക്കിലുള്ള അളവ്*</string>
+    <string name="qty_buy_req">അളവ് വാങ്ങുക*</string>
+    <string name="required_fields">*required fields</string>
+    <string name="sell">വിൽക്കുക</string>
+    <string name="delete">ഇല്ലാതാക്കുക</string>
+
+    <string name="file_name_req">ഫയലിന്റെ പേര്*</string>
+    <string name="file_name">ഫയലിന്റെ പേര്</string>
+
+    <string name="category_entry_title">വിഭാഗം ചേർക്കുക</string>
+    <string name="category_name_req">വിഭാഗം*</string>
+    <string name="menu_category_type">വിഭാഗം ചേർക്കുക</string>
+
+    <string name="quantity_type_entry_title">അളവ് തരം ചേർക്കുക</string>
+    <string name="qty_type_name_req">അളവ് തരം*</string>
+    <string name="qty_type_name">അളവ് തരം</string>
+    <string name="menu_qty_type">അളവ് തരം ചേർക്കുക</string>
+    <string name="piece_type_name_req">കഷണം*</string>
+
+    <string name="image_entry_title">ചിത്രം ചേർക്കുക</string>
+    <string name="image_name_req">ചിത്രം*</string>
+    <string name="menu_image_entry">ചിത്രം ചേർക്കുക</string>
+    <string name="piece">കഷണം</string>
+    <string name="category_products">ഉൽപ്പന്ന വിഭാഗം</string>
+    <string name="category">വിഭാഗം</string>
+    <string name="more_options">കൂടുതൽ ഓപ്ഷനുകൾ</string>
+    <string name="all_categories">എല്ലാ വിഭാഗങ്ങളും</string>
+
+    <string name="item">ഇനം</string>
+    <string name="type">തരം</string>
+    <string name="add_item">ഇനം ചേർക്കുക</string>
+    <string name="remove_item">ഇനം നീക്കം ചെയ്യുക</string>
+    <string name="total">മൊത്തം </string>
+    <string name="cash">പണം</string>
+    <string name="upi">യുപിഐ</string>
+    <string name="bill">ബിൽ</string>
+    <string name="date">തീയതി</string>
+    <string name="menu_bills_list">ബില്ലുകൾ (വാങ്ങൽ)</string>
+
+    <string name="menu_sales_bills_list">ബില്ലുകൾ (വിൽപ്പന)</string>
+
+    <string name="sales_bill_list_title">ബില്ലുകൾ (വിൽപ്പന)</string>
+    <string name="delete_bill">ബിൽ ഡിലീറ്റ് ചെയ്യണോ??</string>
+    <string name="search_product">ഉൽപ്പന്നം തിരയുക</string>
+    <string name="sell_action">വിൽക്കുക</string>
+    <string name="buy_action">വാങ്ങുക</string>
+    <string name="category_list_title">വിഭാഗങ്ങൾ</string>
+    <string name="menu_category_list">വിഭാഗങ്ങൾ</string>
+
+    <string name="quantity_type_list_title">അളവിന്റെ തരങ്ങൾ</string>
+    <string name="menu_qty_type_list">അളവിന്റെ തരങ്ങൾ</string>
+
+    <string name="qty_type_piece_req">കഷണങ്ങളുടെ എണ്ണം</string>
+    <string name="edit_category_title">വിഭാഗം എഡിറ്റ് ചെയ്യുക</string>
+    <string name="quantity_type_edit_title">അളവിന്റെ തരം എഡിറ്റ് ചെയ്യുക</string>
+    <string name="edit_quantity_type_title">അളവിന്റെ തരം എഡിറ്റ് ചെയ്യുക</string>
+    <string name="home_content_description">ഹോമിലേക്ക് പോകുക</string>
+    <string name="menu_purchase_sales_list">വാങ്ങലുകളും വിൽപ്പനകളും</string>
+
+    <string name="buy_sell">വാങ്ങുക/വിൽക്കുക : %1$s / %2$s</string>
+    <string name="cash_upi">പണം/യുപിഐ : %1$s / %2$s</string>
+    <string name="home_month_buy">
+        വാങ്ങുക : \n(മൊത്തം) = %1$s \n
+        (പണം) = %2$s \n
+        (യുപിഐ) = %3$s \n
+    </string>
+    <string name="home_month_sell">
+        വിൽക്കുക : \n(മൊത്തം) = %1$s \n
+        (പണം) = %2$s \n
+        (യുപിഐ) = %3$s \n
+    </string>
+    <string name="stock">സ്റ്റോക്ക്:  %1$s</string>
+    <string name="home_summary_tooltip">നിലവിലെ മാസം \n</string>
+    <string name="month_total_buy">വാങ്ങുക: %1$s</string>
+    <string name="month_total_sell">വിൽക്കുക: %1$s</string>
+    <string name="purchase_sale_list_title">വാങ്ങലുകളും വിൽപ്പനകളും</string>
+    <string name="success">വിജയം</string>
+    <string name="completed_state">അപ്‌ഡേറ്റ് വിജയകരം</string>
+    <string name="ok">ശരി</string>
+    <string name="update_success">അപ്‌ഡേറ്റ് വിജയകരം</string>
+    <string name="product_history_title">ഉൽപ്പന്ന ചരിത്രം</string>
+    <string name="history">ചരിത്രം</string>
+    <string name="image_upload_title">ചിത്രം അപ്‌ലോഡ് ചെയ്യുക</string>
+    <string name="done">ചെയ്തുകഴിഞ്ഞു</string>
+    <string name="stock_title">സ്റ്റോക്ക്</string>
+    <string name="purchase_bill_details">വാങ്ങൽ ബിൽ Details</string>
+    <string name="qty_type">തരം</string>
+    <string name="buy_qty">അളവ് വാങ്ങുക</string>
+    <string name="sell_qty">വിൽപ്പന അളവ്</string>
+    <string name="bal">ബാക്കി</string>
+    <string name="cancel">റദ്ദാക്കുക</string>
+    <string name="confirm">സ്ഥിരീകരിക്കുക</string>
+    <string name="sales_bill_details">വിൽപ്പന ബിൽ വിശദാംശങ്ങൾ</string>
+    <string name="profit_loss">പി &amp; എൽ</string>
+    <string name="back_button_confirm">അടയ്ക്കണമെന്ന് ഉറപ്പാണോ? സേവ് ചെയ്യാത്ത ഡാറ്റ നഷ്ടപ്പെടും !!</string>
+    <string name="bill_address">വിലാസം</string>
+    <string name="filter_expand_button_content_description">ഫിൽട്ടറുകൾക്ക് സ്പർശിക്കുക</string>
+    <string name="no_address">വിലാസമില്ല</string>
+    <string name="new_product">പുതിയ ഉൽപ്പന്നം</string>
+    <string name="displaying_of">%2$s-ൽ %1$s പ്രദർശിപ്പിക്കുന്നു</string>
+    <string name="scan_and_add_item">ഉൽപ്പന്നം സ്കാൻ ചെയ്യുക</string>
+    <string name="bar_code">ബാർ കോഡ്</string>
+    <string name="sell_product">ഉൽപ്പന്നം വിൽക്കുക ?</string>
+    <string name="buy_product">ഉൽപ്പന്നം വാങ്ങണോ?</string>
+    <string name="buy">വാങ്ങുക</string>
+    <string name="profit_and_loss_title">ലാഭനഷ്ടം</string>
+    <string name="menu_profit_and_loss">ലാഭനഷ്ടം</string>
+    <string name="expand_button_content_description">വികസിപ്പിക്കാൻ സ്പർശിക്കുക</string>
+    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="app_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="application_name">അപ്ലിക്കേഷൻ നാമം</string>
+
+    <string name="menu_category_type_test">category click</string>
+    <string name="menu_qty_type_test">qty click</string>
+    <string name="menu_image_entry_test">image entry test</string>
+    <string name="more_options_test">more options test</string>
+    <string name="menu_purchase_list_test">വാങ്ങൽ list test</string>
+    <string name="menu_summary_test">Summary test</string>
+    <string name="menu_sales_list_test">വിൽപ്പന list test</string>
+    <string name="menu_purchase_bill_test">വാങ്ങൽ ബിൽ test</string>
+    <string name="menu_sales_bill_test">വിൽപ്പന Bill test</string>
+    <string name="menu_purchase_bills_test">ബില്ലുകൾ വാങ്ങൽ Test</string>
+    <string name="menu_sales_bills_test">വിൽപ്പന Bills Test</string>
+    <string name="menu_category_list_test">menu categories test</string>
+    <string name="menu_qty_type_list_test">menu quantity types test</string>
+    <string name="menu_purchase_sales_test">വാങ്ങൽവാങ്ങൽ വിൽപ്പന test</string>
+    <string name="market">മാർക്കറ്റ്</string>
+    <string name="failed">പരാജയപ്പെട്ടു</string>
+    <string name="uploaded_images">അപ്‌ലോഡ് ചെയ്ത ചിത്രങ്ങൾ</string>
+    <string name="image_from_file">ഫയലിൽ നിന്നുള്ള ചിത്രം</string>
+    <string name="select_image">ചിത്രം തിരഞ്ഞെടുക്കുക</string>
+
+</resources>

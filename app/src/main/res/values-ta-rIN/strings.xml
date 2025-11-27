@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">கடை</string>
+    <string name="back_button">கடை</string>
+    <string name="product_entry_title">புதிய பொருளைச் சேர்</string>
+    <string name="purchase_bill_title">கொள்முதல் பில்</string>
+    <string name="purchase_bill_list_title">பில்கள் (கொள்முதல்)</string>
+    <string name="sales_bill_title">விற்பனை ரசீது</string>
+    <string name="cost">செலவு</string>
+    <string name="price">விலை</string>
+    <string name="mrp">எம்.ஆர்.பி.</string>
+    <string name="qty">அளவு</string>
+    <string name="product_list_title">தயாரிப்புகள் பட்டியல்</string>
+    <string name="purchase_list_title">கொள்முதல்கள்</string>
+    <string name="summary_title">சுருக்கம்</string>
+    <string name="sales_list_title">விற்பனை</string>
+    <string name="menu_purchase_list">கொள்முதல்கள்</string>
+    <string name="menu_summary">சுருக்கம்</string>
+    <string name="menu_purchase_bill_list">கொள்முதல் பில்</string>
+    <string name="menu_sales_bill_list">விற்பனை ரசீது</string>
+    <string name="menu_sales_list">விற்பனை</string>
+    <string name="product_details_title">தயாரிப்பு விவரங்கள்</string>
+    <string name="edit_product_title">தயாரிப்பைத் திருத்து</string>
+    <string name="attention">கவனம்</string>
+    <string name="delete_product">உருப்படியை நீக்கவா?</string>
+    <string name="no">இல்லை</string>
+    <string name="yes">ஆம்</string>
+    <string name="sell_price">விற்பனை விலை</string>
+    <string name="cost_price">வாங்கும் செலவு</string>
+    <string name="quantity_in_stock">கையிருப்பில் உள்ள அளவு</string>
+    <string name="product">பொருள்</string>
+    <string name="save_action">சேமிக்கவும்</string>
+    <string name="product_name_req">தயாரிப்பு பெயர்*</string>
+    <string name="product_cost_req">செலவு*</string>
+    <string name="product_price_req">விலை*</string>
+    <string name="cash_req">பணம்*</string>
+    <string name="upi_req">யுபிஐ*</string>
+    <string name="quantity_req">கையிருப்பில் உள்ள அளவு*</string>
+    <string name="qty_buy_req">அளவு வாங்கவும்*</string>
+    <string name="required_fields">*தேவையான புலங்கள்</string>
+    <string name="sell">விற்கவும்</string>
+    <string name="delete">நீக்கு</string>
+    <string name="file_name_req">கோப்பு பெயர்*</string>
+    <string name="file_name">கோப்பு பெயர்</string>
+    <string name="category_entry_title">வகையைச் சேர்</string>
+    <string name="category_name_req">வகை*</string>
+    <string name="menu_category_type">வகையைச் சேர்</string>
+    <string name="quantity_type_entry_title">அளவு வகையைச் சேர்க்கவும்</string>
+    <string name="qty_type_name_req">அளவு வகை*</string>
+    <string name="qty_type_name">அளவு வகை</string>
+    <string name="menu_qty_type">அளவு வகையைச் சேர்க்கவும்</string>
+    <string name="piece_type_name_req">துண்டு*</string>
+    <string name="image_entry_title">படத்தைச் சேர்</string>
+    <string name="image_name_req">படம்*</string>
+    <string name="menu_image_entry">படத்தைச் சேர்</string>
+    <string name="piece">துண்டு</string>
+    <string name="category_products">தயாரிப்புகள் வகை</string>
+    <string name="category">வகை</string>
+    <string name="more_options">கூடுதல் விருப்பங்கள்</string>
+    <string name="all_categories">அனைத்து வகைகளும்</string>
+    <string name="item">பொருள்</string>
+    <string name="type">வகை</string>
+    <string name="add_item">பொருளைச் சேர்</string>
+    <string name="remove_item">உருப்படியை அகற்று</string>
+    <string name="total">மொத்தம் </string>
+    <string name="cash">பணம்</string>
+    <string name="upi">யுபிஐ</string>
+    <string name="bill">பில்</string>
+    <string name="date">தேதி</string>
+    <string name="menu_bills_list">பில்கள் (கொள்முதல்)</string>
+    <string name="menu_sales_bills_list">பில்கள் (விற்பனை)</string>
+    <string name="sales_bill_list_title">பில்கள் (விற்பனை)</string>
+    <string name="delete_bill">பில்லை நீக்கவா?</string>
+    <string name="search_product">தயாரிப்பைத் தேடு</string>
+    <string name="sell_action">விற்கவும்</string>
+    <string name="buy_action">வாங்கு</string>
+    <string name="category_list_title">வகைகள்</string>
+    <string name="menu_category_list">வகைகள்</string>
+    <string name="quantity_type_list_title">அளவு வகைகள்</string>
+    <string name="menu_qty_type_list">அளவு வகைகள்</string>
+    <string name="qty_type_piece_req">துண்டுகளின் எண்ணிக்கை</string>
+    <string name="edit_category_title">வகையைத் திருத்து</string>
+    <string name="quantity_type_edit_title">அளவு வகையைத் திருத்து</string>
+    <string name="edit_quantity_type_title">அளவு வகையைத் திருத்து</string>
+    <string name="home_content_description">முகப்புக்குச் செல்</string>
+    <string name="menu_purchase_sales_list">கொள்முதல் மற்றும் விற்பனை</string>
+    <string name="buy_sell">வாங்கு/விற்கவும் : %1$s / %2$s</string>
+    <string name="cash_upi">பணம்/யுபிஐ : %1$s / %2$s</string>
+    <string name="home_month_buy">
+        வாங்கு : \n(மொத்தம்) = %1$s \n
+        (பணம்) = %2$s \n
+        (யுபிஐ) = %3$s \n
+    </string>
+    <string name="home_month_sell">
+        விற்கவும் : \n(மொத்தம்) = %1$s \n
+        (பணம்) = %2$s \n
+        (யுபிஐ) = %3$s \n
+    </string>
+    <string name="stock">பங்கு:  %1$s</string>
+    <string name="home_summary_tooltip">தற்போதைய மாதம் \n</string>
+    <string name="month_total_buy">வாங்கு: %1$s</string>
+    <string name="month_total_sell">விற்கவும்: %1$s</string>
+    <string name="purchase_sale_list_title">கொள்முதல் மற்றும் விற்பனை</string>
+    <string name="success">வெற்றி</string>
+    <string name="completed_state">புதுப்பிப்பு முடிந்தது</string>
+    <string name="ok">சரி</string>
+    <string name="update_success">புதுப்பிப்பு வெற்றி</string>
+    <string name="product_history_title">தயாரிப்பு வரலாறு</string>
+    <string name="history">வரலாறு</string>
+    <string name="image_upload_title">படத்தை பதிவேற்று</string>
+    <string name="done">முடிந்தது</string>
+    <string name="stock_title">பங்கு</string>
+    <string name="purchase_bill_details">கொள்முதல் பில் விவரங்கள்</string>
+    <string name="qty_type">வகை</string>
+    <string name="buy_qty">அளவு வாங்கவும்</string>
+    <string name="sell_qty">அளவுகளை விற்கவும்</string>
+    <string name="bal">இருப்பு</string>
+    <string name="cancel">ரத்துசெய்</string>
+    <string name="confirm">உறுதிப்படுத்தவும்</string>
+    <string name="sales_bill_details">விற்பனை பில் விவரங்கள்</string>
+    <string name="profit_loss">லாப நஷ்டம்</string>
+    <string name="back_button_confirm">நீங்கள் நிச்சயமாக மூட விரும்புகிறீர்களா? சேமிக்கப்படாத தரவு ஏதேனும் இருந்தால் அதை இழப்பீர்கள் !! </string>
+    <string name="bill_address">முகவரி</string>
+    <string name="filter_expand_button_content_description">வடிப்பான்களுக்குத் தொடவும்</string>
+    <string name="no_address">முகவரி இல்லை</string>
+    <string name="new_product">புதிய தயாரிப்பு</string>
+    <string name="displaying_of">%2$s இல் %1$s ஐக் காட்டுகிறது</string>
+    <string name="scan_and_add_item">தயாரிப்பை ஸ்கேன் செய்</string>
+    <string name="bar_code">பார்கோடு</string>
+    <string name="sell_product">பொருளை விற்கவும்?</string>
+    <string name="buy_product">தயாரிப்பு வாங்கவும்?</string>
+    <string name="buy">வாங்கவும்</string>
+    <string name="profit_and_loss_title">லாப நஷ்டம்</string>
+    <string name="menu_profit_and_loss">லாப நஷ்டம்</string>
+    <string name="expand_button_content_description">விரிவாக்க தொடவும்</string>
+    <string name="menu_settings">அமைப்புகள்</string>
+    <string name="app_settings">அமைப்புகள்</string>
+    <string name="application_name">யேப் பெயர்</string>
+
+    <string name="menu_category_type_test" translatable="false">category click test</string>
+    <string name="menu_qty_type_test" translatable="false">qty click test</string>
+    <string name="menu_image_entry_test" translatable="false">image entry test</string>
+    <string name="more_options_test" translatable="false">more options test</string>
+    <string name="menu_purchase_list_test" translatable="false">Purchase list test</string>
+    <string name="menu_summary_test" translatable="false">Summary test</string>
+    <string name="menu_sales_list_test" translatable="false">Sales list test</string>
+    <string name="menu_purchase_bill_test" translatable="false">Purchase Bill test</string>
+    <string name="menu_sales_bill_test" translatable="false">Sales Bill test</string>
+    <string name="menu_purchase_bills_test" translatable="false">Bills Purchase Test</string>
+    <string name="menu_sales_bills_test" translatable="false">Sales Bills Test</string>
+    <string name="menu_category_list_test" translatable="false">menu categories test</string>
+    <string name="menu_qty_type_list_test" translatable="false">menu quantity types test</string>
+    <string name="menu_purchase_sales_test" translatable="false">Purchase Sales test</string>
+    <string name="market">சந்தை</string>
+    <string name="failed">தோல்வியடைந்தது</string>
+    <string name="uploaded_images">பதிவேற்றப்பட்ட படங்கள்</string>
+    <string name="image_from_file">கோப்பிலிருந்து படம்</string>
+    <string name="select_image">படத்தைத் தேர்ந்தெடுக்கவும்</string>
+</resources>

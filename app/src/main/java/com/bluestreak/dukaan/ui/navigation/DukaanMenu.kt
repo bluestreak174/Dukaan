@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
@@ -41,6 +42,7 @@ fun DukaanDropdownMenu(
     onPbillsClick: () -> Unit,
     onSbillsClick: () -> Unit,
     onPurchaseSalesClick: () -> Unit,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -155,6 +157,15 @@ fun DukaanDropdownMenu(
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_image_entry_test))) {
                         Icon(Icons.Default.Image, contentDescription = stringResource(R.string.menu_image_entry))
+                    }
+                }
+            )
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.menu_settings)) },
+                onClick = onSettingsClick,
+                leadingIcon = {
+                    IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_image_entry_test))) {
+                        Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.menu_image_entry))
                     }
                 }
             )

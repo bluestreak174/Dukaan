@@ -58,7 +58,7 @@ import com.bluestreak.dukaan.R
 import com.bluestreak.dukaan.data.entities.Category
 import com.bluestreak.dukaan.ui.AppViewModelProvider
 import com.bluestreak.dukaan.ui.navigation.NavigationDestination
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import com.bluestreak.dukaan.ui.viewmodel.AppSettingsViewModel
 
 object HomeDestination : NavigationDestination {
     override val route = "home"
@@ -84,28 +84,31 @@ fun HomeScreen(
     navigateToBillsPurchase: () -> Unit = {},
     navigateToBillsSales: () -> Unit = {},
     navigateToPurchaseSales: () -> Unit = {},
-    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    navigateToSettings: () -> Unit = {},
+    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    appNameViewModel: AppSettingsViewModel = viewModel(factory = AppViewModelProvider.Factory),
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val homeUiState by  viewModel.homeUiState.collectAsState()
     val stockValueUiState by viewModel.stockValueUiState.collectAsState()
     val pBillUiState by viewModel.purchasesUiState.collectAsStateWithLifecycle()
     val sBillUiState by viewModel.salesUiState.collectAsStateWithLifecycle()
+    val appNamePreferencesState by appNameViewModel.appNamePrefState.collectAsState()
 
-    /*val billsTotal = "BUY: 88899 | 88899 | 88899 \n" +
-            "SELL : 88899 \n" +
-            "STOCK : 30000"*/
-    val billsTotal  = stringResource(
-                R.string.home_month_buy,
-                pBillUiState.totalBill.total,
-                pBillUiState.totalBill.cash,
-                pBillUiState.totalBill.upi
-            ) + "\n" +
+    val appName = appNamePreferencesState.appName.takeIf { it.isNotBlank() } ?: stringResource(
+        R.string.app_name,
+    )
+    val monthSummary = stringResource(R.string.home_summary_tooltip) + stringResource(
+        R.string.home_month_buy,
+        pBillUiState.totalBill.total,
+        pBillUiState.totalBill.cash,
+        pBillUiState.totalBill.upi
+    ) + "\n" +
             stringResource(
                 R.string.home_month_sell,
                 sBillUiState.totalBill.total,
-                0.0,
-                0.0
+                sBillUiState.totalBill.cash,
+                sBillUiState.totalBill.upi
 
             ) + "\n" +
             stringResource(R.string.stock,stockValueUiState)
@@ -125,8 +128,10 @@ fun HomeScreen(
                 onPbillsClick = navigateToBillsPurchase,
                 onSbillsClick = navigateToBillsSales,
                 onPurchaseSalesClick = navigateToPurchaseSales,
+                onSettingsClick = navigateToSettings,
                 //title = stringResource(HomeDestination.titleRes),
-                title = billsTotal,
+                title = appName,
+                titleSummary = monthSummary,
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior
             )

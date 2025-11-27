@@ -1,9 +1,13 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 package com.bluestreak.dukaan
 
-import android.text.Layout.Alignment
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -28,6 +32,7 @@ import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -56,6 +61,7 @@ fun DukaanApp(navController: NavHostController = rememberNavController()) {
 fun DukaanTopAppBar(
     modifier: Modifier = Modifier,
     title: String,
+    titleSummary: String = "",
     onCategoryClick: () -> Unit = {},
     onQuantityTypeClick: () -> Unit = {},
     onImageEntryClick: () -> Unit = {},
@@ -67,6 +73,7 @@ fun DukaanTopAppBar(
     onPbillsClick: () -> Unit = {},
     onSbillsClick: () -> Unit = {},
     onPurchaseSalesClick: () -> Unit = {},
+    onSettingsClick: () -> Unit = {},
     canNavigateBack: Boolean,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {},
@@ -74,18 +81,35 @@ fun DukaanTopAppBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            if(!canNavigateBack) {
-                IconWithToolTip(
-                    modifier = Modifier.padding(start = 150.dp, top = 30.dp),
-                    tooltipText = stringResource((R.string.home_summary_tooltip)),
-                    iconImageVector = Icons.Filled.Assistant,
-                    iconColor = Color.Gray
-                )
-            }
-            Text(
-                text = title,
-                style = MaterialTheme.typography.labelLarge
-            )
+
+                if(!canNavigateBack) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = title,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            IconWithToolTip(
+                                tooltipText = titleSummary,
+                                iconImageVector = Icons.Filled.Assistant,
+                                iconColor = Color.Gray
+                            )
+                            Text(
+                                text = titleSummary.split("\n").last(),
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+
+                        }
+                    }
+                }else {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                }
 
                 },
         modifier = modifier,
@@ -118,7 +142,9 @@ fun DukaanTopAppBar(
                     onSummaryClick = onSummaryClick,
                     onPbillsClick = onPbillsClick,
                     onSbillsClick = onSbillsClick,
-                    onPurchaseSalesClick = onPurchaseSalesClick
+                    onPurchaseSalesClick = onPurchaseSalesClick,
+                    onSettingsClick = onSettingsClick,
+                    modifier = Modifier
                 )
             } else {
                 Image(
@@ -143,7 +169,14 @@ fun IconWithToolTip(
         modifier = modifier,
         positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
         tooltip = {
-            PlainTooltip { Text(tooltipText) }
+            PlainTooltip {
+                Text(
+                    text = tooltipText,
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier
+                        .padding(8.dp)
+                )
+            }
         },
         state = rememberTooltipState()
     ) {

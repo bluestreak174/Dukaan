@@ -7,6 +7,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.bluestreak.dukaan.ui.home.AppSettingsDestination
+import com.bluestreak.dukaan.ui.home.AppSettingsScreen
 import com.bluestreak.dukaan.ui.home.HomeDestination
 import com.bluestreak.dukaan.ui.home.HomeScreen
 import com.bluestreak.dukaan.ui.home.ImageEntryDestination
@@ -82,7 +84,8 @@ fun DukaanNavHost(
                 navigateToSummary = { navController.navigate(SummaryScreenDestination.route)},
                 navigateToBillsPurchase = { navController.navigate(PurchaseBillsListDestination.route)},
                 navigateToBillsSales = { navController.navigate(SalesBillsListDestination.route)},
-                navigateToPurchaseSales = { navController.navigate(PurchaseSaleScreenDestination.route)}
+                navigateToPurchaseSales = { navController.navigate(PurchaseSaleScreenDestination.route)},
+                navigateToSettings = {navController.navigate(AppSettingsDestination.route)}
             )
         }
         composable(route = CategoryListDestination.route) {
@@ -270,6 +273,15 @@ fun DukaanNavHost(
             route = ImageEntryDestination.route,
         ) {
             ImageFileScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
+            )
+        }
+
+        composable(
+            route = AppSettingsDestination.route,
+        ) {
+            AppSettingsScreen(
                 navigateBack = { navController.popBackStack() },
                 onNavigateUp = { navController.navigateUp() }
             )

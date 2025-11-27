@@ -1,6 +1,9 @@
 package com.bluestreak.dukaan.database
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.bluestreak.dukaan.data.repositories.CategoryRepository
 import com.bluestreak.dukaan.data.repositories.OfflineCategoryRepository
 import com.bluestreak.dukaan.data.repositories.OfflineProductPurchaseRepository
@@ -19,6 +22,7 @@ import com.bluestreak.dukaan.data.repositories.PurchaseRepository
 import com.bluestreak.dukaan.data.repositories.QuantityTypeRepository
 import com.bluestreak.dukaan.data.repositories.SalesBillRepository
 import com.bluestreak.dukaan.data.repositories.SalesRepository
+import com.bluestreak.dukaan.data.repositories.UserPreferencesRepository
 
 /**
  * App container for Dependency injection.
@@ -33,8 +37,13 @@ interface AppContainer {
     val productSalesRepository: ProductSalesRepository
     val purchaseBillRepository: PurchaseBillRepository
     val salesBillRepository: SalesBillRepository
+    val userPreferencesRepository: UserPreferencesRepository
 }
 
+private const val APP_PREFERENCE_NAME = "app_preferences"
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = APP_PREFERENCE_NAME
+)
 /**
  * [AppContainer] implementation that provides instance sof [OfflineRepository]
  */
@@ -66,5 +75,6 @@ class AppDataContainer(private val context: Context) : AppContainer {
     override val salesBillRepository: SalesBillRepository by lazy {
         OfflineSalesBillRepository(DukaanDatabase.getDatabase(context).salesBillDao())
     }
-
+    override val userPreferencesRepository: UserPreferencesRepository
+        get() = UserPreferencesRepository(context.dataStore)
 }

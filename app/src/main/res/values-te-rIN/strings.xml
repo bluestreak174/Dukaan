@@ -62,15 +62,6 @@
     <string name="more_options">మరిన్ని ఎంపికలు</string>
     <string name="all_categories">అన్ని వర్గాలు</string>
 
-    <string name="menu_category_type_test">category click</string>
-    <string name="menu_qty_type_test">qty click</string>
-    <string name="menu_image_entry_test">image entry test</string>
-    <string name="more_options_test">more options test</string>
-    <string name="menu_purchase_list_test">Purchase list test</string>
-    <string name="menu_summary_test">Summary test</string>
-    <string name="menu_sales_list_test">Sales list test</string>
-    <string name="menu_purchase_bill_test">Purchase Bill test</string>
-    <string name="menu_sales_bill_test">Sales Bill test</string>
     <string name="item">సరుకు</string>
     <string name="type">రకం</string>
     <string name="add_item">సరుకు చేర్చు</string>
@@ -81,9 +72,9 @@
     <string name="bill">బిల్లు</string>
     <string name="date">తేది</string>
     <string name="menu_bills_list">బిల్లులు (కొనుగోలు)</string>
-    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+
     <string name="menu_sales_bills_list">బిల్లులు (అమ్మకం)</string>
-    <string name="menu_sales_bills_test">Sales Bills Test</string>
+
     <string name="sales_bill_list_title">బిల్లులు (అమ్మకం)</string>
     <string name="delete_bill">సరుకు తీసివేయబడును?</string>
     <string name="search_product">వెతుకు</string>
@@ -91,7 +82,7 @@
     <string name="buy_action">కొను</string>
     <string name="category_list_title">వర్గం జాబితా</string>
     <string name="menu_category_list">వర్గం జాబితా</string>
-    <string name="menu_category_list_test">menu category list test</string>
+
     <string name="quantity_type_list_title">పరిమాణ రకాల జాబితా</string>
     <string name="menu_qty_type_list">పరిమాణ రకాల జాబితా</string>
     <string name="qty_type_piece_req">qty_type_piece_req</string>
@@ -99,20 +90,26 @@
     <string name="quantity_type_edit_title">పరిమాణ రకాన్ని సవరించు</string>
     <string name="edit_quantity_type_title">పరిమాణ రకాన్ని సవరించు</string>
     <string name="home_content_description">ఇంటికి వెళ్లు</string>
-    <string name="menu_qty_type_list_test">menu quantity type list test</string>
+
     <string name="menu_purchase_sales_list">కొనుగోళ్లు మరియు అమ్మకాలు</string>
     <string name="cash_upi">"\nనగదు / యుపిఐ : %1$s / %2$s "</string>
     <string name="purchase_sale_list_title">కొనుగోళ్లు మరియు అమ్మకాలు</string>
-    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+
     <string name="buy_sell">"కొనుగోళ్లు/అమ్మకాలు : %1$s / %2$s "</string>
-    <string name="home_month_buy">కొనుగోళ్లు: %1$s | %2$s | %3$s </string>
-    <string name="home_month_sell">అమ్మకాలు: %1$s | %2$s | %3$s </string>
-    <string name="stock">నిల్వ:  %1$s</string>
-    <string name="home_summary_tooltip">
-        ప్రస్తుత నెల మొత్తం \n
-        కొనుగోళ్లు: మొత్తం | నగదు | యుపిఐ \n
-        అమ్మకాలు: పమొత్తం | నగదు | యుపిఐ
+    <string name="home_month_buy">
+        కొనుగోళ్లు: \n(మొత్తం) = %1$s \n
+        (నగదు) = %2$s \n
+        (యుపిఐ) = %3$s \n
     </string>
+    <string name="home_month_sell">అమ్మకాలు:
+        కొనుగోళ్లు: \n(మొత్తం) = %1$s \n
+        (నగదు) = %2$s \n
+        (యుపిఐ) = %3$s \n
+    </string>
+    <string name="stock">నిల్వ:  %1$s</string>
+    <string name="home_summary_tooltip">ప్రస్తుత నెల\n</string>
+    <string name="month_total_buy">కొనుగోళ్లు: %1$s</string>
+    <string name="month_total_sell">అమ్మకాలు: %1$s</string>
     <string name="success">విజయం</string>
     <string name="completed_state">నవీకరణ పూర్తయింది</string>
     <string name="ok">సరే</string>
@@ -144,5 +141,30 @@
     <string name="buy">కొనండి</string>
     <string name="profit_and_loss_title"><![CDATA[లాభం & నష్టం]]></string>
     <string name="menu_profit_and_loss"><![CDATA[లాభం & నష్టం]]></string>
-    <string name="expand_button_content_description">Click to Expand</string>
+    <string name="expand_button_content_description">విస్తరించడానికి తాకండి</string>
+    <string name="menu_settings">సెట్టింగులు</string>
+    <string name="app_settings">సెట్టింగులు</string>
+    <string name="application_name">యాప్ పేరు</string>
+
+    <string name="menu_category_type_test">category click</string>
+    <string name="menu_qty_type_test">qty click</string>
+    <string name="menu_image_entry_test">image entry test</string>
+    <string name="more_options_test">more options test</string>
+    <string name="menu_purchase_list_test">Purchase list test</string>
+    <string name="menu_summary_test">Summary test</string>
+    <string name="menu_sales_list_test">Sales list test</string>
+    <string name="menu_purchase_bill_test">Purchase Bill test</string>
+    <string name="menu_sales_bill_test">Sales Bill test</string>
+    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+    <string name="menu_sales_bills_test">Sales Bills Test</string>
+    <string name="menu_category_list_test">menu category list test</string>
+    <string name="menu_qty_type_list_test">menu quantity type list test</string>
+    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+    <string name="market">మార్కెట్</string>
+    <string name="failed">విఫలమైంది</string>
+    <string name="uploaded_images">అప్‌లోడ్ చేసిన చిత్రాలు</string>
+    <string name="image_from_file">ఫైల్ నుండి చిత్రం</string>
+    <string name="select_image">చిత్రాన్ని ఎంచుకోండి</string>
+
+
 </resources>

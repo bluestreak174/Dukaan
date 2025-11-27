@@ -62,15 +62,8 @@
     <string name="more_options">अधिक विकल्प</string>
     <string name="all_categories">सभी श्रेणियाँ</string>
 
-    <string name="menu_category_type_test">category click</string>
-    <string name="menu_qty_type_test">qty click</string>
-    <string name="menu_image_entry_test">image entry test</string>
-    <string name="more_options_test">more options test</string>
-    <string name="menu_purchase_list_test">Purchase list test</string>
-    <string name="menu_summary_test">Summary test</string>
-    <string name="menu_sales_list_test">Sales list test</string>
-    <string name="menu_purchase_bill_test">Purchase Bill test</string>
-    <string name="menu_sales_bill_test">Sales Bill test</string>
+
+
     <string name="item">वस्तु</string>
     <string name="type">प्रकार</string>
     <string name="add_item">वस्तु जोड़े</string>
@@ -81,9 +74,9 @@
     <string name="bill">बिल</string>
     <string name="date">तारीख</string>
     <string name="menu_bills_list">बिल (खरीद)</string>
-    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+
     <string name="menu_sales_bills_list">बिल (बिक्री)</string>
-    <string name="menu_sales_bills_test">Sales Bills Test</string>
+
     <string name="sales_bill_list_title">बिल (बिक्री)</string>
     <string name="delete_bill">बिल हटाएँ?</string>
     <string name="search_product">उत्पाद खोजें</string>
@@ -91,7 +84,7 @@
     <string name="buy_action">खरीदना</string>
     <string name="category_list_title">श्रेणी सूची</string>
     <string name="menu_category_list">श्रेणी सूची</string>
-    <string name="menu_category_list_test">menu category list test</string>
+
     <string name="quantity_type_list_title">मात्रा प्रकार सूची</string>
     <string name="menu_qty_type_list">मात्रा प्रकार सूची</string>
     <string name="qty_type_piece_req">टुकड़ों की संख्या</string>
@@ -99,20 +92,25 @@
     <string name="quantity_type_edit_title">मात्रा प्रकार संपादित करें</string>
     <string name="edit_quantity_type_title">मात्रा प्रकार संपादित करें</string>
     <string name="home_content_description">घर जाओ</string>
-    <string name="menu_qty_type_list_test">menu quantity type list test</string>
+
     <string name="menu_purchase_sales_list">खरीद और बिक्री</string>
     <string name="cash_upi">\nनकद / यू पी आई : %1$s / %2$s</string>
     <string name="purchase_sale_list_title">खरीद और बिक्री</string>
-    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+
     <string name="buy_sell">खरीद/बिक्री: %1$s / %2$s</string>
-    <string name="home_month_buy">खरीद: %1$s | %2$s | %3$s </string>
-    <string name="home_month_sell">बिक्री: %1$s | %2$s | %3$s </string>
-    <string name="stock">" भंडार:  %1$s"</string>
-    <string name="home_summary_tooltip">
-        चालू माह की राशि \n
-        खरीद: कुल | नकद | यू पी आई \n
-        िक्री: कुल | नकद | यू पी आई
+    <string name="home_month_buy">
+        खरीद: \n(कुल) = %1$s \n
+        (नकद) = %2$s \n
+        (यू पी आई) = %3$s \n
     </string>
+    <string name="home_month_sell">
+       बिक्री: \n(कुल) = %1$s \n
+        (नकद) = %2$s \n
+        (यू पी आई) = %3$s \n </string>
+    <string name="stock">भंडार:  %1$s</string>
+    <string name="home_summary_tooltip">चालू माह\n</string>
+    <string name="month_total_buy">खरीद: %1$s</string>
+    <string name="month_total_sell">बिक्री: %1$s</string>
     <string name="success">सफलता</string>
     <string name="completed_state">अपडेट पूर्ण हो गया</string>
     <string name="ok">ठीक है</string>
@@ -144,5 +142,28 @@
     <string name="buy">खरीदना</string>
     <string name="profit_and_loss_title"><![CDATA[लाभ & नुकसान]]></string>
     <string name="menu_profit_and_loss"><![CDATA[लाभ & नुकसान]]></string>
-    <string name="expand_button_content_description">Click to Expand</string>
+    <string name="expand_button_content_description">विस्तार करने के लिए स्पर्श करें</string>
+    <string name="menu_settings">सेटिंग्स</string>
+    <string name="app_settings">सेटिंग्स</string>
+    <string name="application_name">ऐप का नाम</string>
+
+    <string name="menu_category_type_test">category click</string>
+    <string name="menu_qty_type_test">qty click</string>
+    <string name="menu_image_entry_test">image entry test</string>
+    <string name="more_options_test">more options test</string>
+    <string name="menu_purchase_list_test">Purchase list test</string>
+    <string name="menu_summary_test">Summary test</string>
+    <string name="menu_sales_list_test">Sales list test</string>
+    <string name="menu_purchase_bill_test">Purchase Bill test</string>
+    <string name="menu_sales_bill_test">Sales Bill test</string>
+    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+    <string name="menu_sales_bills_test">Sales Bills Test</string>
+    <string name="menu_category_list_test">menu category list test</string>
+    <string name="menu_qty_type_list_test">menu quantity type list test</string>
+    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+    <string name="market">बाज़ार</string>
+    <string name="failed">असफल</string>
+    <string name="uploaded_images">अपलोड की गई छवियाँ</string>
+    <string name="image_from_file">फ़ाइल से छवि</string>
+    <string name="select_image">छवि चुनें</string>
 </resources>

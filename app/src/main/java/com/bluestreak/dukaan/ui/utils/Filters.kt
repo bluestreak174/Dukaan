@@ -88,12 +88,12 @@ fun RowsFilter(
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardColors(
+        /*colors = CardColors(
             containerColor = Color.LightGray,
             contentColor = Color.Black,
             disabledContainerColor = Color.LightGray,
             disabledContentColor = Color.Black,
-        )
+        )*/
     ) {
         for(filter in filterMap){
             Row(
@@ -129,12 +129,12 @@ fun RowsMultiMapFilter(
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardColors(
+        /*colors = CardColors(
             containerColor = Color.LightGray,
             contentColor = Color.Black,
             disabledContainerColor = Color.LightGray,
             disabledContentColor = Color.Black,
-        )
+        )*/
     ) {
         for(outerFilterMap in filterSubFilterMap) {
             Column() {

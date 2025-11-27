@@ -1,0 +1,170 @@
+<resources>
+    <string name="app_name">দোকান</string>
+    <string name="back_button">দোকান</string>
+    <string name="product_entry_title">নতুন প্ৰডাক্ট যোগ কৰক</string>
+    <string name="purchase_bill_title">ক্ৰয় বিল</string>
+    <string name="purchase_bill_list_title">বিল (ক্ৰয়)</string>
+    <string name="sales_bill_title">বিক্ৰী বিল</string>
+    <string name="cost">খৰচ</string>
+    <string name="price">মূল্য</string>
+    <string name="mrp">এম আৰ পি</string>
+    <string name="qty">পৰিমাণ</string>
+    <string name="product_list_title">পণ্যৰ তালিকা</string>
+    <string name="purchase_list_title">ক্ৰয় কৰা</string>
+    <string name="summary_title">সাৰাংশ</string>
+    <string name="sales_list_title">বিক্ৰী</string>
+    <string name="menu_purchase_list">ক্ৰয় কৰা</string>
+    <string name="menu_summary">সাৰাংশ</string>
+    <string name="menu_purchase_bill_list">ক্ৰয় বিল</string>
+    <string name="menu_sales_bill_list">বিক্ৰী বিল</string>
+    <string name="menu_sales_list">বিক্ৰী</string>
+    <string name="product_details_title">পণ্যৰ বিৱৰণ</string>
+    <string name="edit_product_title">পণ্য সম্পাদনা কৰক</string>
+    <string name="attention">ধ্যান দিয়া</string>
+    <string name="delete_product">বস্তু মচি পেলাওক?</string>
+    <string name="no">নহয়</string>
+    <string name="yes">হয়</string>
+    <string name="sell_price">বিক্ৰীৰ মূল্য</string>
+    <string name="cost_price">ক্ৰয় খৰচ</string>
+    <string name="quantity_in_stock">ষ্টকত থকা পৰিমাণ</string>
+    <string name="product">সামগ্ৰী</string>
+    <string name="save_action">সঞ্চয় কৰা</string>
+    <string name="product_name_req">পণ্যৰ নাম*</string>
+    <string name="product_cost_req">খৰচ*</string>
+    <string name="product_price_req">মূল্য*</string>
+    <string name="cash_req">নগদ*</string>
+    <string name="upi_req">উ পি আই*</string>
+    <string name="quantity_req">ষ্টকত থকা পৰিমাণ*</string>
+    <string name="qty_buy_req">কিনিব পৰিমাণ*</string>
+    <string name="required_fields">*প্ৰয়োজনীয় ক্ষেত্ৰসমূহ</string>
+    <string name="sell">বিক্ৰী কৰা</string>
+    <string name="delete">বিলোপ</string>
+
+    <string name="file_name_req">ফাইলৰ নাম*</string>
+    <string name="file_name">ফাইলৰ নাম</string>
+
+    <string name="category_entry_title">শ্ৰেণী যোগ কৰক</string>
+    <string name="category_name_req">শ্ৰেণী*</string>
+    <string name="menu_category_type">শ্ৰেণী যোগ কৰক</string>
+
+    <string name="quantity_type_entry_title">পৰিমাণৰ ধৰণ যোগ কৰক</string>
+    <string name="qty_type_name_req">পৰিমাণৰ ধৰণ*</string>
+    <string name="qty_type_name">পৰিমাণৰ ধৰণ</string>
+    <string name="menu_qty_type">পৰিমাণৰ ধৰণ যোগ কৰক</string>
+    <string name="piece_type_name_req">টুকুৰা*</string>
+
+    <string name="image_entry_title">ছবি যোগ কৰক</string>
+    <string name="image_name_req">ছৱি*</string>
+    <string name="menu_image_entry">ছবি যোগ কৰক</string>
+    <string name="piece">টুকুৰা</string>
+    <string name="category_products">পণ্যৰ শ্ৰেণী</string>
+    <string name="category">শ্ৰেণী</string>
+    <string name="more_options">অধিক বিকল্প</string>
+    <string name="all_categories">সকলো শ্ৰেণী</string>
+
+
+    <string name="item">সামগ্ৰী</string>
+    <string name="type">প্ৰকাৰ</string>
+    <string name="add_item">আইটেম যোগ কৰক</string>
+    <string name="remove_item">বস্তু আঁতৰাই পেলাওক</string>
+    <string name="total">মুঠ </string>
+    <string name="cash">নগদ</string>
+    <string name="upi">উ পি আই</string>
+    <string name="bill">বিল</string>
+    <string name="date">তাৰিখ</string>
+    <string name="menu_bills_list">বিল (ক্ৰয়)</string>
+
+    <string name="menu_sales_bills_list">বিল (বিক্ৰয়)</string>
+
+    <string name="sales_bill_list_title">বিল (বিক্ৰয়)</string>
+    <string name="delete_bill">বিল মচি পেলাওক?</string>
+    <string name="search_product">প্ৰডাক্ট সন্ধান কৰক</string>
+    <string name="sell_action">বিক্ৰী কৰা</string>
+    <string name="buy_action">ক্ৰয় কৰা</string>
+    <string name="category_list_title">শ্ৰেণীসমূহ</string>
+    <string name="menu_category_list">শ্ৰেণীসমূহ</string>
+
+    <string name="quantity_type_list_title">পৰিমাণৰ প্ৰকাৰ</string>
+    <string name="menu_qty_type_list">পৰিমাণৰ প্ৰকাৰ</string>
+
+    <string name="qty_type_piece_req">টুকুৰাৰ সংখ্যা</string>
+    <string name="edit_category_title">সম্পাদনা শ্ৰেণী</string>
+    <string name="quantity_type_edit_title">পৰিমাণৰ ধৰণ সম্পাদনা কৰক</string>
+    <string name="edit_quantity_type_title">পৰিমাণৰ ধৰণ সম্পাদনা কৰক</string>
+    <string name="home_content_description">ঘৰলৈ যাওক</string>
+    <string name="menu_purchase_sales_list">ক্ৰয় আৰু বিক্ৰী</string>
+
+    <string name="buy_sell">ক্ৰয়/বিক্ৰী : %1$s / %2$s</string>
+    <string name="cash_upi">নগদ/উ পি আই : %1$s / %2$s</string>
+    <string name="home_month_buy">
+        ক্ৰয় : \n(মুঠ) = %1$s \n
+        (নগদ) = %2$s \n
+        (উ পি আই) = %3$s \n
+    </string>
+    <string name="home_month_sell">
+        বিক্ৰী : \n(মুঠ) = %1$s \n
+        (নগদ) = %2$s \n
+        (উ পি আই) = %3$s \n
+    </string>
+    <string name="stock">ভঁৰাল:  %1$s</string>
+    <string name="home_summary_tooltip">চলিত মাহ \n</string>
+    <string name="month_total_buy">ক্ৰয়: %1$s</string>
+    <string name="month_total_sell">বিক্ৰী: %1$s</string>
+    <string name="purchase_sale_list_title">ক্ৰয় আৰু বিক্ৰী</string>
+    <string name="success">সফলতা</string>
+    <string name="completed_state">আপডেট সম্পূৰ্ণ কৰা হৈছে</string>
+    <string name="ok">ঠিক আছে</string>
+    <string name="update_success">সফলতা আপডেট কৰক</string>
+    <string name="product_history_title">পণ্যৰ ইতিহাস</string>
+    <string name="history">ইতিহাস</string>
+    <string name="image_upload_title">ছবি আপলোড কৰক</string>
+    <string name="done">কৰা হ’ল</string>
+    <string name="stock_title">ভঁৰাল</string>
+    <string name="purchase_bill_details">ক্ৰয় বিলৰ বিৱৰণ</string>
+    <string name="qty_type">প্ৰকাৰ</string>
+    <string name="buy_qty">ক্ৰয় Qty</string>
+    <string name="sell_qty">বিক্ৰী Qty</string>
+    <string name="bal">বাকী</string>
+    <string name="cancel">বাতিল কৰক</string>
+    <string name="confirm">নিশ্চিত</string>
+    <string name="sales_bill_details">বিক্ৰী বিলৰ বিৱৰণ</string>
+    <string name="profit_loss">পি &amp; এল</string>
+    <string name="back_button_confirm">বন্ধ কৰিব বিচৰাটো নিশ্চিত নেকি ? আপুনি যিকোনো অসংৰক্ষিত তথ্য হেৰুৱাব !!</string>
+    <string name="bill_address">ঠিকনা</string>
+    <string name="filter_expand_button_content_description">ফিল্টাৰসমূহৰ বাবে স্পৰ্শ কৰক</string>
+    <string name="no_address">কোনো সিদ্ধান্ত নাই।</string>
+    <string name="new_product">নতুন সামগ্ৰী</string>
+    <string name="displaying_of"> %2$s ৰ ভিতৰত %1$s প্ৰদৰ্শন কৰা হৈছে</string>
+    <string name="scan_and_add_item">স্কেন কৰক সামগ্ৰী</string>
+    <string name="bar_code">বাৰ কোড</string>
+    <string name="sell_product">বিক্ৰী সামগ্ৰী ?</string>
+    <string name="buy_product">ক্ৰয় সামগ্ৰী?</string>
+    <string name="buy">ক্ৰয়</string>
+    <string name="profit_and_loss_title">লাভ আৰু লোকচান</string>
+    <string name="menu_profit_and_loss">লাভ আৰু লোকচান</string>
+    <string name="expand_button_content_description">প্ৰসাৰিত কৰিবলৈ স্পৰ্শ কৰক</string>
+    <string name="menu_settings">ছেটিংছ</string>
+    <string name="app_settings">ছেটিংছ</string>
+    <string name="application_name">এপৰ নাম</string>
+
+    <string name="menu_category_type_test">category click</string>
+    <string name="menu_qty_type_test">qty click</string>
+    <string name="menu_image_entry_test">image entry test</string>
+    <string name="more_options_test">more options test</string>
+    <string name="menu_purchase_list_test">Purchase list test</string>
+    <string name="menu_summary_test">Summary test</string>
+    <string name="menu_sales_list_test">Sales list test</string>
+    <string name="menu_purchase_bill_test">Purchase Bill test</string>
+    <string name="menu_sales_bill_test">Sales Bill test</string>
+    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+    <string name="menu_sales_bills_test">Sales Bills Test</string>
+    <string name="menu_category_list_test">menu categories test</string>
+    <string name="menu_qty_type_list_test">menu quantity types test</string>
+    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+    <string name="market">বজাৰ</string>
+    <string name="failed">ব্যৰ্থ হৈছিল</string>
+    <string name="uploaded_images">আপলোড কৰা ছবিসমূহ</string>
+    <string name="image_from_file">ফাইলৰ পৰা ছবি</string>
+    <string name="select_image">ছবি নিৰ্ব্বাচন কৰক</string>
+
+</resources>

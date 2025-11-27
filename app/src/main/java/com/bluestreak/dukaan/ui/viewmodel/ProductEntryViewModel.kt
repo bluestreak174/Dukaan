@@ -223,7 +223,7 @@ data class PurchaseEntryDetails(
     val upi: String = "0.0",
     val purchaseDate: String = "",
     val qtyType: QuantityType? = null,
-    val address: String = "Market"
+    val address: String = ""
 )
 
 fun ItemDetails.toProduct(): Product = Product(

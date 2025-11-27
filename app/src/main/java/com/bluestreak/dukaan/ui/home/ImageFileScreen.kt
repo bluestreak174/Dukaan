@@ -47,6 +47,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -139,7 +140,7 @@ fun ImageEntryBody(
     }
 
     var showNotification by rememberSaveable { mutableStateOf(false) }
-    var statusMessage by rememberSaveable { mutableStateOf("Failed") }
+    var statusMessage by rememberSaveable { mutableIntStateOf(R.string.failed) }
 
     var filesList: SnapshotStateList<File>  = getFileList(context).toMutableStateList()
     Column(
@@ -167,9 +168,9 @@ fun ImageEntryBody(
             ) {
                 Row(horizontalArrangement = Arrangement.Center) {
                     Text(
-                        text = "Add image "
+                        text = stringResource(R.string.menu_image_entry)
                     )
-                    Icon(Icons.Default.Image, contentDescription = "Select Image")
+                    Icon(Icons.Default.Image, contentDescription = stringResource(R.string.select_image))
                 }
             }
         }
@@ -189,7 +190,7 @@ fun ImageEntryBody(
         )
         if(showNotification){
             NotificationDialog(
-                statusMessage = statusMessage,
+                statusMessage = stringResource(statusMessage),
                 onDismissRequest = { showNotification = false }
             )
         }
@@ -198,12 +199,12 @@ fun ImageEntryBody(
                 val status = copyToDukaanDirectory(context, folder, imageUri, fileName)
                 //Log.d("Dukaan",status.toString())
                 if(status) {
-                    statusMessage =  "Success"
+                    statusMessage =  R.string.success
                 }
                 showNotification = true
                 imageUri = null
                       },
-            enabled = imageUri != null,
+            enabled = imageUri != null && fileName.isNotBlank(),
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.padding(8.dp)
         ) {
@@ -289,7 +290,7 @@ fun FileListScreen(
                     contentAlignment = Alignment.Center // Center the content within the Box
                 ) {
                     Text(
-                        text = "Uploaded Images",
+                        text = stringResource(R.string.uploaded_images),
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier
@@ -321,7 +322,7 @@ fun DisplayImageFromFile(imagePath: String, size: Int = 50) {
     bitmap?.let {
         Image(
             painter = BitmapPainter(it.asImageBitmap()),
-            contentDescription = "Image from file",
+            contentDescription = stringResource(R.string.image_from_file),
             modifier = Modifier.size(size.dp), // Adjust size as needed
             contentScale = ContentScale.Fit
         )

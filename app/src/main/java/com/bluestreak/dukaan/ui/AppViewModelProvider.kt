@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.bluestreak.dukaan.DukaanApplication
 import com.bluestreak.dukaan.ui.home.HomeViewModel
+import com.bluestreak.dukaan.ui.viewmodel.AppSettingsViewModel
 import com.bluestreak.dukaan.ui.viewmodel.CategoryEditViewModel
 import com.bluestreak.dukaan.ui.viewmodel.CategoryEntryViewModel
 import com.bluestreak.dukaan.ui.viewmodel.ProductDetailsViewModel
@@ -107,6 +108,10 @@ object AppViewModelProvider {
         }
         initializer {
             SalesListViewModel(dukaanApplication().container.productSalesRepository)
+        }
+
+        initializer {
+            AppSettingsViewModel(dukaanApplication().container.userPreferencesRepository)
         }
 
         initializer {
