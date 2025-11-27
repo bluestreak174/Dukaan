@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.bluestreak.dukaan"
+        applicationId = "com.addendtek.dukaan"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -65,7 +65,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    namespace = "com.bluestreak.dukaan"
+    namespace = "com.addendtek.dukaan"
 }
 
 dependencies {

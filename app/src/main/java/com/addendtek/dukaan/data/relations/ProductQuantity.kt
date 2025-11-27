@@ -1,0 +1,6 @@
+package com.addendtek.dukaan.data.relations
+
+data class ProductQuantity (
+    val name: String,
+    val type: String,
+)
