@@ -156,5 +156,5 @@
     <string name="uploaded_images">பதிவேற்றப்பட்ட படங்கள்</string>
     <string name="image_from_file">கோப்பிலிருந்து படம்</string>
     <string name="select_image">படத்தைத் தேர்ந்தெடுக்கவும்</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">பயன்பாட்டை மூடு</string>
 </resources>

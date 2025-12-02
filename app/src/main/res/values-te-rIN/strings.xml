@@ -165,7 +165,7 @@
     <string name="uploaded_images">అప్‌లోడ్ చేసిన చిత్రాలు</string>
     <string name="image_from_file">ఫైల్ నుండి చిత్రం</string>
     <string name="select_image">చిత్రాన్ని ఎంచుకోండి</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">యాప్‌ను మూసివేయండి</string>
 
 
 </resources>

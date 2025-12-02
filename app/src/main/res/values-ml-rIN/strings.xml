@@ -165,6 +165,6 @@
     <string name="uploaded_images">അപ്‌ലോഡ് ചെയ്ത ചിത്രങ്ങൾ</string>
     <string name="image_from_file">ഫയലിൽ നിന്നുള്ള ചിത്രം</string>
     <string name="select_image">ചിത്രം തിരഞ്ഞെടുക്കുക</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">ആപ്പ് അടയ്ക്കുക</string>
 
 </resources>

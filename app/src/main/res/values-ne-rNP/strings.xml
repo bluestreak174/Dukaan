@@ -155,5 +155,5 @@
     <string name="uploaded_images">अपलोड गरिएका तस्बिरहरू</string>
     <string name="image_from_file">फाइलबाट छवि</string>
     <string name="select_image">छवि चयन गर्नुहोस्</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">एप बन्द गर्नुहोस्</string>
 </resources>

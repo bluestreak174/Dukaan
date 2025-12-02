@@ -166,6 +166,6 @@
     <string name="uploaded_images">আপলোড কৰা ছবিসমূহ</string>
     <string name="image_from_file">ফাইলৰ পৰা ছবি</string>
     <string name="select_image">ছবি নিৰ্ব্বাচন কৰক</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">বন্ধ</string>
 
 </resources>

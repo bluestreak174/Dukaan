@@ -166,5 +166,5 @@
     <string name="uploaded_images">আপলোড করা ছবি</string>
     <string name="image_from_file">ফাইল থেকে ছবি</string>
     <string name="select_image">ছবি নির্বাচন করুন</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">বন্ধ করা</string>
 </resources>
