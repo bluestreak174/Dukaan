@@ -92,7 +92,7 @@ fun QuantityTypeEditBody(
         OutlinedTextField(
             value = qtyTypeUiState.qtyDetails.name,
             onValueChange = { onQtyTypeValueChange(qtyTypeUiState.qtyDetails.copy(name = it)) },
-            label = { Text(stringResource(R.string.category_name_req)) },
+            label = { Text(stringResource(R.string.qty_type_name_req)) },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -105,7 +105,7 @@ fun QuantityTypeEditBody(
         OutlinedTextField(
             value = qtyTypeUiState.qtyDetails.piece,
             onValueChange = { onQtyTypeValueChange(qtyTypeUiState.qtyDetails.copy(piece = it)) },
-            label = { Text(stringResource(R.string.category_name_req)) },
+            label = { Text(stringResource(R.string.piece_type_name_req)) },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,

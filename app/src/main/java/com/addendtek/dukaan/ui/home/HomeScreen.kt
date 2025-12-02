@@ -1,5 +1,6 @@
 package com.addendtek.dukaan.ui.home
 
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.compose.foundation.Image
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,12 +20,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.Icons.Filled
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -129,10 +136,28 @@ fun HomeScreen(
         },
         bottomBar = {
             Box(
-                modifier = Modifier.fillMaxWidth().background(color = Color.Gray),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = Color.Gray),
                 contentAlignment = Alignment.Center
             ){
-                AppVersionDisplay()
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column (
+                        modifier = Modifier.weight(1f),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        AppVersionDisplay()
+                    }
+                    Column (
+                        modifier = Modifier.weight(0.2f),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CloseAppButton()
+                    }
+                }
             }
         }
 
@@ -148,6 +173,29 @@ fun HomeScreen(
 
 }
 
+@Composable
+fun CloseAppButton(
+    modifier: Modifier = Modifier
+) {
+    val activity = (LocalContext.current as? Activity)
+    IconButton(
+        onClick = {
+            activity?.finish() // This finishes the current activity, effectively closing the app if it's the only one
+        },
+        modifier = Modifier
+            .padding(0.dp)
+            .width(24.dp)
+            .height(24.dp)
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.settings_power),
+            contentDescription = stringResource(R.string.close_app),
+            tint = Color.Red
+        )
+    }
+
+}
+
 fun getAppVersion(context: Context): String? {
     try {
         val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
@@ -158,13 +206,15 @@ fun getAppVersion(context: Context): String? {
     return "N/A" // Fallback in case of error
 }
 @Composable
-fun AppVersionDisplay() {
+fun AppVersionDisplay(
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
     val appVersion = getAppVersion(context)
 
     Text(
         text = "Dukaan Version: $appVersion",
-        color = Color.Blue,
+        color = Color.DarkGray,
         fontWeight = FontWeight.Bold
     )
 }

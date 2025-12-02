@@ -156,4 +156,5 @@
     <string name="uploaded_images">Uploaded Images</string>
     <string name="image_from_file">Image from file</string>
     <string name="select_image">Select Image</string>
+    <string name="close_app">Close App</string>
 </resources>

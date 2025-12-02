@@ -32,18 +32,26 @@ android {
         applicationId = "com.addendtek.dukaan"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+        ndk {
+            debugSymbolLevel = "SYMBOL_TABLE" // or 'FULL'
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+
+            // Enables code-related app optimization.
+            isMinifyEnabled = true
+
+            // Enables resource shrinking.
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -101,4 +109,7 @@ dependencies {
 
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.ui.tooling)
+
+    //play console notification so added
+    implementation(libs.androidx.fragment) // Replace 1.6.2 with the desired stable version
 }
