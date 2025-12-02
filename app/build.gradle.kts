@@ -40,7 +40,7 @@ android {
             useSupportLibrary = true
         }
         ndk {
-            debugSymbolLevel = "SYMBOL_TABLE" // or 'FULL'
+            //debugSymbolLevel = "SYMBOL_TABLE" // or 'FULL'
         }
     }
 
@@ -48,10 +48,10 @@ android {
         release {
 
             // Enables code-related app optimization.
-            isMinifyEnabled = true
+            //isMinifyEnabled = true
 
             // Enables resource shrinking.
-            isShrinkResources = true
+            //isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
