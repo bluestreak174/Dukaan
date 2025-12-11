@@ -157,4 +157,7 @@
     <string name="image_from_file">கோப்பிலிருந்து படம்</string>
     <string name="select_image">படத்தைத் தேர்ந்தெடுக்கவும்</string>
     <string name="close_app">பயன்பாட்டை மூடு</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">சதவீத கால்குலேட்டருக்காக விரிக்கவும்</string>
+    <string name="percentage_calculator_for_above_cost">மேற்கண்ட செலவிற்கான சதவீத கால்குலேட்டர்.</string>
 </resources>

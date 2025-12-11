@@ -209,7 +209,7 @@ fun PurchaseSalesCard(
                     .weight(0.3f)
             )
             Text(
-                text = "${purchaseSales.cost}",
+                text = "${purchaseSales.cost.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
@@ -317,7 +317,7 @@ fun PurchasesSalesCardHead(
                         .weight(0.5f)
                 )
                 Text(
-                    text = headTextList[3] + "\n ( " + filteredList.sumOf { it.cost } + " )",
+                    text = headTextList[3] + "\n ( " + filteredList.sumOf { it.cost}.toBigDecimal().setScale(2, RoundingMode.UP).toDouble() + " )",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
@@ -331,7 +331,7 @@ fun PurchasesSalesCardHead(
                         .weight(0.5f)
                 )
                 Text(
-                    text = headTextList[5] + "\n ( " + filteredList.sumOf { it.price } + " )",
+                    text = headTextList[5] + "\n ( " + filteredList.sumOf { it.price }.toBigDecimal().setScale(2, RoundingMode.UP).toDouble() + " )",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)

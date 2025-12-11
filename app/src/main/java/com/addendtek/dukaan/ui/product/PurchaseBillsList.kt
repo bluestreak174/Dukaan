@@ -49,6 +49,7 @@ import com.addendtek.dukaan.ui.utils.FilterButton
 import com.addendtek.dukaan.ui.utils.RowsFilter
 import com.addendtek.dukaan.ui.utils.TotalAndFilteredRowsCount
 import com.addendtek.dukaan.ui.viewmodel.PurchaseBillsListViewModel
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -255,21 +256,21 @@ fun PurchaseBillCard(
                 )
             }
             Text(
-                text = "${purchaseBill.cash}",
+                text = "${purchaseBill.cash.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(4.dp)
                     .weight(0.5f)
             )
             Text(
-                text = "${purchaseBill.upi}",
+                text = "${purchaseBill.upi.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(4.dp)
                     .weight(0.5f)
             )
             Text(
-                text = "${purchaseBill.total}",
+                text = "${purchaseBill.total.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(4.dp)

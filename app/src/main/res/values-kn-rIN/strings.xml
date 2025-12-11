@@ -62,15 +62,6 @@
     <string name="more_options">ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳು</string>
     <string name="all_categories">ಎಲ್ಲಾ ವರ್ಗಗಳು</string>
 
-    <string name="menu_category_type_test">category click</string>
-    <string name="menu_qty_type_test">qty click</string>
-    <string name="menu_image_entry_test">image entry test</string>
-    <string name="more_options_test">more options test</string>
-    <string name="menu_purchase_list_test">Purchase list test</string>
-    <string name="menu_summary_test">Summary test</string>
-    <string name="menu_sales_list_test">Sales list test</string>
-    <string name="menu_purchase_bill_test">Purchase Bill test</string>
-    <string name="menu_sales_bill_test">Sales Bill test</string>
     <string name="item">ಐಟಂ</string>
     <string name="type">ಪ್ರಕಾರ</string>
     <string name="add_item">ಐಟಂ ಸೇರಿಸಿ</string>
@@ -81,9 +72,9 @@
     <string name="bill">ಬಿಲ್</string>
     <string name="date">ದಿನಾಂಕ</string>
     <string name="menu_bills_list">ಬಿಲ್‌ಗಳು (ಖರೀದಿ)</string>
-    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+
     <string name="menu_sales_bills_list">ಬಿಲ್‌ಗಳು (ಮಾರಾಟ)</string>
-    <string name="menu_sales_bills_test">Sales Bills Test</string>
+
     <string name="sales_bill_list_title">ಬಿಲ್‌ಗಳು (ಮಾರಾಟ)</string>
     <string name="delete_bill">ಬಿಲ್ ಅಳಿಸುವುದೇ?</string>
     <string name="search_product">ಉತ್ಪನ್ನವನ್ನು ಹುಡುಕಿ</string>
@@ -91,17 +82,17 @@
     <string name="buy_action">ಖರೀದಿಸಿ</string>
     <string name="category_list_title">ವರ್ಗಗಳು</string>
     <string name="menu_category_list">ವರ್ಗಗಳು</string>
-    <string name="menu_category_list_test">menu categories test</string>
+
     <string name="quantity_type_list_title">ಪ್ರಮಾಣ ವಿಧಗಳು</string>
     <string name="menu_qty_type_list">ಪ್ರಮಾಣ ವಿಧಗಳು</string>
-    <string name="menu_qty_type_list_test">menu quantity types test</string>
+
     <string name="qty_type_piece_req">ತುಣುಕುಗಳ ಸಂಖ್ಯೆ</string>
     <string name="edit_category_title">ವರ್ಗವನ್ನು ಸಂಪಾದಿಸಿ</string>
     <string name="quantity_type_edit_title">ಪ್ರಮಾಣ ಪ್ರಕಾರವನ್ನು ಸಂಪಾದಿಸಿ</string>
     <string name="edit_quantity_type_title">ಪ್ರಮಾಣ ಪ್ರಕಾರವನ್ನು ಸಂಪಾದಿಸಿ</string>
     <string name="home_content_description">ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ</string>
     <string name="menu_purchase_sales_list">ಖರೀದಿ ಮತ್ತು ಮಾರಾಟ</string>
-    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+
     <string name="buy_sell">ಖರೀದಿಸಿ/ಮಾರಾಟ : %1$s / %2$s</string>
     <string name="cash_upi">ನಗದು/ಯುಪಿಐ : %1$s / %2$s</string>
     <string name="home_month_buy">
@@ -154,12 +145,31 @@
     <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <string name="app_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
     <string name="application_name">ಅಪ್ಲಿಕೇಶನ್ ಹೆಸರು</string>
+
+    <string name="menu_category_type_test">category click</string>
+    <string name="menu_qty_type_test">qty click</string>
+    <string name="menu_image_entry_test">image entry test</string>
+    <string name="more_options_test">more options test</string>
+    <string name="menu_purchase_list_test">Purchase list test</string>
+    <string name="menu_summary_test">Summary test</string>
+    <string name="menu_sales_list_test">Sales list test</string>
+    <string name="menu_purchase_bill_test">Purchase Bill test</string>
+    <string name="menu_sales_bill_test">Sales Bill test</string>
+    <string name="menu_purchase_bills_test">Bills Purchase Test</string>
+    <string name="menu_sales_bills_test">Sales Bills Test</string>
+    <string name="menu_category_list_test">menu categories test</string>
+    <string name="menu_qty_type_list_test">menu quantity types test</string>
+    <string name="menu_purchase_sales_test">Purchase Sales test</string>
+
     <string name="market">ಮಾರುಕಟ್ಟೆ</string>
     <string name="failed">ವಿಫಲವಾಗಿದೆ</string>
     <string name="uploaded_images">ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಚಿತ್ರಗಳು</string>
     <string name="image_from_file">ಫೈಲ್‌ನಿಂದ ಚಿತ್ರ</string>
     <string name="select_image">ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="close_app">ಅಪ್ಲಿಕೇಶನ್ ಮುಚ್ಚಿ</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">ಶೇಕಡಾವಾರು ಕ್ಯಾಲ್ಕುಲೇಟರ್‌ಗಾಗಿ ವಿಸ್ತರಿಸಿ</string>
+    <string name="percentage_calculator_for_above_cost">ಮೇಲಿನ ವೆಚ್ಚಕ್ಕೆ ಶೇಕಡಾವಾರು ಕ್ಯಾಲ್ಕುಲೇಟರ್.</string>
 
 
 </resources>

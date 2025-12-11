@@ -35,6 +35,7 @@ import com.addendtek.dukaan.data.relations.ProductHistory
 import com.addendtek.dukaan.ui.AppViewModelProvider
 import com.addendtek.dukaan.ui.navigation.NavigationDestination
 import com.addendtek.dukaan.ui.viewmodel.ProductHistoryViewModel
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -194,20 +195,20 @@ fun ProductHistoryCard(
                         .padding(2.dp)
                 )
 
-                    Text(
-                        text = "Bill " + productHistory.billId.toString(),
-                        style = MaterialTheme.typography.labelLarge,
-                        textDecoration = TextDecoration.Underline,
-                        modifier = Modifier
-                            .padding(4.dp)
-                            .clickable {
-                                if(productHistory.buySell == "B") {
-                                    onBillIdClick(productHistory.billId)
-                                } else {
-                                    onSalesBillIdClick(productHistory.billId)
-                                }
+                Text(
+                    text = "Bill " + productHistory.billId.toString(),
+                    style = MaterialTheme.typography.labelLarge,
+                    textDecoration = TextDecoration.Underline,
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .clickable {
+                            if(productHistory.buySell == "B") {
+                                onBillIdClick(productHistory.billId)
+                            } else {
+                                onSalesBillIdClick(productHistory.billId)
                             }
-                    )
+                        }
+                )
 
             }
             var buySellColor = Color.Red
@@ -235,7 +236,7 @@ fun ProductHistoryCard(
                     .weight(0.5f)
             )
             Text(
-                text = productHistory.amount.toString(),
+                text = productHistory.amount.toBigDecimal().setScale(2, RoundingMode.UP).toDouble().toString(),
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(4.dp)

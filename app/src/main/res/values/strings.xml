@@ -157,4 +157,7 @@
     <string name="image_from_file">Image from file</string>
     <string name="select_image">Select Image</string>
     <string name="close_app">Close App</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">Expand for Percentage Calculator</string>
+    <string name="percentage_calculator_for_above_cost">Percentage Calculator for above cost.</string>
 </resources>

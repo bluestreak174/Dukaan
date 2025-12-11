@@ -273,12 +273,10 @@ fun GroupCard(
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        /*colors = CardColors(
-            containerColor = Color.LightGray,
-            contentColor = Color.Black,
-            disabledContainerColor = Color.LightGray,
-            disabledContentColor = Color.Black,
-        )*/
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+        )
     ) {
         Column (
             horizontalAlignment = Alignment.CenterHorizontally,

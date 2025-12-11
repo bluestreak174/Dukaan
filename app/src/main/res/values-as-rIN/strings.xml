@@ -122,8 +122,8 @@
     <string name="stock_title">ভঁৰাল</string>
     <string name="purchase_bill_details">ক্ৰয় বিলৰ বিৱৰণ</string>
     <string name="qty_type">প্ৰকাৰ</string>
-    <string name="buy_qty">ক্ৰয় Qty</string>
-    <string name="sell_qty">বিক্ৰী Qty</string>
+    <string name="buy_qty">ক্ৰয় পৰিমাণ</string>
+    <string name="sell_qty">বিক্ৰী পৰিমাণ</string>
     <string name="bal">বাকী</string>
     <string name="cancel">বাতিল কৰক</string>
     <string name="confirm">নিশ্চিত</string>
@@ -167,5 +167,8 @@
     <string name="image_from_file">ফাইলৰ পৰা ছবি</string>
     <string name="select_image">ছবি নিৰ্ব্বাচন কৰক</string>
     <string name="close_app">বন্ধ</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">শতাংশ কেলকুলেটৰৰ বাবে প্ৰসাৰিত কৰক</string>
+    <string name="percentage_calculator_for_above_cost">ওপৰৰ খৰচৰ বাবে শতাংশ কেলকুলেটৰ।</string>
 
 </resources>

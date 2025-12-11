@@ -128,7 +128,7 @@
     <string name="cancel">रद्द करना</string>
     <string name="confirm">पुष्टि करना</string>
     <string name="sales_bill_details">बिक्री बिल विवरण</string>
-    <string name="profit_loss"><![CDATA[लाभ & नुकसान]]></string>
+    <string name="profit_loss">लाभ &amp; नुकसान</string>
     <string name="back_button_confirm">क्या आप वाकई बंद करना चाहते हैं? आपका कोई भी सहेजा न गया डेटा खो जाएगा!!</string>
     <string name="bill_address">बिलर का नाम</string>
     <string name="filter_expand_button_content_description">फ़िल्टर के लिए क्लिक करें</string>
@@ -140,8 +140,8 @@
     <string name="sell_product">उत्पाद बेचें?</string>
     <string name="buy_product">उत्पाद खरीदें?</string>
     <string name="buy">खरीदना</string>
-    <string name="profit_and_loss_title"><![CDATA[लाभ & नुकसान]]></string>
-    <string name="menu_profit_and_loss"><![CDATA[लाभ & नुकसान]]></string>
+    <string name="profit_and_loss_title">लाभ &amp; नुकसान</string>
+    <string name="menu_profit_and_loss">लाभ &amp; नुकसान</string>
     <string name="expand_button_content_description">विस्तार करने के लिए स्पर्श करें</string>
     <string name="menu_settings">सेटिंग्स</string>
     <string name="app_settings">सेटिंग्स</string>
@@ -167,4 +167,7 @@
     <string name="image_from_file">फ़ाइल से छवि</string>
     <string name="select_image">छवि चुनें</string>
     <string name="close_app">ऐप बंद करें</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">प्रतिशत कैलकुलेटर के लिए विस्तार करें</string>
+    <string name="percentage_calculator_for_above_cost">ऊपर दी गई लागत के लिए प्रतिशत कैलकुलेटर।</string>
 </resources>

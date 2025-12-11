@@ -230,7 +230,6 @@ fun BillAddressText(
     updateBillAmount: (BillAmount) -> Unit,
 ){
     if(billAmount.billAddress.isBlank()) billAmount.billAddress = stringResource(R.string.market)
-    stringResource(R.string.market)
     OutlinedTextField(
         value = billAmount.billAddress,
         onValueChange = {
@@ -403,10 +402,7 @@ fun PurchaseBillEntryForm(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = {
                 Text(
-                    text = if(selectedProduct.qtyTypeStr.isEmpty())
-                                stringResource(R.string.qty)
-                            else
-                                selectedProduct.qtyTypeStr
+                    text = selectedProduct.qtyTypeStr.ifEmpty { stringResource(R.string.qty) }
                 )
                     },
             colors = colors,

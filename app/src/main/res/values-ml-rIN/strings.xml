@@ -36,7 +36,7 @@
     <string name="upi_req">യുപിഐ*</string>
     <string name="quantity_req">സ്റ്റോക്കിലുള്ള അളവ്*</string>
     <string name="qty_buy_req">അളവ് വാങ്ങുക*</string>
-    <string name="required_fields">*required fields</string>
+    <string name="required_fields">*ആവശ്യമായ ഫീൽഡുകൾ</string>
     <string name="sell">വിൽക്കുക</string>
     <string name="delete">ഇല്ലാതാക്കുക</string>
 
@@ -166,5 +166,8 @@
     <string name="image_from_file">ഫയലിൽ നിന്നുള്ള ചിത്രം</string>
     <string name="select_image">ചിത്രം തിരഞ്ഞെടുക്കുക</string>
     <string name="close_app">ആപ്പ് അടയ്ക്കുക</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">ശതമാന കാൽക്കുലേറ്ററിനായി വികസിപ്പിക്കുക</string>
+    <string name="percentage_calculator_for_above_cost">മുകളിലുള്ള ചെലവിനുള്ള ശതമാനം കാൽക്കുലേറ്റർ.</string>
 
 </resources>

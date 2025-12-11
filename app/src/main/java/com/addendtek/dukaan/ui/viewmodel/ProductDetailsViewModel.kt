@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.math.RoundingMode
 
 class ProductDetailsViewModel(
     savedStateHandle: SavedStateHandle,
@@ -75,6 +76,7 @@ class ProductDetailsViewModel(
             val currentItem = uiState.value.productDetails.toProduct()
             val pieceQty = uiState.value.categoryQty.qtyPiece
             val totalPrice = (uiState.value.productDetails.cost.toDouble() * pieceQty)
+                                .toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
             val purchaseBill = PurchaseBill(
                 id = 0,
                 total = totalPrice,

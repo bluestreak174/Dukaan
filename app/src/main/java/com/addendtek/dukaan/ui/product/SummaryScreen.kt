@@ -38,6 +38,7 @@ import com.addendtek.dukaan.ui.utils.DateRangePickerDukaan
 import com.addendtek.dukaan.ui.viewmodel.PurchaseBillState
 import com.addendtek.dukaan.ui.viewmodel.SalesBillState
 import com.addendtek.dukaan.ui.viewmodel.SummaryViewModel
+import java.math.RoundingMode
 
 object SummaryScreenDestination : NavigationDestination {
     override val route = "summary"
@@ -223,21 +224,21 @@ fun SummaryDetailsBody(
 ){
     SummaryDetailsRow(
         labelResID = R.string.cash,
-        summaryDetail = "${bill?.cash?:0.0}",
+        summaryDetail = "${(bill?.cash?:0.0).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
         modifier = Modifier.padding(
             horizontal = dimensionResource(id = R.dimen.padding_medium)
         )
     )
     SummaryDetailsRow(
         labelResID = R.string.upi,
-        summaryDetail =  "${bill?.upi?:0.0}",
+        summaryDetail =  "${(bill?.upi?:0.0).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
         modifier = Modifier.padding(
             horizontal = dimensionResource(id = R.dimen.padding_medium)
         )
     )
     SummaryDetailsRow(
         labelResID = R.string.total,
-        summaryDetail = "${bill?.total?:0.0}",
+        summaryDetail = "${(bill?.total?:0.0).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
         modifier = Modifier.padding(
             horizontal = dimensionResource(id = R.dimen.padding_medium)
         )

@@ -167,4 +167,7 @@
     <string name="image_from_file">ফাইল থেকে ছবি</string>
     <string name="select_image">ছবি নির্বাচন করুন</string>
     <string name="close_app">বন্ধ করা</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">শতাংশ ক্যালকুলেটরের জন্য প্রসারিত করুন</string>
+    <string name="percentage_calculator_for_above_cost">উপরোক্ত খরচের জন্য শতাংশ ক্যালকুলেটর।</string>
 </resources>

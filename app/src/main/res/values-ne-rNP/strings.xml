@@ -86,12 +86,12 @@
     <string name="buy_sell">किन्नुहोस्/बेच्नुहोस् : %1$s / %2$s</string>
     <string name="cash_upi">नगद/यूपीआई : %1$s / %2$s</string>
     <string name="home_month_buy">
-        किन्नुहोस् : \n(Total) = %1$s \n
+        किन्नुहोस् : \n(कुल रकम) = %1$s \n
         (नगद) = %2$s \n
         (यूपीआई) = %3$s \n
     </string>
     <string name="home_month_sell">
-        बेच्नुहोस् : \n(Total) = %1$s \n
+        बेच्नुहोस् : \n(कुल रकम) = %1$s \n
         (नगद) = %2$s \n
         (यूपीआई) = %3$s \n
     </string>
@@ -156,4 +156,7 @@
     <string name="image_from_file">फाइलबाट छवि</string>
     <string name="select_image">छवि चयन गर्नुहोस्</string>
     <string name="close_app">एप बन्द गर्नुहोस्</string>
+    <string name="percentage">%</string>
+    <string name="percent_expand_button_content_description">प्रतिशत क्याल्कुलेटरको लागि विस्तार गर्नुहोस्</string>
+    <string name="percentage_calculator_for_above_cost">माथिको लागतको लागि प्रतिशत क्याल्कुलेटर।</string>
 </resources>
