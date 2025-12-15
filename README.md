@@ -15,7 +15,6 @@ Available Features:
   11. Locale - Supports app language in English, Hindi, Bengali, Assamese, Kannada, Malayalam, Tamil, Telugu and Nepali
 
 Screenshots: 
-<img width="192" height="192" alt="dukaan_icon" src="https://github.com/user-attachments/assets/47b40e25-fc1d-4bbe-985b-18a360257135" />
 
 
 <img height="320" hspace=15 vspace=15 alt="homescreen_light" src="https://github.com/user-attachments/assets/5f55d635-5b47-454f-942b-68b7516b3ebd" />
@@ -29,6 +28,8 @@ Screenshots:
 <img height="320" hspace=15 vspace=15 alt="product details" src="https://github.com/user-attachments/assets/008e48a8-30df-46b2-9c51-46230af3ae3f" />
 <img height="320" hspace=15 vspace=15 alt="summary" src="https://github.com/user-attachments/assets/d753b8bc-a2bd-4c57-87c3-120fb4dfd030" />
 
-Downdload on Google Play
+Downdload the app on Google Play
+
+
 [![Download on Google Play](https://github.com/user-attachments/assets/47b40e25-fc1d-4bbe-985b-18a360257135)](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)
 
