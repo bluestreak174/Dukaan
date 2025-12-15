@@ -16,6 +16,7 @@ Available Features:
 
 Screenshots: 
 
+
 <img height="320" hspace=15 vspace=15 alt="homescreen_light" src="https://github.com/user-attachments/assets/5f55d635-5b47-454f-942b-68b7516b3ebd" />
 <img height="320" hspace=15 vspace=15 alt="homescreen_dark" src="https://github.com/user-attachments/assets/7492a343-99f0-42aa-9cd3-020848759a41" />
 <img height="320" hspace=15 vspace=15 alt="dukaanhindi" src="https://github.com/user-attachments/assets/839c99b5-0954-498e-895e-7ed2abadcae3" />
@@ -28,5 +29,5 @@ Screenshots:
 <img height="320" hspace=15 vspace=15 alt="summary" src="https://github.com/user-attachments/assets/d753b8bc-a2bd-4c57-87c3-120fb4dfd030" />
 
 
-[![Download on Google Play](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)
+[![Download on Google Play](https://github.com/user-attachments/assets/19b1071e-5d9a-4b9e-8683-5e39f030a336)](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)
 
