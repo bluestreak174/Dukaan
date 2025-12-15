@@ -1,6 +1,5 @@
 package com.addendtek.dukaan.ui.product
 
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -228,24 +227,6 @@ fun PercentageCalculator(
     cost: Double,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(
-            onClick = { expanded  = !expanded },
-            modifier = modifier
-        ) {
-            Icon(
-                imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-                contentDescription = stringResource(R.string.percent_expand_button_content_description),
-                tint = MaterialTheme.colorScheme.secondary
-            )
-        }
-        Text(
-            text = stringResource(R.string.percentage_calculator_for_above_cost)
-        )
-    }
 
     if(expanded) {
         var costPercentage by remember { mutableDoubleStateOf(5.0) }
@@ -334,6 +315,26 @@ fun PercentageCalculator(
             )
         }
     }
+
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(
+            onClick = { expanded  = !expanded },
+            modifier = modifier
+        ) {
+            Icon(
+                imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                contentDescription = stringResource(R.string.percent_expand_button_content_description),
+                tint = MaterialTheme.colorScheme.secondary
+            )
+        }
+        Text(
+            text = stringResource(R.string.percentage_calculator_for_above_cost)
+        )
+    }
+
 
 }
 

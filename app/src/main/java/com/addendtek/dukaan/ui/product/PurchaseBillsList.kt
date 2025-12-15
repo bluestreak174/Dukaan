@@ -116,7 +116,7 @@ fun PurchaseBIllsListBody(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ){
-    Column (modifier = Modifier.padding(top =80.dp)) {
+    Column (modifier = Modifier.padding(top = 100.dp)) {
         DateRangePickerDukaan(
             onValChange = onDateChange,
             selectedStartDateMillis = selectedDateRange.first,

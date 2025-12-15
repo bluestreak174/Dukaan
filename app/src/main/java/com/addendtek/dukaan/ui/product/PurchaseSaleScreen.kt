@@ -109,7 +109,7 @@ fun PurchaseSaleBody(
     onDateValueChange: (Long, Long) -> Unit,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ){
-    Column (modifier = Modifier.padding(top =80.dp)) {
+    Column (modifier = Modifier.padding(top = 100.dp)) {
         DateRangePickerDukaan(
             onValChange = onDateValueChange,
             isFinYear = true
