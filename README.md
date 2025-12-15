@@ -1,9 +1,9 @@
 Android jetpack compose app in kotlin using viewmodel state composition and room for database.
 
-This simple app is useful for small shops and merchants to maintain buy sell records with easy and simple user interface. The app works offline no internet connection required after installation.
+This simple app is useful for small shops and merchants to maintain buy sell records and inventory management with easy and simple user interface. The app works offline no internet connection required after installation.
 
 Available Features:
-  1. Add Produt into categories
+  1. Add Product into categories
   2. Single product buy and sell
   3. Multiple products buy and sell as a bill or invoice
   4. Profit & Loss for given period
