@@ -26,3 +26,7 @@ Screenshots:
 <img height="320" hspace=15 vspace=15 alt="product list" src="https://github.com/user-attachments/assets/85816768-b275-4e21-a8dc-96509d6f0d5d" />
 <img height="320" hspace=15 vspace=15 alt="product details" src="https://github.com/user-attachments/assets/008e48a8-30df-46b2-9c51-46230af3ae3f" />
 <img height="320" hspace=15 vspace=15 alt="summary" src="https://github.com/user-attachments/assets/d753b8bc-a2bd-4c57-87c3-120fb4dfd030" />
+
+
+[Download on Google Play](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)
+
