@@ -28,5 +28,5 @@ Screenshots:
 <img height="320" hspace=15 vspace=15 alt="summary" src="https://github.com/user-attachments/assets/d753b8bc-a2bd-4c57-87c3-120fb4dfd030" />
 
 
-[Download on Google Play](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)
+[![Download on Google Play](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)](https://play.google.com/store/apps/details?id=com.addendtek.dukaan)
 
