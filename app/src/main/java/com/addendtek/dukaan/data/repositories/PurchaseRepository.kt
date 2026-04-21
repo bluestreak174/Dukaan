@@ -12,4 +12,6 @@ interface PurchaseRepository {
     suspend fun deletePurchasesByBillId(billId: Int)
 
     fun getPurchasesByBillId(billId: Int): Flow<List<Purchases>>
+    fun getProductLastPurchase(productId: Int, startDate: Long): Flow<Purchases>
+    suspend fun upsertPurchases(purchases: Purchases): Long
 }

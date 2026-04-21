@@ -27,5 +27,5 @@ class OfflineProductRepository(private val productDao: ProductDao) : ProductRepo
     override fun getProductWithCategoryAndQuantityType(catId: Int): Flow<List<ProductCategoryQuantity>> =
         productDao.getProductWithCategoryAndQuantityType(catId)
 
-
+    override suspend fun upsertProduct(product: Product): Long = productDao.upsertProduct(product)
 }

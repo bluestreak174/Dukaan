@@ -14,6 +14,8 @@ class OfflinePurchasesRepository(private val purchasesDao: PurchasesDao): Purcha
     override suspend fun updatePurchases(purchases: Purchases) = purchasesDao.update(purchases)
     override suspend fun deletePurchasesByBillId(billId: Int) = purchasesDao.deletePurchasesByBillId(billId)
     override fun getPurchasesByBillId(billId: Int): Flow<List<Purchases>> = purchasesDao.getPurchasesByBillId(billId)
+    override fun getProductLastPurchase(productId: Int, startDate: Long): Flow<Purchases> = purchasesDao.getProductLastPurchase(productId, startDate)
 
+    override suspend fun upsertPurchases(purchases: Purchases): Long = purchasesDao.upsertPurchases(purchases)
 
 }

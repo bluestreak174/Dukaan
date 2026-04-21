@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.addendtek.dukaan.data.entities.Purchases
 import kotlinx.coroutines.flow.Flow
 
@@ -31,4 +32,10 @@ interface PurchasesDao {
 
     @Query("SELECT * from purchases WHERE billId = :billId")
     fun getPurchasesByBillId(billId: Int): Flow<List<Purchases>>
+
+    @Query("SELECT * from purchases WHERE productId = :productId and purchaseDate <= :startDate LIMIT 1")
+    fun getProductLastPurchase(productId: Int, startDate: Long): Flow<Purchases>
+
+    @Upsert
+    suspend fun upsertPurchases(purchases: Purchases): Long
 }

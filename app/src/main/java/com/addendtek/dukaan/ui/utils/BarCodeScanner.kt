@@ -6,7 +6,10 @@ import androidx.compose.material.icons.filled.QrCode
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -18,7 +21,8 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 @Composable
 fun BarCodeScannerIconButton(
     modifier: Modifier = Modifier,
-    getBarCodeProduct: (String) -> Unit
+    getBarCodeProduct: (String) -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty> = mutableStateMapOf(),
 ){
     val context = LocalContext.current
     val options = GmsBarcodeScannerOptions.Builder()
@@ -27,6 +31,8 @@ fun BarCodeScannerIconButton(
         .enableAutoZoom()
         .build()
     val scanner = GmsBarcodeScanning.getClient(context, options)
+    val barCodeHelpTitle = stringResource(R.string.bar_code_help_title)
+    val barCodeHelpSubTitle = stringResource(R.string.bar_code_help_sub_title)
     IconButton(
         onClick = {
             scanner.startScan()
@@ -43,7 +49,14 @@ fun BarCodeScannerIconButton(
                     // Task failed with an exception
                 }
         },
-        modifier = Modifier.padding(0.dp),
+        modifier = Modifier.padding(0.dp).onGloballyPositioned { coordinates ->
+            targets["Barcode"] = ShowcaseProperty(
+                index = 3,
+                coordinates = coordinates,
+                title = barCodeHelpTitle,
+                subTitle = barCodeHelpSubTitle
+            )
+        },
         enabled = true,
     ) {
         Icon(

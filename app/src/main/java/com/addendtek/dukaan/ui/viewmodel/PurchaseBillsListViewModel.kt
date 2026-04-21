@@ -131,6 +131,7 @@ class PurchaseBillsListViewModel(
 
                     val qtyTypeUiState = getQtyType(purchase.quantityTypeId)
                     qty -= purchase.quantity * qtyTypeUiState.qtyDetails.piece.toInt()
+                    if(qty < 0) qty = 0
 
                     productUiState =
                         ProductUiState(itemDetails = productUiState.itemDetails.copy(qty = qty.toString()), isEntryValid = true)

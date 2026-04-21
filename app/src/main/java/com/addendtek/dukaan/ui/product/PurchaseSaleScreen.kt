@@ -1,12 +1,17 @@
 package com.addendtek.dukaan.ui.product
 
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,7 +35,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.addendtek.dukaan.DukaanTopAppBar
 import com.addendtek.dukaan.R
 import com.addendtek.dukaan.data.relations.PurchaseSales
-import com.addendtek.dukaan.data.relations.profitAndLoss
 import com.addendtek.dukaan.data.relations.stockBalance
 import com.addendtek.dukaan.ui.AppViewModelProvider
 import com.addendtek.dukaan.ui.navigation.NavigationDestination
@@ -114,15 +118,26 @@ fun PurchaseSaleBody(
             onValChange = onDateValueChange,
             isFinYear = true
         )
+        // 1. Create a ScrollState to manage the scroll position
+        val scrollState = rememberScrollState()
 
-        PurchaseSalesList(
-            purchaseSalesList = purchaseSalesList,
-            filteredPurchaseSalesList = filteredPurchaseSalesList,
-            categoryFilterMap = categoryFilterMap,
-            categoryProductFilterMap = categoryProductFilterMap,
-            updateOuterFilterData = updateOuterFilterData,
-            updateCategoryProductFilterData = updateCategoryProductFilterData,
-        )
+        // 2. Wrap the content in a Box (or another container)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                // 3. Apply the horizontalScroll modifier to the container
+                .horizontalScroll(scrollState)
+        ) {
+            PurchaseSalesList(
+                purchaseSalesList = purchaseSalesList,
+                filteredPurchaseSalesList = filteredPurchaseSalesList,
+                categoryFilterMap = categoryFilterMap,
+                categoryProductFilterMap = categoryProductFilterMap,
+                updateOuterFilterData = updateOuterFilterData,
+                updateCategoryProductFilterData = updateCategoryProductFilterData,
+            )
+        }
+
     }
 }
 
@@ -190,7 +205,7 @@ fun PurchaseSalesCard(
             Column(
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(1f)
+                    .width(100.dp)
             ) {
                 Text(
                     text = purchaseSales.productName + "/",
@@ -206,28 +221,28 @@ fun PurchaseSalesCard(
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(0.3f)
+                    .width(100.dp)
             )
             Text(
                 text = "${purchaseSales.cost.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(0.5f)
+                    .width(100.dp)
             )
             Text(
                 text = "${purchaseSales.sellQty}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(0.3f)
+                    .width(100.dp)
             )
             Text(
                 text = "${purchaseSales.price}",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(0.5f)
+                    .width(100.dp)
             )
 
             Text(
@@ -235,7 +250,7 @@ fun PurchaseSalesCard(
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(0.3f)
+                    .width(100.dp)
             )
             val profitLossPercentage = if(purchaseSales.price > 0.0)
                                             ((purchaseSales.profitAndLoss * 100)/purchaseSales.price).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
@@ -246,7 +261,7 @@ fun PurchaseSalesCard(
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier
                     .padding(8.dp)
-                    .weight(0.5f)
+                    .width(100.dp)
             )
         }
     }
@@ -264,6 +279,7 @@ fun PurchasesSalesCardHead(
     headTextList: List<String> = listOf(),
     containerColor: Color,
 ) {
+
     var expanded by remember { mutableStateOf(false) }
     Card(
         modifier = modifier,
@@ -276,7 +292,9 @@ fun PurchasesSalesCardHead(
         )*/
     ) {
         Column() {
-            Row(){
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(8.dp)
+            ){
                 if(expanded){
                     RowsMultiMapFilter(
                         filterMap = categoryFilterMap,
@@ -297,7 +315,7 @@ fun PurchasesSalesCardHead(
                 Column(
                     modifier = Modifier
                     //.padding(2.dp)
-                    .weight(1f)
+                        .width(100.dp)
                 ){
                     Text(
                         text = headTextList[0] + "/" + headTextList[1],
@@ -314,35 +332,35 @@ fun PurchasesSalesCardHead(
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
-                        .weight(0.5f)
+                        .width(100.dp)
                 )
                 Text(
                     text = headTextList[3] + "\n ( " + filteredList.sumOf { it.cost}.toBigDecimal().setScale(2, RoundingMode.UP).toDouble() + " )",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
-                        .weight(0.5f)
+                        .width(100.dp)
                 )
                 Text(
                     text = headTextList[4] + "\n ( " + filteredList.sumOf { it.sellQty } + " )",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
-                        .weight(0.5f)
+                        .width(100.dp)
                 )
                 Text(
                     text = headTextList[5] + "\n ( " + filteredList.sumOf { it.price }.toBigDecimal().setScale(2, RoundingMode.UP).toDouble() + " )",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
-                        .weight(0.5f)
+                        .width(100.dp)
                 )
                 Text(
                     text = headTextList[6] + "\n ( " + filteredList.sumOf { it.stockBalance } + " )",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
-                        .weight(0.5f)
+                        .width(100.dp)
                 )
                 val profitLoss = filteredList.sumOf { it.profitAndLoss }.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
                 val totalPrice = filteredList.sumOf { it.price }
@@ -355,7 +373,7 @@ fun PurchasesSalesCardHead(
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier
                         .padding(8.dp)
-                        .weight(0.5f)
+                        .width(100.dp)
                 )
 
             }

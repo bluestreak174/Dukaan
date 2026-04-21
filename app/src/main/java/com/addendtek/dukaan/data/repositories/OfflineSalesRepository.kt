@@ -20,4 +20,5 @@ class OfflineSalesRepository(private val salesDao: SalesDao): SalesRepository {
     override suspend fun deleteSalesByBillId(billId: Int) = salesDao.deleteSalesByBillId(billId)
     override fun getSalesByBillId(billId: Int): Flow<List<Sales>> = salesDao.getSalesByBillId(billId)
 
+    override suspend fun upsertSales(sales: Sales): Long = salesDao.upsertSales(sales)
 }

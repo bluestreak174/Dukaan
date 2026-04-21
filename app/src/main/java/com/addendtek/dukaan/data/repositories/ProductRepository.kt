@@ -17,4 +17,5 @@ interface ProductRepository {
     fun getProductsCatQuantity() : Flow<Map<Product, CategoryQuantity>>
     fun getStockValue() : Flow<String>
     fun getProductWithCategoryAndQuantityType(catId: Int) : Flow<List<ProductCategoryQuantity>>
+    suspend fun upsertProduct(product: Product): Long
 }

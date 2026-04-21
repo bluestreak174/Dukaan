@@ -3,14 +3,17 @@ package com.addendtek.dukaan.ui.navigation
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Balance
+import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.PointOfSale
+import androidx.compose.material.icons.filled.Receipt
+import androidx.compose.material.icons.filled.Scale
+import androidx.compose.material.icons.filled.Sell
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Summarize
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
@@ -30,6 +33,7 @@ import com.addendtek.dukaan.R
 
 @Composable
 fun DukaanDropdownMenu(
+    modifier: Modifier = Modifier,
     onCategoryClick: () -> Unit,
     onQuantityTypeClick: () -> Unit,
     onImageEntryClick: () -> Unit,
@@ -42,11 +46,11 @@ fun DukaanDropdownMenu(
     onSbillsClick: () -> Unit,
     onPurchaseSalesClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    modifier: Modifier = Modifier
+
 ) {
     var expanded by remember { mutableStateOf(false) }
     Box(
-        modifier = Modifier
+        modifier = modifier
             .padding(16.dp)
     ) {
         IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.more_options_test))) {
@@ -61,7 +65,7 @@ fun DukaanDropdownMenu(
                 onClick = onPurchaseBillClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_purchase_bill_test))) {
-                        Icon(Icons.Default.AddCircle, contentDescription = stringResource(R.string.menu_purchase_bill_list))
+                        Icon(Icons.Filled.Receipt, contentDescription = stringResource(R.string.menu_purchase_bill_list))
                     }
                 }
             )
@@ -70,7 +74,7 @@ fun DukaanDropdownMenu(
                 onClick = onSalesBillClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_sales_bill_test))) {
-                        Icon(Icons.Default.Create, contentDescription = stringResource(R.string.menu_sales_bill_list))
+                        Icon(Icons.Filled.PointOfSale, contentDescription = stringResource(R.string.menu_sales_bill_list))
                     }
                 }
             )
@@ -80,7 +84,7 @@ fun DukaanDropdownMenu(
                 onClick = onSummaryClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_purchase_list_test))) {
-                        Icon(Icons.Default.CheckCircle, contentDescription = stringResource(R.string.menu_summary))
+                        Icon(Icons.Filled.Summarize, contentDescription = stringResource(R.string.menu_summary))
                     }
                 }
             )
@@ -89,7 +93,7 @@ fun DukaanDropdownMenu(
                 onClick = onPurchaseListClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_purchase_list_test))) {
-                        Icon(Icons.Default.DateRange, contentDescription = stringResource(R.string.menu_purchase_list))
+                        Icon(Icons.Filled.ShoppingCart, contentDescription = stringResource(R.string.menu_purchase_list))
                     }
                 }
             )
@@ -98,7 +102,7 @@ fun DukaanDropdownMenu(
                 onClick = onSalesListClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_sales_list_test))) {
-                        Icon(Icons.Default.DateRange, contentDescription = stringResource(R.string.menu_sales_list))
+                        Icon(Icons.Filled.Sell, contentDescription = stringResource(R.string.menu_sales_list))
                     }
                 }
             )
@@ -107,7 +111,7 @@ fun DukaanDropdownMenu(
                 onClick = onPurchaseSalesClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_purchase_sales_test))) {
-                        Icon(Icons.Default.DateRange, contentDescription = stringResource(R.string.menu_purchase_sales_list))
+                        Icon(Icons.Filled.Balance, contentDescription = stringResource(R.string.menu_purchase_sales_list))
                     }
                 }
             )
@@ -117,7 +121,7 @@ fun DukaanDropdownMenu(
                 onClick = onPbillsClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_purchase_bills_test))) {
-                        Icon(Icons.Default.DateRange, contentDescription = stringResource(R.string.menu_bills_list))
+                        Icon(Icons.Filled.ShoppingCart, contentDescription = stringResource(R.string.menu_bills_list))
                     }
                 }
             )
@@ -126,7 +130,7 @@ fun DukaanDropdownMenu(
                 onClick = onSbillsClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_sales_bills_test))) {
-                        Icon(Icons.Default.DateRange, contentDescription = stringResource(R.string.menu_sales_bills_list))
+                        Icon(Icons.Filled.Sell, contentDescription = stringResource(R.string.menu_sales_bills_list))
                     }
                 }
             )
@@ -137,7 +141,7 @@ fun DukaanDropdownMenu(
                 onClick = onCategoryClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_category_list_test))) {
-                        Icon(Icons.Default.Email, contentDescription = stringResource(R.string.menu_category_list))
+                        Icon(Icons.Filled.Dashboard, contentDescription = stringResource(R.string.menu_category_list))
                     }
                 }
             )
@@ -146,7 +150,7 @@ fun DukaanDropdownMenu(
                 onClick = onQuantityTypeClick,
                 leadingIcon = {
                     IconButton(onClick = { expanded = !expanded }, modifier = Modifier.testTag(stringResource(R.string.menu_qty_type_list_test))) {
-                        Icon(Icons.Default.Email, contentDescription = stringResource(R.string.menu_qty_type_list))
+                        Icon(Icons.Filled.Scale, contentDescription = stringResource(R.string.menu_qty_type_list))
                     }
                 }
             )

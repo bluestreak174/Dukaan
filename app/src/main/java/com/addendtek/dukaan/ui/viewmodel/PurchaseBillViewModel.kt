@@ -64,7 +64,7 @@ class PurchaseBillViewModel(
     }
 
     fun updateSelectedProductQtyState(selectedProduct: PurchaseProductQty){
-        if(selectedProduct.qty.isNotBlank() ) {
+        if(selectedProduct.product != null && selectedProduct.qty.isNotBlank()  && selectedProduct.product?.qty!! > 0) {
             val cost: Double = selectedProduct.product?.cost ?: 0.0
             val piece: Int = selectedProduct.qtyType?.piece ?: 0
             val qty: Int = selectedProduct.qty.toInt()

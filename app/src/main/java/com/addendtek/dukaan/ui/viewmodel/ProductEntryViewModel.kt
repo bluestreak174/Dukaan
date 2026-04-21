@@ -63,7 +63,7 @@ class ProductEntryViewModel(
     private fun validatePurchaseInput(uiState: PurchaseEntryDetails = productUiState.purchaseEntryDetails) : Boolean{
 
         return with(uiState) {
-            cost.isNotBlank() && mrp.isNotBlank() && qty.isNotBlank()
+            cost.isNotBlank() && mrp.isNotBlank() && qty.isNotBlank() && qtyType != null
                     && cash.isNotBlank() && upi.isNotBlank() && qty.toInt() > 0
         }
     }

@@ -34,7 +34,7 @@
     <string name="product_cost_req">Cost*</string>
     <string name="product_price_req">Price*</string>
     <string name="cash_req">Cash*</string>
-    <string name="upi_req">UPI*</string>
+    <string name="upi_req">Online*</string>
     <string name="quantity_req">Quantity in Stock*</string>
     <string name="qty_buy_req">Buy Quantity*</string>
     <string name="required_fields">*required fields</string>
@@ -64,7 +64,7 @@
     <string name="remove_item">Remove Item</string>
     <string name="total">Total </string>
     <string name="cash">Cash</string>
-    <string name="upi">UPI</string>
+    <string name="upi">Online</string>
     <string name="bill">Bill</string>
     <string name="date">Date</string>
     <string name="menu_bills_list">Bills (Purchase)</string>
@@ -85,17 +85,9 @@
     <string name="home_content_description">Go to Home</string>
     <string name="menu_purchase_sales_list">Purchase And Sales</string>
     <string name="buy_sell">BUY/SELL : %1$s / %2$s</string>
-    <string name="cash_upi">CASH/UPI : %1$s / %2$s</string>
-    <string name="home_month_buy">
-        BUY : \n(Total) = %1$s \n
-        (Cash) = %2$s \n
-        (UPI) = %3$s \n
-    </string>
-    <string name="home_month_sell">
-        SELL : \n(Total) = %1$s \n
-        (Cash) = %2$s \n
-        (UPI) = %3$s \n
-    </string>
+    <string name="cash_upi">CASH/ONLINE : %1$s / %2$s</string>
+    <string name="home_month_buy">"\n BUY :\n (Total) = %1$s \n (Cash) = %2$s \n (Online) = %3$s"</string>
+    <string name="home_month_sell">"\n SELL :\n (Total) = %1$s \n (Cash) = %2$s \n (Online) = %3$s"</string>
     <string name="stock">Stock:  %1$s</string>
     <string name="home_summary_tooltip">Current Month \n</string>
     <string name="month_total_buy">BUY: %1$s</string>
@@ -160,4 +152,36 @@
     <string name="percentage">%</string>
     <string name="percent_expand_button_content_description">Expand for Percentage Calculator</string>
     <string name="percentage_calculator_for_above_cost">Percentage Calculator for above cost.</string>
+    <string name="product_search_title">Search</string>
+    <string name="export_import_action">Export / Import</string>
+    <string name="expand_for_export_import_settings">Expand for Export / Import settings.</string>
+    <string name="export">Export</string>
+    <string name="import_txt">Import</string>
+    <string name="help_info_enable_and_disable">Touch anywhere for next Help. To close help, Goto Menu -> settings and disable Help.</string>
+    <string name="help_list_of_products">Touch To View List of products in this category</string>
+    <string name="help_search_product">Touch to Search a Product</string>
+    <string name="help_month_summary">Touch and hold to view current month summary</string>
+    <string name="menu">Menu</string>
+    <string name="help_menu_options">Touch To view different menu options</string>
+    <string name="help_edit_product">Click To Edit Product</string>
+    <string name="help_buy_btn">Buy Product</string>
+    <string name="help_buy_product">Click To Buy Product</string>
+    <string name="help_sell_btn">Sell Product</string>
+    <string name="help_sell_product">Click To Sell Product</string>
+    <string name="help_product_history">Click To View Product History</string>
+    <string name="help_save_bill_title">Save Bill</string>
+    <string name="help_save_bill_sub_title">Click To Save Bill</string>
+    <string name="help_add_item_to_bill">Add Product To Bill</string>
+    <string name="help_bill_add_to_list">Click To Add Product to List</string>
+    <string name="help_remove_item_from_bill">Remove Product From Bill</string>
+    <string name="help_bill_remove_from_list">Click To Remove Last Row from List</string>
+    <string name="help_bill_search_product">Touch And Search a Product</string>
+    <string name="help_product_details">Click To View Product Details</string>
+    <string name="click_to_add_product">Click To Add Product</string>
+    <string name="enable_help">Enable Help</string>
+    <string name="help_entry_product">Add unique product name</string>
+    <string name="qty_type_help_title">Select a Quantity Type</string>
+    <string name="qty_type_help_sub_title">Click arrow to select a Quantity Type</string>
+    <string name="bar_code_help_title">Scan barcode (Optional)</string>
+    <string name="bar_code_help_sub_title">Click and scan barcode of the product</string>
 </resources>

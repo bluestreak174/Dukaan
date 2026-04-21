@@ -13,6 +13,8 @@ import com.addendtek.dukaan.ui.home.HomeDestination
 import com.addendtek.dukaan.ui.home.HomeScreen
 import com.addendtek.dukaan.ui.home.ImageEntryDestination
 import com.addendtek.dukaan.ui.home.ImageFileScreen
+import com.addendtek.dukaan.ui.home.ProductSearchDestination
+import com.addendtek.dukaan.ui.home.ProductSearchScreen
 import com.addendtek.dukaan.ui.product.CategoryEditDestination
 import com.addendtek.dukaan.ui.product.CategoryEditScreen
 import com.addendtek.dukaan.ui.product.CategoryEntryDestination
@@ -61,8 +63,8 @@ import com.addendtek.dukaan.ui.product.SummaryScreenDestination
  */
 @Composable
 fun DukaanNavHost(
-    navController: NavHostController,
     modifier: Modifier = Modifier,
+    navController: NavHostController,
 ) {
     NavHost(
         navController = navController,
@@ -85,7 +87,16 @@ fun DukaanNavHost(
                 navigateToBillsPurchase = { navController.navigate(PurchaseBillsListDestination.route)},
                 navigateToBillsSales = { navController.navigate(SalesBillsListDestination.route)},
                 navigateToPurchaseSales = { navController.navigate(PurchaseSaleScreenDestination.route)},
-                navigateToSettings = {navController.navigate(AppSettingsDestination.route)}
+                navigateToSettings = {navController.navigate(AppSettingsDestination.route)},
+                navToProductSearch = {navController.navigate(ProductSearchDestination.route)},
+
+            )
+        }
+        composable(route = ProductSearchDestination.route) {
+            ProductSearchScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() },
+                navigateToProductDetails = {navController.navigate("${ProductDetailsDestination.route}/${it}")}
             )
         }
         composable(route = CategoryListDestination.route) {

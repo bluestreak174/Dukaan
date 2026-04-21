@@ -62,10 +62,11 @@ class ProductEditViewModel(
                 .first()
                 .toProductUiState(true)
 
-            val qtyType = qtyTypeUiState.value.qtyTypeList.filter{ it.id == productUiState.itemDetails.qtyTypeId }
+            if(qtyTypeUiState.value.qtyTypeList.isNotEmpty()){
+                val qtyType = qtyTypeUiState.value.qtyTypeList.filter{ it.id == productUiState.itemDetails.qtyTypeId }
 
-            updateUiState(productUiState.itemDetails.copy(qtyTypeStr = qtyType[0].type))
-
+                updateUiState(productUiState.itemDetails.copy(qtyTypeStr = qtyType[0].type))
+            }
         }
     }
 }

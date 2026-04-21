@@ -15,4 +15,6 @@ interface SalesRepository {
     fun getDaySales(sellDate: Long): Flow<List<Sales>>
     suspend fun deleteSalesByBillId(billId: Int)
     fun getSalesByBillId(billId: Int): Flow<List<Sales>>
+
+    suspend fun upsertSales(sales: Sales): Long
 }

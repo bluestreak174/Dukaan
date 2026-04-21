@@ -206,6 +206,7 @@ fun SalesBillTotal(
     updateBillAmount: (BillAmount) -> Unit,
     saveSalesBill: () -> Unit,
 ){
+    val defaultAddress = stringResource(R.string.market)
     val colors = OutlinedTextFieldDefaults.colors(
         focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
         unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -220,8 +221,9 @@ fun SalesBillTotal(
         OutlinedTextField(
             value = billAmount.cash,
             onValueChange = {
-                if(it.isNotBlank())
+                if(it.toDoubleOrNull() != null) {
                     updateBillAmount(billAmount.copy(cash = it))
+                }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text( text = stringResource(R.string.cash) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },
@@ -235,8 +237,9 @@ fun SalesBillTotal(
         OutlinedTextField(
             value = billAmount.upi,
             onValueChange = {
-                if(it.isNotBlank())
+                if(it.toDoubleOrNull() != null) {
                     updateBillAmount(billAmount.copy(upi = it))
+                }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text( text = stringResource(R.string.upi) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },
@@ -267,10 +270,14 @@ fun SalesBillTotal(
         }
         Button(
             onClick = {
+                if(billAmount.billAddress.isBlank()) {
+                    billAmount.billAddress = defaultAddress
+                }
                 saveSalesBill()
                 showNotification = true
                       },
-            enabled = salesList.isNotEmpty() && billAmount.cash.isNotBlank() && billAmount.upi.isNotBlank(),
+            enabled = salesList.isNotEmpty() && billAmount.cash.isNotBlank()
+                    && billAmount.upi.isNotBlank(),
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.padding(4.dp)
         ) {
@@ -352,7 +359,9 @@ fun SalesBillEntryForm(
         OutlinedTextField(
             value = selectedProduct.qty,
             onValueChange = {
-                onSalesValueChange(selectedProduct.copy(qty = it))
+                if(it.toIntOrNull() != null || it.isBlank()) {
+                    onSalesValueChange(selectedProduct.copy(qty = it))
+                }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = {
@@ -376,7 +385,9 @@ fun SalesBillEntryForm(
         OutlinedTextField(
             value = selectedProduct.price,
             onValueChange = {
-                onCostValueChange(selectedProduct.copy(price = it) )
+                if(it.toDoubleOrNull() != null) {
+                    onCostValueChange(selectedProduct.copy(price = it))
+                }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text( text = stringResource(R.string.cost) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },

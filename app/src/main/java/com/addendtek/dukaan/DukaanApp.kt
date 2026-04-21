@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Assistant
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -22,10 +23,13 @@ import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -33,13 +37,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.addendtek.dukaan.ui.navigation.DukaanDropdownMenu
 import com.addendtek.dukaan.ui.navigation.DukaanNavHost
+import com.addendtek.dukaan.ui.utils.ShowcaseProperty
 
 
 /**
  * Top level composable that represents screens for the application.
  */
 @Composable
-fun DukaanApp(navController: NavHostController = rememberNavController()) {
+fun DukaanApp(
+    modifier: Modifier,
+    navController: NavHostController = rememberNavController(),
+) {
     DukaanNavHost(navController = navController)
 }
 
@@ -67,8 +75,18 @@ fun DukaanTopAppBar(
     canNavigateBack: Boolean,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {},
-    navigateToHome: () -> Unit ={}
+    onSearchClick: () -> Unit = {},
+    navigateToHome: () -> Unit ={},
+    targets: SnapshotStateMap<String, ShowcaseProperty> = mutableStateMapOf(),
+    updateTargets: (SnapshotStateMap<String, ShowcaseProperty>) -> Unit = {}
 ) {
+    val searchHelpTitle = stringResource(R.string.search_product)
+    val searchHelpSubTitle = stringResource(R.string.help_search_product)
+    val summaryHelpTitle = stringResource(R.string.summary_title)
+    val summaryHelpSubTitle = stringResource(R.string.help_month_summary)
+    val menuHelpTitle = stringResource(R.string.menu)
+    val menuHelpSubTitle = stringResource(R.string.help_menu_options)
+
     CenterAlignedTopAppBar(
         title = {
 
@@ -79,21 +97,54 @@ fun DukaanTopAppBar(
                                 text = title,
                                 style = MaterialTheme.typography.labelLarge,
                             )
+                            IconButton(
+                                onClick = onSearchClick,
+                                modifier = Modifier.onGloballyPositioned { coordinates ->
+                                    if(coordinates.isAttached){
+                                        targets["Search"] = ShowcaseProperty(
+                                            index = 4,
+                                            coordinates = coordinates,
+                                            title = searchHelpTitle,
+                                            subTitle = searchHelpSubTitle
+                                        )
+                                        updateTargets(targets)
+                                    }
+
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Rounded.Search,
+                                    contentDescription = stringResource(R.string.back_button),
+                                )
+                            }
                         }
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            IconWithToolTip(
-                                tooltipText = titleSummary,
-                                iconImageVector = Icons.Filled.Assistant,
-                                iconColor = Color.Gray
-                            )
                             Text(
                                 text = titleSummary.split("\n").last(),
                                 style = MaterialTheme.typography.labelLarge,
                             )
+                            IconWithToolTip(
+                                tooltipText = titleSummary,
+                                iconImageVector = Icons.Filled.Assistant,
+                                iconColor = Color.Gray,
+                                modifier = Modifier.onGloballyPositioned { coordinates ->
+                                    if(coordinates.isAttached){
+                                        targets["Summary"] = ShowcaseProperty(
+                                            index = 3,
+                                            coordinates = coordinates,
+                                            title = summaryHelpTitle,
+                                            subTitle = summaryHelpSubTitle
+                                        )
+                                        updateTargets(targets)
+                                    }
+
+                                }
+                            )
 
                         }
                     }
+
                 }else {
                     Text(
                         text = title,
@@ -134,8 +185,20 @@ fun DukaanTopAppBar(
                     onSbillsClick = onSbillsClick,
                     onPurchaseSalesClick = onPurchaseSalesClick,
                     onSettingsClick = onSettingsClick,
-                    modifier = Modifier
+                    modifier = Modifier.onGloballyPositioned { coordinates ->
+                        if(coordinates.isAttached){
+                            targets["Menu"] = ShowcaseProperty(
+                                index = 2,
+                                coordinates = coordinates,
+                                title = menuHelpTitle,
+                                subTitle = menuHelpSubTitle
+                            )
+                            updateTargets(targets)
+                        }
+
+                    }
                 )
+
             } else {
                 Image(
                     painter = painterResource(R.drawable.ic_launcher_foreground),
@@ -144,6 +207,7 @@ fun DukaanTopAppBar(
             }
         }
     )
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -155,6 +219,7 @@ fun IconWithToolTip(
     iconColor: Color = Color.Blue,
     onIconClick: () -> Unit = {},
 ) {
+
     TooltipBox(
         modifier = modifier,
         positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
@@ -178,4 +243,5 @@ fun IconWithToolTip(
             )
         }
     }
+
 }

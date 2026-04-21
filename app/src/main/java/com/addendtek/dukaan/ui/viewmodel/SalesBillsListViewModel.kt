@@ -92,7 +92,7 @@ class SalesBillsListViewModel(
                 val sales = it
                 sales.forEach { sale ->
                     var productUiState = getProduct(sale.productId)
-                    //decrease quantity in product_master before deleting purchase
+                    //increase quantity in product_master before deleting purchase
                     var qty = productUiState.itemDetails.qty.toInt()
 
                     val qtyTypeUiState = getQtyType(sale.quantityTypeId)

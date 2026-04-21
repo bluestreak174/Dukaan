@@ -160,7 +160,7 @@ fun PurchaseBillsListRows(
     ) {
         item {
             BillPurchasesCardHead(
-                modifier = Modifier
+                modifier = modifier
                     .padding(dimensionResource(id = R.dimen.card_padding_small)),
                 headTextList = headTextList,
                 billAddressMap = billAddressMap,
@@ -174,7 +174,7 @@ fun PurchaseBillsListRows(
             PurchaseBillCard(
                 purchaseBill = item,
                 onDeleteBill = onDeleteBill,
-                modifier = Modifier
+                modifier = modifier
                     .padding(dimensionResource(id = R.dimen.card_padding_small))
                     .clickable { onBillClick(item.id) },
             )

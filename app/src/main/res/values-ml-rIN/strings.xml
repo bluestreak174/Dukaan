@@ -33,7 +33,7 @@
     <string name="product_cost_req">ചെലവ്*</string>
     <string name="product_price_req">വില*</string>
     <string name="cash_req">പണം*</string>
-    <string name="upi_req">യുപിഐ*</string>
+    <string name="upi_req">ഓൺലൈൻ*</string>
     <string name="quantity_req">സ്റ്റോക്കിലുള്ള അളവ്*</string>
     <string name="qty_buy_req">അളവ് വാങ്ങുക*</string>
     <string name="required_fields">*ആവശ്യമായ ഫീൽഡുകൾ</string>
@@ -68,7 +68,7 @@
     <string name="remove_item">ഇനം നീക്കം ചെയ്യുക</string>
     <string name="total">മൊത്തം </string>
     <string name="cash">പണം</string>
-    <string name="upi">യുപിഐ</string>
+    <string name="upi">ഓൺലൈൻ</string>
     <string name="bill">ബിൽ</string>
     <string name="date">തീയതി</string>
     <string name="menu_bills_list">ബില്ലുകൾ (വാങ്ങൽ)</string>
@@ -94,17 +94,9 @@
     <string name="menu_purchase_sales_list">വാങ്ങലുകളും വിൽപ്പനകളും</string>
 
     <string name="buy_sell">വാങ്ങുക/വിൽക്കുക : %1$s / %2$s</string>
-    <string name="cash_upi">പണം/യുപിഐ : %1$s / %2$s</string>
-    <string name="home_month_buy">
-        വാങ്ങുക : \n(മൊത്തം) = %1$s \n
-        (പണം) = %2$s \n
-        (യുപിഐ) = %3$s \n
-    </string>
-    <string name="home_month_sell">
-        വിൽക്കുക : \n(മൊത്തം) = %1$s \n
-        (പണം) = %2$s \n
-        (യുപിഐ) = %3$s \n
-    </string>
+    <string name="cash_upi">പണം/ഓൺലൈൻ: %1$s / %2$s</string>
+    <string name="home_month_buy">"\n വാങ്ങുക : \n (മൊത്തം) = %1$s \n (പണം) = %2$s \n (ഓൺലൈൻ) = %3$s"</string>
+    <string name="home_month_sell">"\n വിൽക്കുക : \n (മൊത്തം) = %1$s \n (പണം) = %2$s \n (ഓൺലൈൻ) = %3$s"</string>
     <string name="stock">സ്റ്റോക്ക്:  %1$s</string>
     <string name="home_summary_tooltip">നിലവിലെ മാസം \n</string>
     <string name="month_total_buy">വാങ്ങുക: %1$s</string>
@@ -169,5 +161,37 @@
     <string name="percentage">%</string>
     <string name="percent_expand_button_content_description">ശതമാന കാൽക്കുലേറ്ററിനായി വികസിപ്പിക്കുക</string>
     <string name="percentage_calculator_for_above_cost">മുകളിലുള്ള ചെലവിനുള്ള ശതമാനം കാൽക്കുലേറ്റർ.</string>
+    <string name="product_search_title">തിരയുക</string>
+    <string name="export_import_action">"എക്സ്പോർട്ട് / ഇമ്പോർട്ട് "</string>
+    <string name="expand_for_export_import_settings">എക്സ്പോർട്ട് / ഇമ്പോർട്ട് ക്രമീകരണങ്ങൾക്കായി വികസിപ്പിക്കുക</string>
+    <string name="export">കയറ്റുമതി</string>
+    <string name="import_txt">ഇറക്കുമതി ചെയ്യുക</string>
+    <string name="help_info_enable_and_disable">അടുത്ത സഹായത്തിനായി എവിടെയും സ്പർശിക്കുക. സഹായം അടയ്ക്കാൻ, മെനു -> ക്രമീകരണങ്ങളിലേക്ക് പോയി സഹായം പ്രവർത്തനരഹിതമാക്കുക.</string>
+    <string name="help_list_of_products">ഈ വിഭാഗത്തിലെ ഉൽപ്പന്നങ്ങളുടെ പട്ടിക കാണാൻ സ്പർശിക്കുക.</string>
+    <string name="help_search_product">ഒരു ഉൽപ്പന്നം തിരയാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_month_summary">നിലവിലെ മാസ സംഗ്രഹം കാണാൻ സ്‌പർശിച്ച് പിടിക്കുക</string>
+    <string name="menu">മെനു</string>
+    <string name="help_menu_options">വ്യത്യസ്ത മെനു ഓപ്ഷനുകൾ കാണാൻ സ്പർശിക്കുക</string>
+    <string name="help_edit_product">ഉൽപ്പന്നം എഡിറ്റ് ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_buy_btn">ഉൽപ്പന്നം വാങ്ങുക</string>
+    <string name="help_buy_product">ഉൽപ്പന്നം വാങ്ങാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_sell_btn">ഉൽപ്പന്നം വിൽക്കുക</string>
+    <string name="help_sell_product">ഉൽപ്പന്നം വിൽക്കാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_product_history">ഉൽപ്പന്ന ചരിത്രം കാണാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_save_bill_title">ബിൽ സംരക്ഷിക്കുക</string>
+    <string name="help_save_bill_sub_title">ബിൽ സേവ് ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_add_item_to_bill">ബില്ലിലേക്ക് ഉൽപ്പന്നം ചേർക്കുക</string>
+    <string name="help_bill_add_to_list">ഉൽപ്പന്നം ലിസ്റ്റിലേക്ക് ചേർക്കാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="help_remove_item_from_bill">ബില്ലിൽ നിന്ന് ഉൽപ്പന്നം നീക്കം ചെയ്യുക</string>
+    <string name="help_bill_remove_from_list">പട്ടികയിൽ നിന്ന് അവസാന വരി നീക്കം ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക.</string>
+    <string name="help_bill_search_product">ഉൽപ്പന്നം തിരയുക, തിരഞ്ഞെടുക്കുക</string>
+    <string name="help_product_details">ഉൽപ്പന്ന വിശദാംശങ്ങൾ കാണാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="click_to_add_product">ഉൽപ്പന്നം ചേർക്കാൻ ക്ലിക്ക് ചെയ്യുക</string>
+    <string name="enable_help">സഹായം പ്രാപ്തമാക്കുക / അപ്രാപ്തമാക്കുക</string>
+    <string name="help_entry_product">ഒരു തനതായ ഉൽപ്പന്ന നാമം ചേർക്കുക</string>
+    <string name="qty_type_help_title">ഒരു അളവ് തരം തിരഞ്ഞെടുക്കുക</string>
+    <string name="qty_type_help_sub_title">ഒരു ക്വാണ്ടിറ്റി തരം തിരഞ്ഞെടുക്കാൻ അമ്പടയാളത്തിൽ ക്ലിക്ക് ചെയ്യുക.</string>
+    <string name="bar_code_help_title">ബാർകോഡ് സ്കാൻ ചെയ്യുക (ഓപ്ഷണൽ)</string>
+    <string name="bar_code_help_sub_title">ഉൽപ്പന്നത്തിനായുള്ള ബാർകോഡിൽ ക്ലിക്ക് ചെയ്ത് സ്കാൻ ചെയ്യുക</string>
 
 </resources>

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
@@ -23,21 +23,30 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.addendtek.dukaan.DukaanTopAppBar
 import com.addendtek.dukaan.R
 import com.addendtek.dukaan.data.entities.Product
 import com.addendtek.dukaan.data.relations.ProductCategoryQuantity
 import com.addendtek.dukaan.ui.AppViewModelProvider
-import com.addendtek.dukaan.ui.home.HomeDestination
 import com.addendtek.dukaan.ui.navigation.NavigationDestination
 import com.addendtek.dukaan.ui.theme.DukaanTheme
+import com.addendtek.dukaan.ui.utils.HelpShowCase
+import com.addendtek.dukaan.ui.utils.ShowcaseProperty
+import com.addendtek.dukaan.ui.viewmodel.AppSettingsViewModel
 import com.addendtek.dukaan.ui.viewmodel.ProductListViewModel
 
 object ProductListDestination : NavigationDestination {
@@ -55,12 +64,12 @@ fun ProductListScreen(
     navigateToProductUpdate: (Int) -> Unit,
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit = {},
-    viewModel: ProductListViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: ProductListViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    appSettingsViewModel: AppSettingsViewModel = viewModel(factory = AppViewModelProvider.Factory),
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val productListUiState by viewModel.productListUiState.collectAsState()
     val productCatQtyListUiState by viewModel.productCatQtyListUiState.collectAsState()
-
 
     var productList: List<Product> = listOf()
     var catId: Int = 0
@@ -73,21 +82,40 @@ fun ProductListScreen(
 
     val productCatQtyList = productCatQtyListUiState.productCatQtyList
 
+    val appHelpPrefState by appSettingsViewModel.appHelpPrefState.collectAsStateWithLifecycle()
+
+    val targets = remember {
+        mutableStateMapOf<String, ShowcaseProperty>()
+    }
+    var showHelp by remember {
+        mutableStateOf(false)
+    }
+    val addHelpTitle = stringResource(R.string.product_entry_title)
+    val addHelpSubTitle = stringResource(R.string.click_to_add_product)
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             DukaanTopAppBar(
-                title = stringResource(HomeDestination.titleRes) + " - " + category,
+                title = category,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
-                navigateUp = navigateBack
+                navigateUp = navigateBack,
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navigateToProductEntry(catId) },
                 shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_large))
+                    .onGloballyPositioned { coordinates ->
+                        targets["Add Item"] = ShowcaseProperty(
+                            index = 1,
+                            coordinates = coordinates,
+                            title = addHelpTitle,
+                            subTitle = addHelpSubTitle
+                        )
+                    },
             ) {
 
                 Icon(
@@ -95,6 +123,7 @@ fun ProductListScreen(
                     contentDescription = stringResource(R.string.product_entry_title)
                 )
             }
+
         },
     ) { innerPadding ->
         ProductListBody(
@@ -103,6 +132,9 @@ fun ProductListScreen(
             productCatQtyList = productCatQtyList,
             modifier = modifier.fillMaxSize(),
             contentPadding = innerPadding,
+            targets = targets,
+            onShowCaseCompleted = { showHelp = false},
+            showHelp = appHelpPrefState.isAppHelpEnabled,
         )
         Spacer(modifier = Modifier.height(16.dp))
     }
@@ -114,15 +146,40 @@ fun ProductListBody(
     productCatQtyList: List<ProductCategoryQuantity>,
     modifier: Modifier = Modifier,
     onItemClick: (Int) -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
+    onShowCaseCompleted: () -> Unit,
+    showHelp: Boolean,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
+
     ProductList(
         productList = productList,
         productCatQtyList = productCatQtyList,
         modifier = modifier,
         onItemClick = { onItemClick(it.id) },
+        targets = targets,
         contentPadding = contentPadding
     )
+
+    if(showHelp){
+        val uniqueTargets = targets.values.sortedBy { it.index }
+        var currentTargetIndex by remember { mutableStateOf(0) }
+
+        val currentTarget =
+            if (uniqueTargets.isNotEmpty() && currentTargetIndex < uniqueTargets.size) uniqueTargets[currentTargetIndex] else null
+
+        currentTarget?.let {
+            HelpShowCase(
+                target = it,
+                dismissOnClickOutside = true,
+                ) {
+                if (++currentTargetIndex >= uniqueTargets.size) {
+                    onShowCaseCompleted()
+                }
+            }
+        }
+    }
+
 }
 
 @Composable
@@ -130,6 +187,7 @@ fun ProductList(
     productList: List<Product>,
     productCatQtyList: List<ProductCategoryQuantity>,
     onItemClick: (Product) -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
 ){
@@ -137,13 +195,18 @@ fun ProductList(
         modifier = modifier,
         contentPadding = contentPadding
     ) {
-        items(items = productList, key = { it.id }) { item ->
+        item{
+            ProductTitleCard()
+        }
+        itemsIndexed(items = productList) {index, item ->
             productCatQtyList.find {
                 productCatQty -> productCatQty.product.id.equals(item.id)
             }?.let {
                 ProductCard(
                     product = item,
                     productCatQty = it,
+                    targets = targets,
+                    curIdx = index,
                     modifier = Modifier
                         .padding(dimensionResource(id = R.dimen.card_padding_small))
                         .clickable { onItemClick(item) }
@@ -153,13 +216,59 @@ fun ProductList(
 
     }
 }
+@Composable
+fun ProductTitleCard(
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
 
+        Row(
+            modifier = modifier
+        ) {
+            Text(
+                text = stringResource(R.string.product),
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .weight(1f)
+            )
+            Text(
+                text = stringResource(R.string.qty),
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .weight(0.5f)
+            )
+            Text(
+                text = stringResource(R.string.cost),
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .weight(0.5f)
+            )
+            Text(
+                text = stringResource(R.string.price),
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .weight(0.5f)
+            )
+        }
+    }
+}
 @Composable
 fun ProductCard(
     product: Product,
     productCatQty: ProductCategoryQuantity,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
+    curIdx: Int,
     modifier: Modifier = Modifier,
 ) {
+    val helpItemDetailsTitle = stringResource(R.string.product_details_title)
+    val helpItemDetailsSubTitle = stringResource(R.string.help_product_details)
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -181,6 +290,17 @@ fun ProductCard(
                 modifier = Modifier
                     .padding(8.dp)
                     .weight(0.5f)
+                    .onGloballyPositioned { coordinates ->
+                        if (curIdx == 3) {
+                            targets["Item Details"] = ShowcaseProperty(
+                                index = 2,
+                                coordinates = coordinates,
+                                title = helpItemDetailsTitle,
+                                subTitle = helpItemDetailsSubTitle
+                            )
+                        }
+
+                    }
             )
 
             Text(

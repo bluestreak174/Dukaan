@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.addendtek.dukaan.data.relations.PurchaseSales
 import com.addendtek.dukaan.data.repositories.ProductPurchaseRepository
+import com.addendtek.dukaan.data.repositories.PurchaseRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -20,7 +22,8 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 
 class PurchaseAndSalesViewModel(
-    private val productPurchaseRepository: ProductPurchaseRepository
+    private val productPurchaseRepository: ProductPurchaseRepository,
+    private val purchaseRepository: PurchaseRepository
 ) : ViewModel(){
 
     private val startEndDateState = MutableStateFlow(StartEndDateState(
@@ -47,7 +50,6 @@ class PurchaseAndSalesViewModel(
             .map {
                 PurchaseAndSalesState(
                     purchaseAndSalesList = it,
-                    totalProfitAndLoss = getTotalProfitAndLoss(it)
                 )
             }
         }.stateIn(
@@ -56,9 +58,12 @@ class PurchaseAndSalesViewModel(
             initialValue = PurchaseAndSalesState()
         )
 
+
     init {
         viewModelScope.launch {
             purchaseSalesUiState.collect { purchaseSalesState ->
+                updateProfitAndLoss(purchaseSalesState.purchaseAndSalesList)
+                purchaseSalesState.totalProfitAndLoss = getTotalProfitAndLoss(purchaseSalesState.purchaseAndSalesList)
                 _filteredPurchaseSalesState.value = FilteredPurchaseAndSalesState(
                     filteredPurchaseSalesList = purchaseSalesState.purchaseAndSalesList,
                     categoryFilterMap = purchaseSalesState.purchaseAndSalesList.map { purchaseSales ->  purchaseSales.categoryName }.toSet().associate { it to true },
@@ -153,22 +158,44 @@ class PurchaseAndSalesViewModel(
         return mainMap
     }
 
+    private suspend fun updateProfitAndLoss(purchaseAndSalesList: List<PurchaseSales>){
+        purchaseAndSalesList.forEach { purchaseSales ->
+            if(purchaseSales.sellQty > 0 && purchaseSales.buyQty == 0){
+                updateProfitLossFromPrevPurchase(purchaseSales)
+            }else if(purchaseSales.buyQty > 0 && purchaseSales.sellQty > 0) {
+                if(purchaseSales.buyQty == purchaseSales.sellQty) {
+                    purchaseSales.profitAndLoss = purchaseSales.price - purchaseSales.cost
+                } else {
+                    val itemCost = purchaseSales.cost/purchaseSales.buyQty
+                    val tempBuyCost = purchaseSales.sellQty * itemCost
+                    purchaseSales.profitAndLoss = (purchaseSales.price - tempBuyCost).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+                }
+            }
+        }
+    }
+
     private fun getTotalProfitAndLoss(purchaseAndSalesList: List<PurchaseSales>) : Double{
         var total = 0.0
         purchaseAndSalesList.forEach {
                 purchaseSales ->
-            val itemCost = if(purchaseSales.buyQty == 0) 0.0 else purchaseSales.cost/purchaseSales.buyQty
-            val diffBuyQty = purchaseSales.sellQty
-            val tempBuyCost = diffBuyQty * itemCost
-            val profitAndLoss = if(purchaseSales.buyQty == purchaseSales.sellQty){
-                purchaseSales.price - purchaseSales.cost
-            } else {
-                purchaseSales.price - tempBuyCost
+            if(purchaseSales.sellQty > 0 ){
+                total += purchaseSales.profitAndLoss
             }
-            total += profitAndLoss
         }
-
         return total.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+    }
+
+    private suspend fun updateProfitLossFromPrevPurchase(purchaseSales: PurchaseSales){
+        val prevPurchaseState = purchaseRepository.getProductLastPurchase(purchaseSales.productId, startEndDateState.value.startDate)
+            .filterNotNull()
+            .first()
+        val prevBuyQty = prevPurchaseState.quantity
+        val prevBuyCost = prevPurchaseState.cost
+        val singleCost = prevBuyCost.div(prevBuyQty)
+        val purchaseCost = singleCost.times(purchaseSales.sellQty) ?: 0.0
+        val profitAndLoss = if(purchaseCost > 0)  (purchaseSales.price - purchaseCost) else 0.0
+        purchaseSales.profitAndLoss = profitAndLoss.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+
     }
 
 }

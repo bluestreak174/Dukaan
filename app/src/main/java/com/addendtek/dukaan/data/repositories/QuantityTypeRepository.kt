@@ -9,4 +9,5 @@ interface QuantityTypeRepository{
     suspend fun insertQuantityType(quantityType: QuantityType)
     suspend fun deleteQuantityType(quantityType: QuantityType)
     suspend fun updateQuantityType(quantityType: QuantityType)
+    suspend fun upsertQuantityType(quantityType: QuantityType): Long
 }

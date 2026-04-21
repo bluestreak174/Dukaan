@@ -14,4 +14,5 @@ interface PurchaseBillRepository {
     fun getBillBetweenDates(startDate: Long, endDate: Long): Flow<TotalBill>
     fun getAllPurchaseBillsByDate(startDate: Long, endDate: Long): Flow<List<PurchaseBill>>
     fun getBillDetails(billId: Int): Flow<List<BillDetails>>
+    suspend fun upsertPurchaseBill(purchaseBill: PurchaseBill) : Long
 }

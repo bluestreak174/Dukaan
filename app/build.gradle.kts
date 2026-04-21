@@ -30,10 +30,10 @@ android {
 
     defaultConfig {
         applicationId = "com.addendtek.dukaan"
-        minSdk = 26
-        targetSdk = 35
-        versionCode = 2
-        versionName = "1.0.0"
+        minSdk = 25
+        targetSdk = 36
+        versionCode = 9
+        versionName = "1.0.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -56,11 +56,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            ndk {
+                debugSymbolLevel = "SYMBOL_TABLE" // or 'FULL'
+            }
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -89,11 +93,14 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material.icons.extended)
 
+
     //datastore
     implementation(libs.androidx.datastore.preferences)
 
     //Room
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.runtime.annotation.android)
+    implementation(libs.androidx.appcompat)
     ksp("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
     implementation(libs.androidx.room.ktx)
 
@@ -110,6 +117,11 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.ui.tooling)
 
+    // OpenCsv
+    implementation (libs.opencsv) // Use the latest version
     //play console notification so added
     implementation(libs.androidx.fragment) // Replace 1.6.2 with the desired stable version
+
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
+
 }

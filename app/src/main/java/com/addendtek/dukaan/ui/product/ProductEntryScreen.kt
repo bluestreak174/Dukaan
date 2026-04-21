@@ -30,17 +30,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.addendtek.dukaan.DukaanTopAppBar
 import com.addendtek.dukaan.R
@@ -50,6 +54,9 @@ import com.addendtek.dukaan.ui.navigation.NavigationDestination
 import com.addendtek.dukaan.ui.theme.DukaanTheme
 import com.addendtek.dukaan.ui.utils.BarCodeScannerIconButton
 import com.addendtek.dukaan.ui.utils.DatePickerScreen
+import com.addendtek.dukaan.ui.utils.HelpShowCase
+import com.addendtek.dukaan.ui.utils.ShowcaseProperty
+import com.addendtek.dukaan.ui.viewmodel.AppSettingsViewModel
 import com.addendtek.dukaan.ui.viewmodel.ItemDetails
 import com.addendtek.dukaan.ui.viewmodel.ProductEntryViewModel
 import com.addendtek.dukaan.ui.viewmodel.ProductUiState
@@ -74,10 +81,21 @@ fun ProductEntryScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     canNavigateBack: Boolean = true,
-    viewModel: ProductEntryViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: ProductEntryViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    appSettingsViewModel: AppSettingsViewModel = viewModel(factory = AppViewModelProvider.Factory),
 ) {
     val coroutineScope = rememberCoroutineScope()
     val qtyTypeUiState by viewModel.qtyTypeUiState.collectAsState()
+
+    val appHelpPrefState by appSettingsViewModel.appHelpPrefState.collectAsStateWithLifecycle()
+
+    val targets = remember {
+        mutableStateMapOf<String, ShowcaseProperty>()
+    }
+    var showHelp by remember {
+        mutableStateOf(false)
+    }
+
     Scaffold(
         topBar = {
             DukaanTopAppBar(
@@ -99,6 +117,9 @@ fun ProductEntryScreen(
                     navigateBack()
                 }
             },
+            targets = targets,
+            onShowCaseCompleted = { showHelp = false },
+            showHelp = appHelpPrefState.isAppHelpEnabled,
             modifier = Modifier
                 .padding(
                     start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
@@ -119,8 +140,12 @@ fun ProductEntryBody(
     onPurchaseValueChange: (PurchaseEntryDetails) -> Unit,
     onDateChange: (Long) -> Unit,
     onSaveClick: () -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
+    onShowCaseCompleted: () -> Unit,
+    showHelp: Boolean,
     modifier: Modifier = Modifier
 ){
+    val defaultAddress = stringResource(R.string.market)
     Column(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
@@ -128,12 +153,14 @@ fun ProductEntryBody(
         ProductInputForm(
             productDetails = productUiState.itemDetails,
             onItemValueChange = onItemValueChange,
+            targets = targets,
             modifier = Modifier.fillMaxWidth()
         )
         QuantityTypeInputForm(
             purchaseEntryDetails = productUiState.purchaseEntryDetails,
             qtyTypeList = qtyTypeUiState.qtyTypeList,
             onValueChange = onPurchaseValueChange,
+            targets = targets,
             modifier = Modifier.fillMaxWidth()
         )
         PurchaseInputForm(
@@ -141,13 +168,18 @@ fun ProductEntryBody(
             productDetails = productUiState.itemDetails,
             onPurchaseValueChange = onPurchaseValueChange,
             onItemValueChange = onItemValueChange,
+            targets = targets,
             modifier = Modifier.fillMaxWidth()
         )
         DatePickerModal(
             onDateChange = onDateChange
         )
         Button(
-            onClick = onSaveClick,
+            onClick = {
+                if(productUiState.purchaseEntryDetails.address.isBlank())
+                    productUiState.purchaseEntryDetails.address = defaultAddress
+                onSaveClick()
+            },
             enabled = productUiState.isEntryValid,
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
@@ -155,6 +187,24 @@ fun ProductEntryBody(
             Text(text = stringResource(R.string.save_action))
         }
         Spacer(modifier = Modifier.height(16.dp))
+    }
+    if(showHelp){
+        val uniqueTargets = targets.values.sortedBy { it.index }
+        var currentTargetIndex by remember { mutableStateOf(0) }
+
+        val currentTarget =
+            if (uniqueTargets.isNotEmpty() && currentTargetIndex < uniqueTargets.size) uniqueTargets[currentTargetIndex] else null
+
+        currentTarget?.let {
+            HelpShowCase(
+                target = it,
+                dismissOnClickOutside = true,
+            ) {
+                if (++currentTargetIndex >= uniqueTargets.size) {
+                    onShowCaseCompleted()
+                }
+            }
+        }
     }
 }
 
@@ -181,8 +231,11 @@ fun ProductInputForm(
     productDetails: ItemDetails,
     modifier: Modifier = Modifier,
     onItemValueChange: (ItemDetails) -> Unit = {},
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
     enabled: Boolean = true
 ) {
+    val entryHelpTitle = stringResource(R.string.product_entry_title)
+    val entryHelpSubTitle = stringResource(R.string.help_entry_product)
 
     Column(
         modifier = modifier,
@@ -197,7 +250,14 @@ fun ProductInputForm(
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
             ),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().onGloballyPositioned { coordinates ->
+                targets["Product Name"] = ShowcaseProperty(
+                    index = 1,
+                    coordinates = coordinates,
+                    title = entryHelpTitle,
+                    subTitle = entryHelpSubTitle
+                )
+            },
             enabled = enabled,
             singleLine = true
         )
@@ -211,8 +271,11 @@ fun QuantityTypeInputForm(
     qtyTypeList: List<QuantityType>,
     modifier: Modifier = Modifier,
     onValueChange: (PurchaseEntryDetails) -> Unit = {},
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
     enabled: Boolean = true
 ) {
+    val qtyTypeHelpTitle = stringResource(R.string.qty_type_help_title)
+    val qtyTypeHelpSubTitle = stringResource(R.string.qty_type_help_sub_title)
     var expanded by remember { mutableStateOf(false) }
     var qtyTypeSelected by remember { mutableStateOf("") }
         Row {
@@ -229,7 +292,10 @@ fun QuantityTypeInputForm(
                     },
                     label = { Text(stringResource(R.string.qty_type_name_req)) },
                     leadingIcon = {
-                        IconButton(onClick = { expanded = !expanded }) {
+                        IconButton(
+                            onClick = { expanded = !expanded },
+                            modifier = Modifier
+                        ) {
                             Icon(Icons.Default.ArrowDropDown, contentDescription = "More options")
                         }
                     },
@@ -238,7 +304,14 @@ fun QuantityTypeInputForm(
                         unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                         disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                     ),
-                    modifier = Modifier,
+                    modifier = Modifier.onGloballyPositioned { coordinates ->
+                        targets["QtyType"] = ShowcaseProperty(
+                            index = 2,
+                            coordinates = coordinates,
+                            title = qtyTypeHelpTitle,
+                            subTitle = qtyTypeHelpSubTitle
+                        )
+                    },
                     enabled = enabled,
                     readOnly = true,
                     singleLine = true
@@ -266,7 +339,11 @@ fun QuantityTypeInputForm(
             }
             OutlinedTextField(
                 value = purchaseEntryDetails.qty,
-                onValueChange = { onValueChange(purchaseEntryDetails.copy(qty = it)) },
+                onValueChange = {
+                    if(it.toIntOrNull() != null || it.isBlank()){
+                        onValueChange(purchaseEntryDetails.copy(qty = it))
+                    }
+                                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 label = { Text(stringResource(R.string.qty)) },
                 colors = OutlinedTextFieldDefaults.colors(
@@ -288,6 +365,7 @@ fun PurchaseInputForm(
     modifier: Modifier = Modifier,
     onPurchaseValueChange: (PurchaseEntryDetails) -> Unit = {},
     onItemValueChange: (ItemDetails) -> Unit = {},
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
     enabled: Boolean = true
 ) {
 
@@ -299,7 +377,11 @@ fun PurchaseInputForm(
         Row {
             OutlinedTextField(
                 value = purchaseEntryDetails.cost,
-                onValueChange = { onPurchaseValueChange(purchaseEntryDetails.copy(cost = it, cash = it)) },
+                onValueChange = {
+                    if(it.toDoubleOrNull() != null) {
+                        onPurchaseValueChange(purchaseEntryDetails.copy(cost = it, cash = it))
+                    }
+                                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text(stringResource(R.string.product_cost_req)) },
                 colors = OutlinedTextFieldDefaults.colors(
@@ -314,7 +396,11 @@ fun PurchaseInputForm(
             )
             OutlinedTextField(
                 value = purchaseEntryDetails.mrp,
-                onValueChange = { onPurchaseValueChange(purchaseEntryDetails.copy(mrp = it)) },
+                onValueChange = {
+                    if(it.toDoubleOrNull() != null) {
+                        onPurchaseValueChange(purchaseEntryDetails.copy(mrp = it))
+                    }
+                                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text(stringResource(R.string.mrp)) },
                 colors = OutlinedTextFieldDefaults.colors(
@@ -331,7 +417,11 @@ fun PurchaseInputForm(
         Row {
             OutlinedTextField(
                 value = purchaseEntryDetails.cash,
-                onValueChange = { onPurchaseValueChange(purchaseEntryDetails.copy(cash = it)) },
+                onValueChange = {
+                    if(it.toDoubleOrNull() != null) {
+                        onPurchaseValueChange(purchaseEntryDetails.copy(cash = it))
+                    }
+                                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text(stringResource(R.string.cash_req)) },
                 colors = OutlinedTextFieldDefaults.colors(
@@ -363,7 +453,7 @@ fun PurchaseInputForm(
                 singleLine = true
             )
         }
-        if(purchaseEntryDetails.address.isBlank()) purchaseEntryDetails.address = stringResource(R.string.market)
+
         Row {
             OutlinedTextField(
                 value = purchaseEntryDetails.address,
@@ -393,7 +483,8 @@ fun PurchaseInputForm(
             )
             BarCodeScannerIconButton(
                 modifier = Modifier.weight(0.3f),
-                getBarCodeProduct = { onItemValueChange(productDetails.copy(barcode = it)) }
+                getBarCodeProduct = { onItemValueChange(productDetails.copy(barcode = it)) },
+                targets = targets
             )
         }
 

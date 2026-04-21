@@ -101,7 +101,7 @@ fun PurchaseListBody(
         PurchaseList(
             purchaseListDetailsList = purchaseListDetailsList,
             modifier = modifier,
-            contentPadding = contentPadding
+            //contentPadding = contentPadding
         )
 
 
@@ -145,7 +145,7 @@ fun TotalCard(
 fun PurchaseList(
     purchaseListDetailsList: List<PurchaseListDetails>,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues  = PaddingValues(0.dp),
+    contentPadding: PaddingValues = PaddingValues(0.dp),
 ){
     val headTextList = listOf(stringResource(R.string.item), stringResource(R.string.qty), stringResource(R.string.type), stringResource(R.string.cost))
     PurchasesCardHead(
@@ -157,7 +157,7 @@ fun PurchaseList(
     )
     LazyColumn(
         modifier = modifier,
-        //contentPadding = contentPadding
+        contentPadding = contentPadding
     ) {
         items(items = purchaseListDetailsList) { item ->
             PurchasesCard(

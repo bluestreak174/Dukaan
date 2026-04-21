@@ -14,4 +14,6 @@ class OfflineQuantityTypeRepository(private val quantityTypeDao: QuantityTypeDao
     override suspend fun deleteQuantityType(quantityType: QuantityType) = quantityTypeDao.delete(quantityType)
 
     override suspend fun updateQuantityType(quantityType: QuantityType) = quantityTypeDao.update(quantityType)
+
+    override suspend fun upsertQuantityType(quantityType: QuantityType) = quantityTypeDao.upsertQtyType(quantityType)
 }

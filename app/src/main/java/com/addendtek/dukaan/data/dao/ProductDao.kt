@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import androidx.room.Upsert
 import com.addendtek.dukaan.data.entities.Product
 import com.addendtek.dukaan.data.entities.QuantityType
 import com.addendtek.dukaan.data.relations.CategoryQuantity
@@ -67,4 +68,7 @@ interface  ProductDao {
     @Transaction
     @Query("select * from product_master where categoryId = :catId")
     fun getProductWithCategoryAndQuantityType(catId: Int): Flow<List<ProductCategoryQuantity>>
+
+    @Upsert
+    suspend fun upsertProduct(product: Product): Long // Returns the row ID of the inserted or updated row
 }

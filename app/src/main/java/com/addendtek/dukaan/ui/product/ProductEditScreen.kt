@@ -161,7 +161,12 @@ fun ProductBarCodeDetails(
         )
         OutlinedTextField(
             value = itemDetails.barcode,
-            onValueChange = { onValueChange(itemDetails.copy(barcode = it)) },
+            onValueChange = {
+                if(it.toLongOrNull() != null){
+                    onValueChange(itemDetails.copy(barcode = it))
+                }
+
+                            },
             label = { Text(stringResource(R.string.bar_code)) },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -183,11 +188,11 @@ fun QuantityTypeDisplay(
     OutlinedTextField(
         value = itemDetails.qtyTypeStr,
         onValueChange = { },
-        label = { Text(stringResource(R.string.qty_type_name_req)) },
+        label = { Text(stringResource(R.string.qty_type_name)) },
         colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+            focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            unfocusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            disabledContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
         ),
         modifier = Modifier.fillMaxWidth(),
         enabled = true,
@@ -277,7 +282,10 @@ fun ItemInputForm(
     ) {
         OutlinedTextField(
             value = itemDetails.name,
-            onValueChange = { onValueChange(itemDetails.copy(name = it)) },
+            onValueChange = {
+                        onValueChange(itemDetails.copy(name = it))
+
+                },
             label = { Text(stringResource(R.string.product_name_req)) },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -291,7 +299,11 @@ fun ItemInputForm(
 
         OutlinedTextField(
             value = itemDetails.qty,
-            onValueChange = { onValueChange(itemDetails.copy(qty = it)) },
+            onValueChange = {
+                if(it.toIntOrNull() != null || it.isBlank()) {
+                    onValueChange(itemDetails.copy(qty = it))
+                }
+                            },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text(stringResource(R.string.quantity_req)) },
             colors = OutlinedTextFieldDefaults.colors(
@@ -306,7 +318,11 @@ fun ItemInputForm(
         Row {
             OutlinedTextField(
                 value = itemDetails.cost,
-                onValueChange = { onValueChange(itemDetails.copy(cost = it)) },
+                onValueChange = {
+                    if(it.toDoubleOrNull() != null) {
+                        onValueChange(itemDetails.copy(cost = it))
+                    }
+                                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text(stringResource(R.string.product_cost_req)) },
                 colors = OutlinedTextFieldDefaults.colors(
@@ -321,7 +337,11 @@ fun ItemInputForm(
             )
             OutlinedTextField(
                 value = itemDetails.mrp,
-                onValueChange = { onValueChange(itemDetails.copy(mrp = it)) },
+                onValueChange = {
+                    if(it.toDoubleOrNull() != null) {
+                        onValueChange(itemDetails.copy(mrp = it))
+                    }
+                                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text(stringResource(R.string.product_price_req)) },
                 colors = OutlinedTextFieldDefaults.colors(

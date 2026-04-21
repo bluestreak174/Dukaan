@@ -65,7 +65,7 @@ class SalesBillViewModel(
 
     fun updateSelectedProductQtyState(selectedProduct: SalesProductQty){
 
-        if(selectedProduct.qty.isNotBlank()  && selectedProduct.product?.qty!! > 0) {
+        if(selectedProduct.product != null && selectedProduct.qty.isNotBlank()  && selectedProduct.product?.qty!! > 0) {
             val mrp: Double = selectedProduct.product?.mrp ?: 0.0
             val piece: Int = selectedProduct.qtyType?.piece ?: 0
             val qty: Int = selectedProduct.qty.toInt()
@@ -119,13 +119,22 @@ class SalesBillViewModel(
     }
 
     fun updateBillAmount(billAmount: BillAmount){
-        val cash = billAmount.cash
+        var cash = billAmount.cash
         var upi = billAmount.upi
-        if(cash.isNotBlank() && cash != "." && upi.isNotBlank() && upi != "."){
-            if(
-                cash.toDouble() >= 0.0
-                && cash.toDouble() + upi.toDouble() != billAmountState.totalCost
-            ) upi = "${billAmountState.totalCost - cash.toDouble()}"
+        if(billAmountState.totalCost > 0
+            && cash.toDoubleOrNull() != null
+            && upi.toDoubleOrNull() != null) {
+            //default cash value is edited so calculate upi
+            if (cash != billAmountState.cash) {
+                upi = "${billAmountState.totalCost - cash.toDouble()}"
+            }
+            //default upi value is edited so calculate cash
+            if (upi != billAmountState.upi) {
+                cash = "${billAmountState.totalCost - upi.toDouble()}"
+            }
+        }else {
+            cash = billAmountState.cash
+            upi = billAmountState.upi
         }
         billAmountState = BillAmount(
             totalCost = billAmountState.totalCost,
@@ -177,8 +186,7 @@ class SalesBillViewModel(
         var piecePrice = salesProductQty.price.toDouble() / pieceQty
         piecePrice = piecePrice.toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
         val qtyBal = salesProductQty.product?.qty!!
-        val totalQty = qtyBal - pieceQty
-
+        val totalQty = if((qtyBal - pieceQty) >= 0 )  (qtyBal - pieceQty) else 0
 
         return Product(
             id = salesProductQty.product?.id?:0,

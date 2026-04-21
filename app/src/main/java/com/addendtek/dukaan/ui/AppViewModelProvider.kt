@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.addendtek.dukaan.DukaanApplication
 import com.addendtek.dukaan.ui.home.HomeViewModel
+import com.addendtek.dukaan.ui.home.ProductSearchViewModel
 import com.addendtek.dukaan.ui.viewmodel.AppSettingsViewModel
 import com.addendtek.dukaan.ui.viewmodel.CategoryEditViewModel
 import com.addendtek.dukaan.ui.viewmodel.CategoryEntryViewModel
@@ -39,6 +40,12 @@ object AppViewModelProvider {
                 categoryRepository = dukaanApplication().container.categoryRepository,
                 purchaseBillRepository = dukaanApplication().container.purchaseBillRepository,
                 salesBillRepository = dukaanApplication().container.salesBillRepository,
+                productRepository = dukaanApplication().container.productRepository
+            )
+        }
+
+        initializer {
+            ProductSearchViewModel(
                 productRepository = dukaanApplication().container.productRepository
             )
         }
@@ -103,7 +110,8 @@ object AppViewModelProvider {
 
         initializer {
             PurchaseAndSalesViewModel(
-                productPurchaseRepository = dukaanApplication().container.productPurchaseRepository
+                productPurchaseRepository = dukaanApplication().container.productPurchaseRepository,
+                purchaseRepository = dukaanApplication().container.purchaseRepository
             )
         }
         initializer {
@@ -111,7 +119,16 @@ object AppViewModelProvider {
         }
 
         initializer {
-            AppSettingsViewModel(dukaanApplication().container.userPreferencesRepository)
+            AppSettingsViewModel(
+                userPreferencesRepository = dukaanApplication().container.userPreferencesRepository,
+                categoryRepository = dukaanApplication().container.categoryRepository,
+                quantityTypeRepository = dukaanApplication().container.quantityTypeRepository,
+                productRepository = dukaanApplication().container.productRepository,
+                purchaseRepository = dukaanApplication().container.purchaseRepository,
+                salesRepository = dukaanApplication().container.salesRepository,
+                purchaseBillRepository = dukaanApplication().container.purchaseBillRepository,
+                salesBillRepository = dukaanApplication().container.salesBillRepository
+            )
         }
 
         initializer {

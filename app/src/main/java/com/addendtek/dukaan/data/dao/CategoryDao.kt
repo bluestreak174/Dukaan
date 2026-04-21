@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import androidx.room.Upsert
 import com.addendtek.dukaan.data.entities.Category
 import com.addendtek.dukaan.data.relations.CategoryWithProducts
 import kotlinx.coroutines.flow.Flow
@@ -31,4 +32,8 @@ interface CategoryDao {
     @Transaction
     @Query("SELECT * FROM  category_master where id = :id")
     fun getCategoryWithProducts(id: Int): Flow<List<CategoryWithProducts>>
+
+    @Upsert
+    suspend fun upsertCategory(category: Category): Long // Returns the row ID of the inserted or updated row
+
 }

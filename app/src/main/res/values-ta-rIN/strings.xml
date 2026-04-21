@@ -34,7 +34,7 @@
     <string name="product_cost_req">செலவு*</string>
     <string name="product_price_req">விலை*</string>
     <string name="cash_req">பணம்*</string>
-    <string name="upi_req">யுபிஐ*</string>
+    <string name="upi_req">ஆன்லைன்*</string>
     <string name="quantity_req">கையிருப்பில் உள்ள அளவு*</string>
     <string name="qty_buy_req">அளவு வாங்கவும்*</string>
     <string name="required_fields">*தேவையான புலங்கள்</string>
@@ -64,7 +64,7 @@
     <string name="remove_item">உருப்படியை அகற்று</string>
     <string name="total">மொத்தம் </string>
     <string name="cash">பணம்</string>
-    <string name="upi">யுபிஐ</string>
+    <string name="upi">ஆன்லைன்</string>
     <string name="bill">பில்</string>
     <string name="date">தேதி</string>
     <string name="menu_bills_list">பில்கள் (கொள்முதல்)</string>
@@ -85,17 +85,9 @@
     <string name="home_content_description">முகப்புக்குச் செல்</string>
     <string name="menu_purchase_sales_list">கொள்முதல் மற்றும் விற்பனை</string>
     <string name="buy_sell">வாங்கு/விற்கவும் : %1$s / %2$s</string>
-    <string name="cash_upi">பணம்/யுபிஐ : %1$s / %2$s</string>
-    <string name="home_month_buy">
-        வாங்கு : \n(மொத்தம்) = %1$s \n
-        (பணம்) = %2$s \n
-        (யுபிஐ) = %3$s \n
-    </string>
-    <string name="home_month_sell">
-        விற்கவும் : \n(மொத்தம்) = %1$s \n
-        (பணம்) = %2$s \n
-        (யுபிஐ) = %3$s \n
-    </string>
+    <string name="cash_upi">பணம்/ஆன்லைன் : %1$s / %2$s</string>
+    <string name="home_month_buy">"\n வாங்கு : \n (மொத்தம்) = %1$s \n (பணம்) = %2$s \n (ஆன்லைன்) = %3$s"</string>
+    <string name="home_month_sell">"\n விற்கவும் : \n (மொத்தம்) = %1$s \n (பணம்) = %2$s \n (ஆன்லைன்) = %3$s"</string>
     <string name="stock">பங்கு:  %1$s</string>
     <string name="home_summary_tooltip">தற்போதைய மாதம் \n</string>
     <string name="month_total_buy">வாங்கு: %1$s</string>
@@ -160,4 +152,36 @@
     <string name="percentage">%</string>
     <string name="percent_expand_button_content_description">சதவீத கால்குலேட்டருக்காக விரிக்கவும்</string>
     <string name="percentage_calculator_for_above_cost">மேற்கண்ட செலவிற்கான சதவீத கால்குலேட்டர்.</string>
+    <string name="product_search_title">தேடல்</string>
+    <string name="export_import_action">ஏற்றுமதி / இறக்குமதி</string>
+    <string name="expand_for_export_import_settings">ஏற்றுமதி / இறக்குமதி அமைப்புகளுக்கு விரிவாக்கு</string>
+    <string name="export">ஏற்றுமதி</string>
+    <string name="import_txt">இறக்குமதி</string>
+    <string name="help_info_enable_and_disable">அடுத்த உதவிக்கு எங்கும் தொடவும். உதவியை மூட, மெனு -> அமைப்புகளுக்குச் சென்று உதவியை முடக்கவும்.</string>
+    <string name="help_list_of_products">இந்த வகையிலுள்ள தயாரிப்புகளின் பட்டியலைக் காண தொடவும்.</string>
+    <string name="help_search_product">ஒரு தயாரிப்பைத் தேட கிளிக் செய்யவும்</string>
+    <string name="help_month_summary">நடப்பு மாத சுருக்கத்தைக் காண தொட்டுப் பிடிக்கவும்.</string>
+    <string name="menu">மெனு</string>
+    <string name="help_menu_options">வெவ்வேறு மெனு விருப்பங்களைக் காண தொடவும்</string>
+    <string name="help_edit_product">தயாரிப்பைத் திருத்த கிளிக் செய்யவும்.</string>
+    <string name="help_buy_btn">தயாரிப்பு வாங்கவும்</string>
+    <string name="help_buy_product">தயாரிப்பு வாங்க கிளிக் செய்யவும்</string>
+    <string name="help_sell_btn">பொருளை விற்கவும்</string>
+    <string name="help_sell_product">பொருளை விற்க கிளிக் செய்யவும்</string>
+    <string name="help_product_history">தயாரிப்பு வரலாற்றைக் காண கிளிக் செய்யவும்</string>
+    <string name="help_save_bill_title">பில்லைச் சேமிக்கவும்</string>
+    <string name="help_save_bill_sub_title">பில்லைச் சேமிக்க கிளிக் செய்யவும்.</string>
+    <string name="help_add_item_to_bill">பில்லில் தயாரிப்பைச் சேர்க்கவும்</string>
+    <string name="help_bill_add_to_list">பட்டியலில் தயாரிப்பைச் சேர்க்க கிளிக் செய்யவும்.</string>
+    <string name="help_remove_item_from_bill">பில்லில் இருந்து தயாரிப்பை அகற்று</string>
+    <string name="help_bill_remove_from_list">பட்டியலிலிருந்து கடைசி வரிசையை நீக்க கிளிக் செய்யவும்.</string>
+    <string name="help_bill_search_product">தயாரிப்பைத் தேடித் தேர்ந்தெடுக்கவும்</string>
+    <string name="help_product_details">தயாரிப்பு விவரங்களைக் காண கிளிக் செய்யவும்</string>
+    <string name="click_to_add_product">தயாரிப்பைச் சேர்க்க கிளிக் செய்யவும்</string>
+    <string name="enable_help">உதவியை இயக்கு / முடக்கு</string>
+    <string name="help_entry_product">தனித்துவமான தயாரிப்புப் பெயரைச் சேர்க்கவும்</string>
+    <string name="qty_type_help_title">அளவு வகையைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="qty_type_help_sub_title">அளவு வகையைத் தேர்ந்தெடுக்க அம்புக்குறியைக் கிளிக் செய்யவும்.</string>
+    <string name="bar_code_help_title">பார்கோடை ஸ்கேன் செய்யவும் (விரும்பினால்)</string>
+    <string name="bar_code_help_sub_title">தயாரிப்பின் பார்கோடைக் கிளிக் செய்து ஸ்கேன் செய்யவும்</string>
 </resources>

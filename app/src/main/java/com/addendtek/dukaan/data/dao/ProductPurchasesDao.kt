@@ -53,9 +53,9 @@ interface ProductPurchasesDao {
                 " )"
     )*/
     @Query(
-        "select buyProductName as productName, buyCategory as categoryName, buyStock as stock, buyPiece as  piece, buyQtyType as qtyType,  buyQty, buyCost as cost, " +
+        "select   0.0 as profitAndLoss, productId, buyProductName as productName, buyCategory as categoryName, buyStock as stock, buyPiece as  piece, buyQtyType as qtyType,  buyQty, buyCost as cost, " +
         " ifnull(salesQty, 0) as sellQty, ifnull(salesPrice, 0.0 ) as price from " +
-        "(select product_master.name as buyProductName, product_master.qty as buyStock, qty_type_master.piece as buyPiece, qty_type_master.type as buyQtyType,  category_master.name as buyCategory, " +
+        "(select productId, product_master.name as buyProductName, product_master.qty as buyStock, qty_type_master.piece as buyPiece, qty_type_master.type as buyQtyType,  category_master.name as buyCategory, " +
         "                               sum(purchases.quantity) as buyQty, sum(purchases.cost) as buyCost " +
         "                               from purchases   " +
         "                        inner join qty_type_master on purchases.quantityTypeId = qty_type_master.id   " +
@@ -73,9 +73,9 @@ interface ProductPurchasesDao {
         "                                                                              group by product_master.name, qty_type_master.type,  category_master.name  ) b" +
         "                                                                              on a.buyProductName = b.salesProductName" +
         " union" +
-        " select   salesProductName as productName, salesCategory as categoryName, salesStock as stock, salesPiece as piece, salesQtyType as qtyType, ifnull(buyQty, 0) as buyQty, ifnull(buyCost, 0.0) as cost," +
+        " select   0.0 as profitAndLoss, productId, salesProductName as productName, salesCategory as categoryName, salesStock as stock, salesPiece as piece, salesQtyType as qtyType, ifnull(buyQty, 0) as buyQty, ifnull(buyCost, 0.0) as cost," +
         "  salesQty as sellQty, salesPrice as price from" +
-        " (select product_master.name as salesProductName, product_master.qty as salesStock, qty_type_master.piece as salesPiece,  qty_type_master.type as salesQtyType,    category_master.name as salesCategory,  " +
+        " (select productId, product_master.name as salesProductName, product_master.qty as salesStock, qty_type_master.piece as salesPiece,  qty_type_master.type as salesQtyType,    category_master.name as salesCategory,  " +
         "                                 sum(sales.quantity) as salesQty, sum(sales.price) as salesPrice" +
         "                                 from sales   " +
         "                         inner join qty_type_master on sales.quantityTypeId = qty_type_master.id   " +

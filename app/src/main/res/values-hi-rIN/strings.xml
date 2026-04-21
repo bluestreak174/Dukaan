@@ -33,7 +33,7 @@
     <string name="product_cost_req">लागत*</string>
     <string name="product_price_req">कीमत*</string>
     <string name="cash_req">नकद*</string>
-    <string name="upi_req">यू पी आई*</string>
+    <string name="upi_req">ऑनलाइन*</string>
     <string name="quantity_req">स्टॉक में मात्रा*</string>
     <string name="qty_buy_req">मात्रा खरीदें*</string>
     <string name="required_fields">*आवश्यक</string>
@@ -70,7 +70,7 @@
     <string name="remove_item">वस्तु निकालें</string>
     <string name="total">कुल</string>
     <string name="cash">नकद</string>
-    <string name="upi">यू पी आई</string>
+    <string name="upi">ऑनलाइन</string>
     <string name="bill">बिल</string>
     <string name="date">तारीख</string>
     <string name="menu_bills_list">बिल (खरीद)</string>
@@ -94,19 +94,12 @@
     <string name="home_content_description">घर जाओ</string>
 
     <string name="menu_purchase_sales_list">खरीद और बिक्री</string>
-    <string name="cash_upi">\nनकद / यू पी आई : %1$s / %2$s</string>
+    <string name="cash_upi">" नकद / ऑनलाइन : %1$s / %2$s"</string>
     <string name="purchase_sale_list_title">खरीद और बिक्री</string>
 
     <string name="buy_sell">खरीद/बिक्री: %1$s / %2$s</string>
-    <string name="home_month_buy">
-        खरीद: \n(कुल) = %1$s \n
-        (नकद) = %2$s \n
-        (यू पी आई) = %3$s \n
-    </string>
-    <string name="home_month_sell">
-       बिक्री: \n(कुल) = %1$s \n
-        (नकद) = %2$s \n
-        (यू पी आई) = %3$s \n </string>
+    <string name="home_month_buy">"\n खरीद: \n (कुल) = %1$s \n (नकद) = %2$s \n (ऑनलाइन) = %3$s"</string>
+    <string name="home_month_sell">"\n बिक्री: \n (कुल) = %1$s \n (नकद) = %2$s \n (ऑनलाइन) = %3$s"</string>
     <string name="stock">भंडार:  %1$s</string>
     <string name="home_summary_tooltip">चालू माह\n</string>
     <string name="month_total_buy">खरीद: %1$s</string>
@@ -170,4 +163,36 @@
     <string name="percentage">%</string>
     <string name="percent_expand_button_content_description">प्रतिशत कैलकुलेटर के लिए विस्तार करें</string>
     <string name="percentage_calculator_for_above_cost">ऊपर दी गई लागत के लिए प्रतिशत कैलकुलेटर।</string>
+    <string name="product_search_title">खोज</string>
+    <string name="export_import_action">निर्यात / आयात</string>
+    <string name="expand_for_export_import_settings">एक्सपोर्ट / इंपोर्ट सेटिंग्स के लिए एक्सपैंड करें</string>
+    <string name="export">निर्यात</string>
+    <string name="import_txt">आयात</string>
+    <string name="help_info_enable_and_disable">अगली Help के लिए कहीं भी टच करें। Help बंद करने के लिए, Menu -> settings पर जाएं और Help को डिसेबल करें।</string>
+    <string name="help_list_of_products">इस कैटेगरी में प्रोडक्ट्स की लिस्ट देखने के लिए टच करें</string>
+    <string name="help_search_product">प्रोडक्ट खोजने के लिए क्लिक करें</string>
+    <string name="help_month_summary">चालू महीने की समरी देखने के लिए टच करके रखें</string>
+    <string name="menu">मेनू</string>
+    <string name="help_menu_options">अलग-अलग मेनू ऑप्शन देखने के लिए टच करें</string>
+    <string name="help_edit_product">प्रोडक्ट एडिट करने के लिए क्लिक करें</string>
+    <string name="help_buy_btn">उत्पाद खरीदें</string>
+    <string name="help_buy_product">प्रोडक्ट खरीदने के लिए क्लिक करें</string>
+    <string name="help_sell_btn">उत्पाद बेचें</string>
+    <string name="help_sell_product">उत्पाद बेचने के लिए क्लिक करें</string>
+    <string name="help_product_history">प्रोडक्ट हिस्ट्री देखने के लिए क्लिक करें</string>
+    <string name="help_save_bill_title">बिल बचाओ</string>
+    <string name="help_save_bill_sub_title">बिल सेव करने के लिए क्लिक करें</string>
+    <string name="help_add_item_to_bill">बिल में उत्पाद जोड़ें</string>
+    <string name="help_bill_add_to_list">लिस्ट में प्रोडक्ट जोड़ने के लिए क्लिक करें</string>
+    <string name="help_remove_item_from_bill">बिल से उत्पाद हटाएँ</string>
+    <string name="help_bill_remove_from_list">लिस्ट से आखिरी लाइन हटाने के लिए क्लिक करें</string>
+    <string name="help_bill_search_product">उत्पाद खोजें और चुनें</string>
+    <string name="help_product_details">उत्पाद के बारे में जानकारी के लिए क्लिक करें</string>
+    <string name="click_to_add_product">प्रोडक्ट जोड़ने के लिए क्लिक करें</string>
+    <string name="enable_help">सहायता सक्षम / अक्षम करें</string>
+    <string name="help_entry_product">अद्वितीय उत्पाद नाम जोड़ें</string>
+    <string name="qty_type_help_title">मात्रा प्रकार चुनें</string>
+    <string name="qty_type_help_sub_title">मात्रा प्रकार चुनने के लिए ऐरो पर क्लिक करें</string>
+    <string name="bar_code_help_title">बारकोड स्कैन करें (वैकल्पिक)</string>
+    <string name="bar_code_help_sub_title">प्रोडक्ट के लिए बारकोड पर क्लिक करें और स्कैन करें</string>
 </resources>

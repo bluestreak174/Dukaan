@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.addendtek.dukaan.data.entities.Sales
 import kotlinx.coroutines.flow.Flow
 
@@ -34,4 +35,7 @@ interface SalesDao {
 
     @Query("SELECT * from sales WHERE billId = :billId")
     fun getSalesByBillId(billId: Int): Flow<List<Sales>>
+
+    @Upsert
+    suspend fun upsertSales(sales: Sales): Long
 }

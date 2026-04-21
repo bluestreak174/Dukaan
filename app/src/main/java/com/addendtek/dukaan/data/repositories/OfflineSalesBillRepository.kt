@@ -24,4 +24,6 @@ class OfflineSalesBillRepository(private val salesBillDao: SalesBillDao) : Sales
         salesBillDao.getAllSalesBillsByDate(startDate, endDate)
 
     override fun getBillDetails(billId: Int): Flow<List<BillDetails>> = salesBillDao.getBillDetails(billId)
+
+    override suspend fun upsertSalesBill(salesBill: SalesBill): Long = salesBillDao.upsertSalesBill(salesBill)
 }

@@ -33,7 +33,7 @@
     <string name="product_cost_req">খৰচ*</string>
     <string name="product_price_req">মূল্য*</string>
     <string name="cash_req">নগদ*</string>
-    <string name="upi_req">উ পি আই*</string>
+    <string name="upi_req">অনলাইন*</string>
     <string name="quantity_req">ষ্টকত থকা পৰিমাণ*</string>
     <string name="qty_buy_req">কিনিব পৰিমাণ*</string>
     <string name="required_fields">*প্ৰয়োজনীয় ক্ষেত্ৰসমূহ</string>
@@ -69,7 +69,7 @@
     <string name="remove_item">বস্তু আঁতৰাই পেলাওক</string>
     <string name="total">মুঠ </string>
     <string name="cash">নগদ</string>
-    <string name="upi">উ পি আই</string>
+    <string name="upi">অনলাইন</string>
     <string name="bill">বিল</string>
     <string name="date">তাৰিখ</string>
     <string name="menu_bills_list">বিল (ক্ৰয়)</string>
@@ -95,17 +95,9 @@
     <string name="menu_purchase_sales_list">ক্ৰয় আৰু বিক্ৰী</string>
 
     <string name="buy_sell">ক্ৰয়/বিক্ৰী : %1$s / %2$s</string>
-    <string name="cash_upi">নগদ/উ পি আই : %1$s / %2$s</string>
-    <string name="home_month_buy">
-        ক্ৰয় : \n(মুঠ) = %1$s \n
-        (নগদ) = %2$s \n
-        (উ পি আই) = %3$s \n
-    </string>
-    <string name="home_month_sell">
-        বিক্ৰী : \n(মুঠ) = %1$s \n
-        (নগদ) = %2$s \n
-        (উ পি আই) = %3$s \n
-    </string>
+    <string name="cash_upi">নগদ/অনলাইন : %1$s / %2$s</string>
+    <string name="home_month_buy">"\n ক্ৰয় : \n (মুঠ) = %1$s \n (নগদ) = %2$s \n (অনলাইন) = %3$s"</string>
+    <string name="home_month_sell">\n বিক্ৰী : \n (মুঠ) = %1$s \n (নগদ) = %2$s \n (অনলাইন) = %3$s"</string>
     <string name="stock">ভঁৰাল:  %1$s</string>
     <string name="home_summary_tooltip">চলিত মাহ \n</string>
     <string name="month_total_buy">ক্ৰয়: %1$s</string>
@@ -170,5 +162,37 @@
     <string name="percentage">%</string>
     <string name="percent_expand_button_content_description">শতাংশ কেলকুলেটৰৰ বাবে প্ৰসাৰিত কৰক</string>
     <string name="percentage_calculator_for_above_cost">ওপৰৰ খৰচৰ বাবে শতাংশ কেলকুলেটৰ।</string>
+    <string name="product_search_title">সন্ধান</string>
+    <string name="export_import_action">ৰপ্তানি / আমদানি</string>
+    <string name="expand_for_export_import_settings">ৰপ্তানি / আমদানি সংহতিসমূহৰ বাবে প্ৰসাৰিত কৰক</string>
+    <string name="export">ৰপ্তানি</string>
+    <string name="import_txt">আমদানি</string>
+    <string name="help_info_enable_and_disable">পৰৱৰ্তী সহায়ৰ বাবে যিকোনো ঠাইতে স্পৰ্শ কৰক। সহায় বন্ধ কৰিবলৈ, মেনু -> ছেটিংছলৈ যাওক আৰু সহায় নিষ্ক্ৰিয় কৰক।</string>
+    <string name="help_list_of_products">এই শ্ৰেণীৰ পণ্যসমূহৰ তালিকা চাবলৈ স্পৰ্শ কৰক</string>
+    <string name="help_search_product">এটা পণ্য সন্ধান কৰিবলৈ ক্লিক কৰক</string>
+    <string name="help_month_summary">চলিত মাহৰ সাৰাংশ চাবলৈ স্পৰ্শ কৰক আৰু ধৰি ৰাখক</string>
+    <string name="menu">মেনু</string>
+    <string name="help_menu_options">বিভিন্ন মেনু বিকল্পসমূহ চাবলৈ স্পৰ্শ কৰক</string>
+    <string name="help_edit_product">পণ্য সম্পাদনা কৰিবলৈ ক্লিক কৰক</string>
+    <string name="help_buy_btn">প্ৰডাক্ট কিনিব</string>
+    <string name="help_buy_product">প্ৰডাক্ট কিনিবলৈ ক্লিক কৰক</string>
+    <string name="help_sell_btn">প্ৰডাক্ট বিক্ৰী কৰক</string>
+    <string name="help_sell_product">পণ্য বিক্ৰী কৰিবলৈ ক্লিক কৰক</string>
+    <string name="help_product_history">পণ্যৰ ইতিহাস চাবলৈ ক্লিক কৰক</string>
+    <string name="help_save_bill_title">বিল সংৰক্ষণ কৰক</string>
+    <string name="help_save_bill_sub_title">বিল সংৰক্ষণ কৰিবলৈ ক্লিক কৰক</string>
+    <string name="help_add_item_to_bill">বিলত প্ৰডাক্ট যোগ কৰক</string>
+    <string name="help_bill_add_to_list">তালিকাত পণ্য যোগ কৰিবলৈ ক্লিক কৰক</string>
+    <string name="help_remove_item_from_bill">বিলৰ পৰা প্ৰডাক্ট আঁতৰাই পেলাওক</string>
+    <string name="help_bill_remove_from_list">তালিকাৰ পৰা শেষ শাৰী আঁতৰাবলৈ ক্লিক কৰক</string>
+    <string name="help_bill_search_product">পণ্য সন্ধান আৰু নিৰ্বাচন কৰক</string>
+    <string name="help_product_details">পণ্যৰ বিৱৰণ চাবলৈ ক্লিক কৰক</string>
+    <string name="click_to_add_product">পণ্য যোগ কৰিবলৈ ক্লিক কৰক</string>
+    <string name="enable_help">সহায় সামৰ্থবান / নিষ্ক্ৰিয় কৰক</string>
+    <string name="help_entry_product">অনন্য প্ৰডাক্টৰ নাম যোগ কৰক</string>
+    <string name="qty_type_help_title">এটা পৰিমাণৰ ধৰণ নিৰ্ব্বাচন কৰক</string>
+    <string name="qty_type_help_sub_title">এটা পৰিমাণৰ ধৰণ নিৰ্ব্বাচন কৰিবলে কাঁড় চিহ্ন ক্লিক কৰক</string>
+    <string name="bar_code_help_title">স্কেন বাৰক’ড (ঐচ্ছিক)</string>
+    <string name="bar_code_help_sub_title">ক্লিক কৰি প্ৰডাক্টৰ বাৰক’ড স্কেন কৰক</string>
 
 </resources>

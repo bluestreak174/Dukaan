@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.addendtek.dukaan.data.entities.PurchaseBill
 import com.addendtek.dukaan.data.relations.BillDetails
 import com.addendtek.dukaan.data.relations.TotalBill
@@ -47,4 +48,7 @@ interface PurchaseBillDao {
             "        inner join purchase_bill on purchases.billId = purchase_bill.id " +
             " where purchase_bill.id = :billId")
     fun getBillDetails(billId: Int): Flow<List<BillDetails>>
+
+    @Upsert
+    suspend fun upsertPurchaseBill(purchaseBill: PurchaseBill): Long
 }

@@ -32,8 +32,8 @@
     <string name="product_name_req">సరుకు పేరు*</string>
     <string name="product_cost_req">ఖర్చు*</string>
     <string name="product_price_req">అమ్మకం ధర*</string>
-    <string name="cash_req">క్యాష్ నగదు*</string>
-    <string name="upi_req">యుపిఐ నగదు*</string>
+    <string name="cash_req">క్యాష్*</string>
+    <string name="upi_req">ఆన్‌లైన్*</string>
     <string name="quantity_req">స్టాకులో నిల్వ*</string>
     <string name="qty_buy_req">కొన్న పరిమాణం*</string>
     <string name="required_fields">*అవసరం</string>
@@ -68,7 +68,7 @@
     <string name="remove_item">సరుకు తీసివేయు</string>
     <string name="total">మొత్తం</string>
     <string name="cash">నగదు</string>
-    <string name="upi">యుపిఐ</string>
+    <string name="upi">ఆన్‌లైన్</string>
     <string name="bill">బిల్లు</string>
     <string name="date">తేది</string>
     <string name="menu_bills_list">బిల్లులు (కొనుగోలు)</string>
@@ -92,20 +92,12 @@
     <string name="home_content_description">ఇంటికి వెళ్లు</string>
 
     <string name="menu_purchase_sales_list">కొనుగోళ్లు మరియు అమ్మకాలు</string>
-    <string name="cash_upi">"\nనగదు / యుపిఐ : %1$s / %2$s "</string>
+    <string name="cash_upi">" నగదు / ఆన్‌లైన్ : %1$s / %2$s "</string>
     <string name="purchase_sale_list_title">కొనుగోళ్లు మరియు అమ్మకాలు</string>
 
     <string name="buy_sell">"కొనుగోళ్లు/అమ్మకాలు : %1$s / %2$s "</string>
-    <string name="home_month_buy">
-        కొనుగోళ్లు: \n(మొత్తం) = %1$s \n
-        (నగదు) = %2$s \n
-        (యుపిఐ) = %3$s \n
-    </string>
-    <string name="home_month_sell">అమ్మకాలు:
-        కొనుగోళ్లు: \n(మొత్తం) = %1$s \n
-        (నగదు) = %2$s \n
-        (యుపిఐ) = %3$s \n
-    </string>
+    <string name="home_month_buy">"\n కొనుగోళ్లు: \n (మొత్తం) = %1$s \n (నగదు) = %2$s \n (ఆన్‌లైన్) = %3$s"</string>
+    <string name="home_month_sell">"\n అమ్మకాలు: \n (మొత్తం) = %1$s \n (నగదు) = %2$s \n (ఆన్‌లైన్) = %3$s"</string>
     <string name="stock">నిల్వ:  %1$s</string>
     <string name="home_summary_tooltip">ప్రస్తుత నెల\n</string>
     <string name="month_total_buy">కొనుగోళ్లు: %1$s</string>
@@ -169,6 +161,38 @@
     <string name="percentage">%</string>
     <string name="percent_expand_button_content_description">శాతం కాలిక్యులేటర్ కోసం విస్తరించండి</string>
     <string name="percentage_calculator_for_above_cost">పై ఖర్చు కోసం శాతం కాలిక్యులేటర్.</string>
+    <string name="product_search_title">వెతకండి</string>
+    <string name="export_import_action">"ఎగుమతి / దిగుమతి "</string>
+    <string name="expand_for_export_import_settings">ఎగుమతి / దిగుమతి సెట్టింగ్‌ల కోసం విస్తరించండి</string>
+    <string name="export">ఎగుమతి</string>
+    <string name="import_txt">దిగుమతి</string>
+    <string name="help_info_enable_and_disable">తదుపరి సహాయం కోసం ఎక్కడైనా తాకండి. సహాయం మూసివేయడానికి, మెనూ -> సెట్టింగ్‌లకు వెళ్లి సహాయాన్ని నిలిపివేయండి.</string>
+    <string name="help_list_of_products">ఈ వర్గంలోని ఉత్పత్తుల జాబితాను వీక్షించడానికి తాకండి</string>
+    <string name="help_search_product">ఉత్పత్తిని శోధించడానికి క్లిక్ చేయండి</string>
+    <string name="help_month_summary">ప్రస్తుత నెల సారాంశాన్ని వీక్షించడానికి నొక్కి, పట్టుకోండి</string>
+    <string name="menu">మెనూ</string>
+    <string name="help_menu_options">విభిన్న మెనూ ఎంపికలను వీక్షించడానికి తాకండి</string>
+    <string name="help_edit_product">ఉత్పత్తిని సవరించడానికి క్లిక్ చేయండి</string>
+    <string name="help_buy_btn">ఉత్పత్తిని కొనండి</string>
+    <string name="help_buy_product">ఉత్పత్తిని కొనడానికి క్లిక్ చేయండి</string>
+    <string name="help_sell_btn">ఉత్పత్తిని అమ్మండి</string>
+    <string name="help_sell_product">ఉత్పత్తిని అమ్మడానికి క్లిక్ చేయండి</string>
+    <string name="help_product_history">ఉత్పత్తి చరిత్రను వీక్షించడానికి క్లిక్ చేయండి</string>
+    <string name="help_save_bill_title">బిల్లును సేవ్ చేయి</string>
+    <string name="help_save_bill_sub_title">బిల్లును సేవ్ చేయడానికి క్లిక్ చేయండి.</string>
+    <string name="help_add_item_to_bill">బిల్‌కు ఉత్పత్తిని జోడించండి</string>
+    <string name="help_bill_add_to_list">ఉత్పత్తిని జాబితాకు జోడించడానికి క్లిక్ చేయండి.</string>
+    <string name="help_remove_item_from_bill">బిల్ నుండి ఉత్పత్తిని తీసివేయండి</string>
+    <string name="help_bill_remove_from_list">జాబితా నుండి చివరి వరుసను తొలగించడానికి క్లిక్ చేయండి.</string>
+    <string name="help_bill_search_product">ఉత్పత్తిని శోధించి ఎంచుకోండి</string>
+    <string name="help_product_details">ఉత్పత్తి వివరాలను వీక్షించడానికి క్లిక్ చేయండి</string>
+    <string name="click_to_add_product">ఉత్పత్తిని జోడించడానికి క్లిక్ చేయండి</string>
+    <string name="enable_help">సహాయాన్ని ప్రారంభించు / నిలిపివేయు</string>
+    <string name="help_entry_product">ప్రత్యేకమైన ఉత్పత్తి పేరును జోడించండి</string>
+    <string name="qty_type_help_title">పరిమాణ రకాన్ని ఎంచుకోండి</string>
+    <string name="qty_type_help_sub_title">పరిమాణ రకాన్ని ఎంచుకోవడానికి బాణంపై క్లిక్ చేయండి.</string>
+    <string name="bar_code_help_title">బార్‌కోడ్‌ని స్కాన్ చేయండి (ఐచ్ఛికం)</string>
+    <string name="bar_code_help_sub_title">ఉత్పత్తి యొక్క బార్‌కోడ్‌పై క్లిక్ చేసి స్కాన్ చేయండి</string>
 
 
 </resources>

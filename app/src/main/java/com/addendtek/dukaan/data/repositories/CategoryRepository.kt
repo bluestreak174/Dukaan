@@ -11,4 +11,5 @@ interface CategoryRepository {
     suspend fun deleteCategory(category: Category)
     suspend fun updateCategory(category: Category)
     fun getCategoryWithProducts(id: Int): Flow<List<CategoryWithProducts>>
+    suspend fun upsertCategory(category: Category): Long
 }

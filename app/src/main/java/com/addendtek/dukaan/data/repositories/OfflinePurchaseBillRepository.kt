@@ -27,5 +27,5 @@ class OfflinePurchaseBillRepository(private val purchaseBillDao: PurchaseBillDao
     override fun getBillDetails(billId: Int): Flow<List<BillDetails>> =
         purchaseBillDao.getBillDetails(billId)
 
-
+    override suspend fun upsertPurchaseBill(purchaseBill: PurchaseBill): Long = purchaseBillDao.upsertPurchaseBill(purchaseBill)
 }

@@ -19,9 +19,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.icons.Icons.Filled
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.LocalMall
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,11 +34,17 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -52,6 +58,8 @@ import com.addendtek.dukaan.R
 import com.addendtek.dukaan.data.entities.Category
 import com.addendtek.dukaan.ui.AppViewModelProvider
 import com.addendtek.dukaan.ui.navigation.NavigationDestination
+import com.addendtek.dukaan.ui.utils.HelpShowCase
+import com.addendtek.dukaan.ui.utils.ShowcaseProperty
 import com.addendtek.dukaan.ui.viewmodel.AppSettingsViewModel
 
 object HomeDestination : NavigationDestination {
@@ -79,19 +87,23 @@ fun HomeScreen(
     navigateToBillsSales: () -> Unit = {},
     navigateToPurchaseSales: () -> Unit = {},
     navigateToSettings: () -> Unit = {},
+    navToProductSearch: () -> Unit = {},
     viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory),
-    appNameViewModel: AppSettingsViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    appSettingsViewModel: AppSettingsViewModel = viewModel(factory = AppViewModelProvider.Factory),
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val homeUiState by  viewModel.homeUiState.collectAsState()
     val stockValueUiState by viewModel.stockValueUiState.collectAsState()
     val pBillUiState by viewModel.purchasesUiState.collectAsStateWithLifecycle()
     val sBillUiState by viewModel.salesUiState.collectAsStateWithLifecycle()
-    val appNamePreferencesState by appNameViewModel.appNamePrefState.collectAsState()
+    val appNamePreferencesState by appSettingsViewModel.appNamePrefState.collectAsState()
 
     val appName = appNamePreferencesState.appName.takeIf { it.isNotBlank() } ?: stringResource(
         R.string.app_name,
     )
+
+    val appHelpPrefState by appSettingsViewModel.appHelpPrefState.collectAsStateWithLifecycle()
+
     val monthSummary = stringResource(R.string.home_summary_tooltip) + stringResource(
         R.string.home_month_buy,
         pBillUiState.totalBill.total,
@@ -106,6 +118,17 @@ fun HomeScreen(
 
             ) + "\n" +
             stringResource(R.string.stock,stockValueUiState)
+    val targets = remember {
+        mutableStateMapOf<String, ShowcaseProperty>()
+    }
+
+    var showMenuHelpIntro by remember {
+        mutableStateOf(false)
+    }
+
+    var showHomeHelp by remember {
+        mutableStateOf(false)
+    }
 
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -123,12 +146,35 @@ fun HomeScreen(
                 onSbillsClick = navigateToBillsSales,
                 onPurchaseSalesClick = navigateToPurchaseSales,
                 onSettingsClick = navigateToSettings,
+                onSearchClick = navToProductSearch,
                 //title = stringResource(HomeDestination.titleRes),
                 title = appName,
                 titleSummary = monthSummary,
                 canNavigateBack = false,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                modifier = Modifier,
+                updateTargets = { targets.putAll(it) }
             )
+            if(showMenuHelpIntro){
+                val uniqueTargets = targets.values.sortedBy { it.index }
+                var currentTargetIndex by remember { mutableStateOf(0) }
+
+                val currentTarget =
+                    if (uniqueTargets.isNotEmpty() && currentTargetIndex < uniqueTargets.size) uniqueTargets[currentTargetIndex] else null
+
+                currentTarget?.let {
+                    HelpShowCase(
+                        target = it,
+                        dismissOnClickOutside = true,
+                        ) {
+                        if (++currentTargetIndex >= uniqueTargets.size) {
+                            showMenuHelpIntro = false
+                        }
+                    }
+                }
+            }
+
+
         },
         bottomBar = {
             Box(
@@ -139,32 +185,40 @@ fun HomeScreen(
             ){
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
+                    AppVersionDisplay()
+
+                    /*
                     Column (
-                        modifier = Modifier.weight(1f),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        AppVersionDisplay()
+
                     }
                     Column (
                         modifier = Modifier.weight(0.2f),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         CloseAppButton()
-                    }
+                    }*/
                 }
             }
         }
 
     ) { innerPadding ->
+
         HomeBody(
-            catList = homeUiState.categoryList,
+            catList = homeUiState.categoryList.sortedBy { it.name },
             //catList = catList,
             onGroupClick = navigateToItemList,
+            showHomeHelp = appHelpPrefState.isAppHelpEnabled,
             modifier = modifier.fillMaxSize(),
             contentPadding = innerPadding,
+            updateShowMenuHelp = { showMenuHelpIntro = it },
+            updateShowHomeHelp = { showHomeHelp = it },
         )
+
     }
 
 }
@@ -219,15 +273,38 @@ fun AppVersionDisplay(
 fun HomeBody(
     catList: List<Category>,
     onGroupClick: (Int) -> Unit,
+    showHomeHelp: Boolean,
+    updateShowHomeHelp: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    updateShowMenuHelp: (Boolean) -> Unit,
 ) {
+    val targets = remember {
+        mutableStateMapOf<Int, ShowcaseProperty>()
+    }
     ProductGroup(
         catList = catList,
         onGroupClick = { onGroupClick(it.id) },
+        targets = targets,
         modifier = modifier,
         contentPadding = contentPadding
     )
+
+    if(showHomeHelp){
+        val uniqueTargets = targets.values.sortedBy { it.index }
+
+        if(uniqueTargets.isNotEmpty() ){
+            HelpShowCase(
+                target = uniqueTargets[0],
+                dismissOnClickOutside = true,
+                onShowCaseCompleted = {
+                    updateShowHomeHelp(false)
+                    updateShowMenuHelp(true)
+                }
+            )
+        }
+    }
+
 
 }
 
@@ -235,16 +312,20 @@ fun HomeBody(
 fun ProductGroup(
     catList: List<Category>,
     onGroupClick: (Category) -> Unit,
+    targets: SnapshotStateMap<Int, ShowcaseProperty>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
 ){
+    val catHelpTitle = stringResource(R.string.product_list_title)
+    val catHelpSubTitle = stringResource(R.string.help_list_of_products)
+
     Column(modifier = Modifier.padding(top = 10.dp)) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(140.dp),
             modifier = modifier.padding(horizontal = 4.dp),
             contentPadding = contentPadding,
         ) {
-            items(items = catList, key = { it.id }) { item ->
+            itemsIndexed(items = catList) { index, item ->
                 GroupCard(
                     category = item,
                     modifier = Modifier
@@ -253,10 +334,29 @@ fun ProductGroup(
                         .aspectRatio(1.5f)
                         .clickable { onGroupClick(item) }
                         .testTag(stringResource(R.string.category_products))
+                        .onGloballyPositioned { coordinates ->
+                            if ( coordinates.isAttached) {
+                                targets[item.id] = ShowcaseProperty(
+                                    index = 1,
+                                    coordinates = coordinates,
+                                    title = catHelpTitle,
+                                    subTitle = catHelpSubTitle
+                                )
+                            }
+
+                        }
+
                 )
             }
         }
     }
+
+
+
+
+
+
+
 }
 
 
@@ -266,6 +366,7 @@ fun GroupCard(
     category: Category,
     modifier: Modifier = Modifier,
 ) {
+
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -279,8 +380,9 @@ fun GroupCard(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth()
         ) {
+            val iconColor = Color(0xFF2AC38C)
             val resourceId: Int
-           when(category.id) {
+            when(category.id) {
                1 -> resourceId = R.drawable.ic_cookie
                2 -> resourceId = R.drawable.ic_chips
                3 -> resourceId = R.drawable.ic_candy
@@ -309,12 +411,13 @@ fun GroupCard(
                 )
             } else {
                 Icon(
-                    imageVector = Filled.ShoppingCart,
+                    imageVector = Filled.LocalMall ,
                     contentDescription = stringResource(R.string.category_products),
                     modifier = Modifier
                         .height(70.dp)
                         .width(70.dp)
-                        .padding(16.dp)
+                        .padding(16.dp),
+                    tint = iconColor
                 )
 
             }
@@ -324,9 +427,12 @@ fun GroupCard(
                 modifier = Modifier
                     .padding(4.dp)
                     .weight(1f)
+
             )
 
         }
     }
 }
+
+
 

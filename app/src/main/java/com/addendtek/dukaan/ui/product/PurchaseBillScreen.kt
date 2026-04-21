@@ -43,15 +43,18 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -62,6 +65,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.addendtek.dukaan.DukaanTopAppBar
 import com.addendtek.dukaan.R
@@ -71,6 +75,9 @@ import com.addendtek.dukaan.ui.AppViewModelProvider
 import com.addendtek.dukaan.ui.navigation.NavigationDestination
 import com.addendtek.dukaan.ui.theme.DukaanTheme
 import com.addendtek.dukaan.ui.utils.BarCodeScannerIconButton
+import com.addendtek.dukaan.ui.utils.HelpShowCase
+import com.addendtek.dukaan.ui.utils.ShowcaseProperty
+import com.addendtek.dukaan.ui.viewmodel.AppSettingsViewModel
 import com.addendtek.dukaan.ui.viewmodel.BillAmount
 import com.addendtek.dukaan.ui.viewmodel.PurchaseBillViewModel
 import com.addendtek.dukaan.ui.viewmodel.PurchaseProductQty
@@ -90,12 +97,23 @@ fun PurchaseBillScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     canNavigateBack: Boolean = true,
-    viewModel: PurchaseBillViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: PurchaseBillViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    appSettingsViewModel: AppSettingsViewModel = viewModel(factory = AppViewModelProvider.Factory),
 ){
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val productAndQuantityState by viewModel.productAndQuantityState.collectAsState()
     val purchaseList = viewModel.purchaseListState
+
+    val appHelpPrefState by appSettingsViewModel.appHelpPrefState.collectAsStateWithLifecycle()
+
+    val targets = remember {
+        mutableStateMapOf<String, ShowcaseProperty>()
+    }
+    var showHelp by remember {
+        mutableStateOf(false)
+    }
+
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -125,6 +143,9 @@ fun PurchaseBillScreen(
             updateList = viewModel::updateList,
             navigateBack = navigateBack,
             getBarCodeProduct = viewModel::updateProductFromBarCode,
+            targets = targets,
+            onShowCaseCompleted = { showHelp = false},
+            showHelp = appHelpPrefState.isAppHelpEnabled,
             modifier = modifier.fillMaxSize(),
             contentPadding = innerPadding,
         )
@@ -148,6 +169,9 @@ fun PurchaseBillBody(
     updateList: (String) -> Unit,
     navigateBack: () -> Unit,
     getBarCodeProduct: (String) -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
+    onShowCaseCompleted: () -> Unit,
+    showHelp: Boolean,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ){
@@ -178,7 +202,8 @@ fun PurchaseBillBody(
             onPurchaseValueChange = onPurchaseValueChange,
             productAndQuantity = productAndQuantity,
             onSearch = {},
-            updateList = updateList
+            updateList = updateList,
+            targets = targets
         )
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -203,19 +228,41 @@ fun PurchaseBillBody(
             onCostValueChange = onCostValueChange,
             updatePurchaseList = updatePurchaseList,
             purchaseList = purchaseList,
+            targets = targets,
         )
 
         PurchaseBillTotal(
             purchaseList = purchaseList,
             billAmount = billAmount,
             savePurchaseBill = onSaveClick,
-            updateBillAmount = updateBillAmount
+            updateBillAmount = updateBillAmount,
+            targets = targets
         )
         PurchaseBillRows(
             purchaseList = purchaseList,
-            modifier = modifier
+            modifier = modifier,
+            contentPadding = contentPadding
         )
 
+    }
+
+    if(showHelp){
+        val uniqueTargets = targets.values.sortedBy { it.index }
+        var currentTargetIndex by remember { mutableStateOf(0) }
+
+        val currentTarget =
+            if (uniqueTargets.isNotEmpty() && currentTargetIndex < uniqueTargets.size) uniqueTargets[currentTargetIndex] else null
+
+        currentTarget?.let {
+            HelpShowCase(
+                target = it,
+                dismissOnClickOutside = true,
+            ) {
+                if (++currentTargetIndex >= uniqueTargets.size) {
+                    onShowCaseCompleted()
+                }
+            }
+        }
     }
 
 
@@ -229,7 +276,6 @@ fun BillAddressText(
     billAmount: BillAmount,
     updateBillAmount: (BillAmount) -> Unit,
 ){
-    if(billAmount.billAddress.isBlank()) billAmount.billAddress = stringResource(R.string.market)
     OutlinedTextField(
         value = billAmount.billAddress,
         onValueChange = {
@@ -253,13 +299,18 @@ fun PurchaseBillTotal(
     billAmount: BillAmount,
     updateBillAmount: (BillAmount) -> Unit,
     savePurchaseBill: () -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
 ){
+    val defaultAddress = stringResource(R.string.market)
     val colors = OutlinedTextFieldDefaults.colors(
         focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
         unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
         disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
     )
     var showNotification by rememberSaveable { mutableStateOf(false) }
+
+    val saveHelpTitle = stringResource(R.string.help_save_bill_title)
+    val saveHelpSubTitle = stringResource(R.string.help_save_bill_sub_title)
     Column {
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -269,9 +320,12 @@ fun PurchaseBillTotal(
             OutlinedTextField(
                 value = billAmount.cash,
                 onValueChange = {
-                    updateBillAmount(billAmount.copy(cash = it))
+                    if(it.toDoubleOrNull() != null){
+                        updateBillAmount(billAmount.copy(cash = it))
+                    }
+
                 },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text( text = stringResource(R.string.cash) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },
                 colors = colors,
                 enabled = true,
@@ -283,9 +337,12 @@ fun PurchaseBillTotal(
             OutlinedTextField(
                 value = billAmount.upi,
                 onValueChange = {
-                    updateBillAmount(billAmount.copy(upi = it))
+                    if(it.toDoubleOrNull() != null){
+                        updateBillAmount(billAmount.copy(upi = it))
+                    }
+
                 },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text( text = stringResource(R.string.upi) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },
                 colors = colors,
                 enabled = true,
@@ -297,7 +354,7 @@ fun PurchaseBillTotal(
             OutlinedTextField(
                 value = "${billAmount.totalCost}",
                 onValueChange = {},
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 label = { Text( text = stringResource(R.string.total) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },
                 colors = colors,
                 enabled = true,
@@ -314,14 +371,27 @@ fun PurchaseBillTotal(
             }
             Button(
                 onClick = {
+                    if(billAmount.billAddress.isBlank()) {
+                        billAmount.billAddress = defaultAddress
+                    }
                     savePurchaseBill()
                     showNotification = true
                           },
-                enabled = purchaseList.isNotEmpty() && billAmount.cash.isNotBlank() && billAmount.upi.isNotBlank(),
+                enabled = purchaseList.isNotEmpty() && billAmount.cash.isNotBlank()
+                        && billAmount.upi.isNotBlank(),
                 shape = MaterialTheme.shapes.small,
                 modifier = Modifier.padding(4.dp)
             ) {
-                Text(text = stringResource(R.string.save_action))
+                Text(
+                    text = stringResource(R.string.save_action),
+                    modifier = Modifier.onGloballyPositioned { coordinates ->
+                        targets["Save Bill"] = ShowcaseProperty(
+                            index = 4,
+                            coordinates = coordinates,
+                            title = saveHelpTitle,
+                            subTitle = saveHelpSubTitle
+                        )
+                    },)
             }
 
         }
@@ -339,13 +409,17 @@ fun PurchaseBillEntryForm(
     selectedProduct: PurchaseProductQty,
     onPurchaseValueChange: (PurchaseProductQty) -> Unit,
     onCostValueChange: (PurchaseProductQty) -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
 ){
     val colors = OutlinedTextFieldDefaults.colors(
         focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
         unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
         disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
     )
-    //var expanded by remember { mutableStateOf(false) }
+    val addRowHelpTitle = stringResource(R.string.help_add_item_to_bill)
+    val addRowHelpSubTitle = stringResource(R.string.help_bill_add_to_list)
+    val remRowHelpTitle = stringResource(R.string.help_remove_item_from_bill)
+    val remRowHelpSubTitle = stringResource(R.string.help_bill_remove_from_list)
 
     Row(
         horizontalArrangement = Arrangement.Center,
@@ -397,8 +471,10 @@ fun PurchaseBillEntryForm(
         OutlinedTextField(
             value = selectedProduct.qty,
             onValueChange = {
-                onPurchaseValueChange(selectedProduct.copy(qty = it))
-                            },
+                    if(it.toIntOrNull() != null || it.isBlank()){
+                        onPurchaseValueChange(selectedProduct.copy(qty = it))
+                    }
+                },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = {
                 Text(
@@ -415,9 +491,11 @@ fun PurchaseBillEntryForm(
         OutlinedTextField(
             value = selectedProduct.cost,
             onValueChange = {
-                onCostValueChange(selectedProduct.copy(cost = it) )
-                            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    if(it.toDoubleOrNull() != null){
+                        onCostValueChange(selectedProduct.copy(cost = it) )
+                    }
+                 },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
             label = { Text( text = stringResource(R.string.cost) + " " + Currency.getInstance(Locale.getDefault()).symbol)  },
             colors = colors,
             enabled = true,
@@ -429,9 +507,22 @@ fun PurchaseBillEntryForm(
 
         IconButton(
             onClick = {
-                updatePurchaseList(purchaseList + selectedProduct)
+                val listItem = purchaseList.find { it.product?.id == selectedProduct.product?.id}
+                if(listItem == null) {
+                    updatePurchaseList(purchaseList + selectedProduct)
+                }
+
             },
-            modifier = Modifier.padding(0.dp),
+            modifier = Modifier
+                .padding(0.dp)
+                .onGloballyPositioned { coordinates ->
+                    targets["Add Product To Bill"] = ShowcaseProperty(
+                        index = 2,
+                        coordinates = coordinates,
+                        title = addRowHelpTitle,
+                        subTitle = addRowHelpSubTitle
+                    )
+                },
             enabled = selectedProduct.productName.isNotBlank() && selectedProduct.qty.isNotBlank() && selectedProduct.cost.isNotBlank(),
         ) {
             Icon(
@@ -443,6 +534,14 @@ fun PurchaseBillEntryForm(
         IconButton(
             onClick = {
                 updatePurchaseList(purchaseList.dropLast(1))
+            },
+            modifier = Modifier.onGloballyPositioned { coordinates ->
+                targets["Remove Product From Bill"] = ShowcaseProperty(
+                    index = 3,
+                    coordinates = coordinates,
+                    title = remRowHelpTitle,
+                    subTitle = remRowHelpSubTitle
+                )
             },
             enabled = purchaseList.isNotEmpty(),
         ) {
@@ -456,16 +555,18 @@ fun PurchaseBillEntryForm(
 
     }
 
+
 }
 
 @Composable
 fun PurchaseBillRows(
     modifier: Modifier = Modifier,
-    purchaseList: List<PurchaseProductQty>
+    purchaseList: List<PurchaseProductQty>,
+    contentPadding: PaddingValues,
 ){
     LazyColumn(
         modifier = modifier,
-        //contentPadding = contentPadding
+        contentPadding = contentPadding
     ) {
         item {
             val headTextList = listOf(stringResource(R.string.item), stringResource(R.string.qty), stringResource(R.string.type), stringResource(R.string.cost))
@@ -496,6 +597,7 @@ fun ProductPurchaseSearchBar(
     selectedProduct: PurchaseProductQty,
     onPurchaseValueChange: (PurchaseProductQty) -> Unit,
     updateList: (String) -> Unit,
+    targets: SnapshotStateMap<String, ShowcaseProperty>,
     modifier: Modifier = Modifier
 ) {
 
@@ -503,7 +605,8 @@ fun ProductPurchaseSearchBar(
     var expanded by rememberSaveable { mutableStateOf(false) }
     // Create and remember the text field state
     val textFieldState = rememberTextFieldState()
-
+    val searchHelpTitle = stringResource(R.string.search_product)
+    val searchHelpSubTitle = stringResource(R.string.help_bill_search_product)
     Box(
         modifier
             .fillMaxWidth()
@@ -531,6 +634,14 @@ fun ProductPurchaseSearchBar(
                             Text(
                                 text = if(selectedProduct.product?.name?.isNotBlank() == true) "${selectedProduct.product?.name}" else stringResource(R.string.search_product),
                                 style = MaterialTheme.typography.titleLarge,
+                                modifier = Modifier.onGloballyPositioned { coordinates ->
+                                    targets["Search"] = ShowcaseProperty(
+                                        index = 1,
+                                        coordinates = coordinates,
+                                        title = searchHelpTitle,
+                                        subTitle = searchHelpSubTitle
+                                    )
+                                }
                             )
                         },
                         trailingIcon = {

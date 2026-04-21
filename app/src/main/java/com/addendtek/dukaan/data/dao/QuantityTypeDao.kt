@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.addendtek.dukaan.data.entities.QuantityType
 import kotlinx.coroutines.flow.Flow
 
@@ -26,4 +27,7 @@ interface QuantityTypeDao {
 
     @Query("SELECT * from qty_type_master ORDER BY type ASC")
     fun getAllQuantityTypes(): Flow<List<QuantityType>>
+
+    @Upsert
+    suspend fun upsertQtyType(quantityType: QuantityType): Long // Returns the row ID of the inserted or updated row
 }

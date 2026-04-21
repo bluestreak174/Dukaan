@@ -17,4 +17,6 @@ class OfflineCategoryRepository(private val categoryDao: CategoryDao) : Category
     override suspend fun updateCategory(category: Category) = categoryDao.update(category)
 
     override fun getCategoryWithProducts(id: Int): Flow<List<CategoryWithProducts>> = categoryDao.getCategoryWithProducts(id)
+
+    override suspend fun upsertCategory(category: Category): Long = categoryDao.upsertCategory(category)
 }
